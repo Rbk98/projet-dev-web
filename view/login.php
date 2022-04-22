@@ -8,7 +8,7 @@ require ('header.php');
 </div>
 
 <?php
-require ('footer.php');
+require('_footer.php');
 ?>
 
 </body>
