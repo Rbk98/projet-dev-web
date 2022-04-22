@@ -1,6 +1,7 @@
-<?php $title = 'Accueil'; ?>
-
-<?php ob_start(); ?>
+<?php
+$title = 'Accueil';
+ob_start();
+?>
 <div class="container my-2">
     <h1 class="mb-2">Bienvenue</h1>
 

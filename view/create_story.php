@@ -1,6 +1,7 @@
-<?php $title = 'Créer une histoire'; ?>
-
-<?php ob_start(); ?>
+<?php
+$title = 'Créer une histoire';
+ob_start();
+?>
     <div class="container my-2">
         <h1 class="mb-2">Créer une histoire</h1>
 
