@@ -1,4 +1,4 @@
-<footer class="bg-dark text-center text-white fixed-bottom">
+<footer class="bg-dark text-center text-white mt-auto">
     <div class="container">
         <section class="m-1">
             <p>

@@ -31,5 +31,5 @@ ob_start();
             </form>
         </div>
     </div>
-<?php $content = ob_get_clean(); ?>
-<?php require('base.php'); ?>
+<?php $content = ob_get_clean();
+require('base.php'); ?>

@@ -13,8 +13,8 @@ ob_start();
                             <input type="text" placeholder="Entrez un surnom" name="nickname" id="nickname"
                                    class="form-control">
                         </div>
-                        <div class="col-12  mb-3">
-                            <label for="birth_date" class="col-form-label">Dâte de naissance :</label>
+                        <div class="col-12 mb-3">
+                            <label for="birth_date" class="col-form-label">Date de naissance :</label>
                             <input type="date" name="birth-date" placeholder="Entrez votre dâte de naissance"
                                    id="birth_date" class="form-control">
                         </div>
@@ -41,6 +41,6 @@ ob_start();
                 </fieldset>
             </form>
         </div>
-        <?php $content = ob_get_clean(); ?>
     </div>
-<?php require('base.php'); ?>
+<?php $content = ob_get_clean();
+require('base.php'); ?>
