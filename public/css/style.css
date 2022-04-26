@@ -1,3 +1,27 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,300,700");
+body {
+  font-family: 'Nunito', sans-serif !important;
+}
+
+.h2_title{
+  text-align: center;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.hr_content{
+  width: 30%;
+  margin: auto;
+  border: 2px solid lightskyblue;
+  border-radius: 5px;
+  opacity: initial;
+}
+
+.bg-gray-100{
+  background-color: #f9f8f8;
+}
+
+
 .form {
   border-radius: 20px;
   border: 1px solid rgb(226, 226, 226);
