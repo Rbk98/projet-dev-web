@@ -13,22 +13,22 @@ ob_start();
                             <div class="col-12 mb-3">
                                 <label for="nickname" class="col-form-label">Surnom :</label>
                                 <input type="text" placeholder="Entrez un surnom" name="nickname" id="nickname"
-                                    class="form-control">
+                                    class="form-control" required>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="birth_date" class="col-form-label">Date de naissance :</label>
                                 <input type="date" name="birth-date" placeholder="Entrez votre dâte de naissance"
-                                    id="birth_date" class="form-control">
+                                    id="birth_date" class="form-control" required>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="password" class="col-form-label ">Mot de passe :</label>
                                 <input type="password" name="password" placeholder="Entrez un mot de passe" id="password"
-                                    class="form-control">
+                                    class="form-control" required>
                             </div>
                             <div class="col-12">
                                 <label for="mail" class="col-form-label">Adresse email :</label>
                                 <input type="email" name="mail" id="mail" placeholder="Entrez votre adresse e-mail"
-                                    class="form-control">
+                                    class="form-control" required>
                             </div>
                         </div>
 
