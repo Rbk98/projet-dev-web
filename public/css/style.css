@@ -21,7 +21,12 @@ body {
   background-color: #f9f8f8;
 }
 
-
+.bg_navbar{
+  background-color: #0883cd;
+}
+.bg_footer{
+  background-color: #0883cd;
+}
 .form {
   border-radius: 20px;
   border: 1px solid rgb(226, 226, 226);
@@ -35,3 +40,43 @@ body {
   border-color: #28a745;
   box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
+
+
+
+#container {
+  max-width: 1024px;
+  margin: auto;
+}
+
+#monitor {
+  background: #000;
+  position: relative;
+  border-top: 3px solid #888;
+  margin: 5%;
+  padding: 2% 2% 4% 2%;
+  border-bottom-left-radius: 50% 2%;
+  border-bottom-right-radius: 50% 2%;
+}
+
+#monitor:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 3%;
+  left: 36%;
+  height: .5%;
+  width: 28%;
+  background: #ddd;
+  border-radius: 50%;
+  box-shadow: 0 0 3px 0 white;
+}
+
+#monitorscreen {
+  position: relative;
+  background-color: #777;
+  background-size: cover;
+  background-position: top center;
+  width: auto;
+  overflow: hidden;
+}
+

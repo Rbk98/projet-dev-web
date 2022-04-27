@@ -28,7 +28,7 @@ ob_start();
                             </div>
                             <div class="col-12">
                                 <label for="mail" class="col-form-label">Adresse email :</label>
-                                <input type="email" name="mail" id="password" placeholder="Entrez votre adresse e-mail"
+                                <input type="email" name="mail" id="mail" placeholder="Entrez votre adresse e-mail"
                                     class="form-control">
                             </div>
                         </div>

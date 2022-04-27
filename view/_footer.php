@@ -1,4 +1,4 @@
-<footer class="bg-dark text-center text-white mt-auto">
+<footer class="bg_footer text-center text-white mt-auto">
     <div class="container">
         <div class="m-2">
             <a class="text-white decoration text-decoration-none" href="#">A propos...</a>
