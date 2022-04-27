@@ -3,11 +3,10 @@ $title = 'Inscription';
 ob_start();
 ?>
 
-
     <div class="container my-5 ">
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-lg-5">
-                <form>
+                <form name="creation" method="post">
                     <fieldset class= "form bg-light p-4 ">
                         <legend class="test text-center">Inscription</legend>
                         <div class="row mb-5">
@@ -38,7 +37,7 @@ ob_start();
                                 <button type="submit" class="btn btn-success">M'inscrire</button>
                             </div>
                             <div class="col-12 d-flex justify-content-center">
-                                <p class="login_register">J'ai déjà un compte ? <a class="text-success text-decoration-none" href="login.php">Je me connecte</a></p>
+                                <p class="login_register">J'ai déjà un compte ? <a class="text-success text-decoration-none" href="index.php?action=connexion">Je me connecte</a></p>
                             </div>
                         </div>
                     </fieldset>

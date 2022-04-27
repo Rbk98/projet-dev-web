@@ -1,17 +1,21 @@
 <?php
 
-require('connect.php');
-
-function createUser()
+function insertUser($nickname, $birth, $mdp, $mail)
 {
-    $nickname = $_POST['nickname'];
-    $birth = $_POST['birth_date'];
-    $mdp = $_POST['password'];
-    $mail = $_POST['mail'];
+    $bdd = connectDb();
+
     $pass = password_hash($mdp, PASSWORD_DEFAULT);
-    $req = $bdd->query("INSERT INTO User(nickname, birth, password, mail) VALUES ('$nickname', '$birth', '$pass', '$mail') ");
+    return $bdd->query("INSERT INTO User(nickname, birth, password, mail) VALUES ('$nickname', '$birth', '$pass', '$mail') ");
+}
 
-    $bdd->close();
+function verifPassword($nickname, $mdp)
+{
+    $bdd = connectDb();
+    $req = $bdd->query("SELECT password FROM User WHERE nickname = '$nickname'");
+    $req->execute();
+    $result = $req->fetch();
 
-    return $req;
+    $isPasswordCorrect = password_verify($mdp, $req['password']);
+    return ($isPasswordCorrect!= null);
+
 }

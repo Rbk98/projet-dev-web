@@ -26,7 +26,7 @@ ob_start();
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-center">
-                            <p class="login_register">Pas encore de compte ? <a class="text-success text-decoration-none" href="registration.php">Je m'inscris</a></p>
+                            <p class="login_register">Pas encore de compte ? <a class="text-success text-decoration-none" href="index.php?action=creer-compte">Je m'inscris</a></p>
                         </div>
                     </fieldset>
                 </form>

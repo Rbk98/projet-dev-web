@@ -8,7 +8,7 @@ ob_start();
         <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
             <div class="col">
                 <div class="card h-100">
-                    <img src="../public/images/book_1.jpg" class="card-img-top p-3" alt="book_img">
+                    <img src="public/images/book_1.jpg" class="card-img-top p-3" alt="book_img">
                     <div class="card-body">
                         <h5 class="card-title">Histoire n°1</h5>
                         <span class="badge bg-info text-dark">Aventure</span>
@@ -22,7 +22,7 @@ ob_start();
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="../public/images/book_1.jpg" class="card-img-top" alt="book_img">
+                    <img src="public/images/book_1.jpg" class="card-img-top" alt="book_img">
                     <div class="card-body">
                         <h5 class="card-title">Histoire n°2</h5>
                         <span class="badge bg-danger">Drame</span>
@@ -36,7 +36,7 @@ ob_start();
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="../public/images/book_1.jpg" class="card-img-top" alt="book_img">
+                    <img src="public/images/book_1.jpg" class="card-img-top" alt="book_img">
                     <div class="card-body">
                         <h5 class="card-title">Histoire n°3</h5>
                         <span class="badge bg-success">Fantastique</span>
@@ -50,7 +50,7 @@ ob_start();
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="../public/images/book_1.jpg" class="card-img-top" alt="book_img">
+                    <img src="public/images/book_1.jpg" class="card-img-top" alt="book_img">
                     <div class="card-body">
                         <h5 class="card-title">Histoire n°4</h5>
                         <span class="badge bg-success">Fantastique</span>
