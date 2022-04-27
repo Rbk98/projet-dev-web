@@ -1,6 +1,6 @@
 <?php
 //Correspond au controleur frontal qui joue le rôle de routeur : appelle les bonnes pages
-require('Controller/HomeController.php');
+require('Controller/controller.php');
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'accueil') {
@@ -13,6 +13,10 @@ if (isset($_GET['action'])) {
         connectUser();
     } else if ($_GET['action'] == 'mon-compte') {
         indexUser();
+    } else if ($_GET['action'] == 'deconnexion') {
+        logoutUser();
+    }else if ($_GET['action'] == 'lire-histoire') {
+        readStory();
     }
 } else {
     homeBooks();

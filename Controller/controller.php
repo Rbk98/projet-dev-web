@@ -14,6 +14,11 @@ function search()
     require('view/search.php');
 }
 
+function readStory()
+{
+    require('view/read_story.php');
+}
+
 function createUser()
 {
     require('view/registration.php');
@@ -31,6 +36,17 @@ function createUser()
 
 function connectUser()
 {
+    if (isset($_POST['nickname']) && isset($_POST['password'])) {
+        $nickname = $_POST['nickname'];
+        $mdp = $_POST['password'];
+        $user = loginUser($nickname, $mdp);
+
+        if ($user) {
+            $_SESSION['nickname'] = $user['nickname'];
+            $_SESSION['role'] = $user['role'];
+            header('Location: index.php');
+        }
+    }
     require('view/login.php');
 }
 

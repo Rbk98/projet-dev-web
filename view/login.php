@@ -5,7 +5,7 @@ ob_start();
     <div class="container my-5">
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-lg-5">
-                <form>
+                <form name="connexion" action="index.php?action=connexion" method="POST">
                     <fieldset class="form bg-light p-4">
                         <legend class="text-center">Connexion</legend>
                         <div class="row mb-5">

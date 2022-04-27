@@ -24,6 +24,7 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class="dropdown-item" href="index.php?action=creer-compte">Inscription</a>
                         <a class="dropdown-item" href="index.php?action=connexion">Connexion</a>
+                        <a class="dropdown-item" href="index.php?action=deconnexion">Deconnexion</a>
                         <a class="dropdown-item" href="index.php?action=mon-compte">Mon compte</a>
                     </div>
                 </li>
