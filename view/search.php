@@ -32,11 +32,11 @@ ob_start(); ?>
         <div class="container py-4">
             <h4> Résultat(s) : </h4>
             <hr/>
-            <div class="container-fluid ">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 mt-3">
-                        <div class="card">
-                            <div class="card-horizontal">
+                        <div class="card bg-light">
+                            <div class="card-horizontal bg-light">
                                 <div class="img-square-wrapper">
                                     <img width="300" height="200" src="../public/images/book_1.jpg" alt="Book example">
                                 </div>
@@ -44,8 +44,11 @@ ob_start(); ?>
                                     <h4 class="card-title">Histoire n°1</h4>
                                     <p class="card-text">Voici le résumé de l'histoire...</p>
                                 </div>
+                                <div class="align-self-end text-end p-3">
+                                    <a href="#" class="btn btn-primary px-2">Commencer l'histoire</a>
+                                </div>
                             </div>
-                            <div class="card-footer bg-white text-end">
+                            <div class="card-footer bg-light text-end">
                                 <small class="text-muted">Lu par 18 personnes.</small>
                             </div>
                         </div>
