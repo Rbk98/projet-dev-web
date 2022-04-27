@@ -32,6 +32,13 @@ body {
   border: 1px solid rgb(226, 226, 226);
 }
 
+.form_search{
+  border-radius: 20px;
+  border: 1px solid rgb(226, 226, 226);
+  width: 60%;
+  margin: auto;
+}
+
 .login_register {
   font-size: 12px;
 }
@@ -41,7 +48,10 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
 
-
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
 
 #container {
   max-width: 1024px;

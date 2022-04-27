@@ -9,7 +9,7 @@ ob_start();
             <div class="col-sm-12 col-lg-5">
                 <form>
                     <fieldset class= "form bg-light p-4 ">
-                        <legend  class="test text-center">Inscription</legend>
+                        <legend class="test text-center">Inscription</legend>
                         <div class="row mb-5">
                             <div class="col-12 mb-3">
                                 <label for="nickname" class="col-form-label">Surnom :</label>

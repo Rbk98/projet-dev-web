@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item px-2 pt-1">
-                    <a class="nav-link text-white" href="#">Rechercher des histoires</a>
+                    <a class="nav-link text-white" href="search.php">Rechercher des histoires</a>
                 </li>
                 <li class="nav-item px-2 pt-1">
                     <a class="nav-link text-white" href="#">Mes créations</a>
