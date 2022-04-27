@@ -38,7 +38,7 @@ ob_start(); ?>
                         <div class="card bg-light">
                             <div class="card-horizontal bg-light">
                                 <div class="img-square-wrapper">
-                                    <img width="300" height="200" src="../public/images/book_1.jpg" alt="Book example">
+                                    <img width="300" height="200" src="public/images/book_1.jpg" alt="Book example">
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title">Histoire n°1</h4>
