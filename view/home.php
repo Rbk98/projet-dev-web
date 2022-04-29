@@ -58,7 +58,7 @@ ob_start();
                         <h5 class="card-title">Histoire n°1</h5>
                         <span class="badge bg-info text-dark">Aventure</span>
                         <p class="card-text">Petit résumé concernant la première histoire...</p>
-                        <a href="index.php?action=lire-histoire" class="btn btn-primary px-2">Commencer
+                        <a href="index.php?action=lire-histoire&id=1" class="btn btn-primary px-2">Commencer
                             l'histoire</a>
                     </div>
                     <div class="card-footer bg-white text-end">

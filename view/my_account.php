@@ -5,10 +5,10 @@
         <h2 class="h2_title my-2">Mon compte</h2>
         <hr class="hr_content"/>
     </div>
-    <div class="container mx-5">
-        <fieldset class="bg-light p-3">
+    <div class="d-flex justify-content-center">
+        <fieldset class="form bg-light p-4 my-3" style="width: 60%;">
             <div class="row">
-                <div class="col-5">
+                <div class="col-lg-5 pl-5">
                     <div class="row mb-3">
                         <h5><i class="bi bi-person-lines-fill"></i> Nom</h5>
                     </div>
@@ -27,15 +27,15 @@
                     <div class="row mb-3">
                         <h5><i class="bi bi-check-all"></i> Admin</h5>
                     </div>
-                </div>  
-                <div class=" col-1 d-flex">
+                </div>
+                <div class="col-lg-1 d-flex">
                     <div class="vr"></div>
                 </div>
-                <div class="col-6">
-                    <div class="row m-5">
+                <div class="col-lg-6 justify-content-center">
+                    <div class="row pl-5 my-5">
                         <h5><i class="bi bi-book-fill"></i> Vous avez lu ... histoires !</h5>
                     </div>
-                    <div class="row m-5">
+                    <div class="row pl-5 my-5">
                         <h5><i class="bi bi-book-half"></i> Vous avez commencé ... histoires !</h5>
                     </div>
                 </div>

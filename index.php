@@ -16,7 +16,12 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'deconnexion') {
         logoutUser();
     }else if ($_GET['action'] == 'lire-histoire') {
-        readStory();
+        if (isset($_GET['id'])) {
+            $idBook = intval($_GET['id']);
+            if ($idBook != 0) {
+                readStory($idBook);
+            }
+        }
     }
 } else {
     homeBooks();

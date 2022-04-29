@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once('Model/userModel.php');
 require_once('Model/bookModel.php');
 
@@ -14,8 +16,9 @@ function search()
     require('view/search.php');
 }
 
-function readStory()
+function readStory($idBook)
 {
+    $book = getBook($idBook);
     require('view/read_story.php');
 }
 
