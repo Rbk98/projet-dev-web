@@ -69,3 +69,8 @@ function creations()
 {
     require('view/my_creations.php');
 }
+
+function stat_histoire()
+{
+    require('view/story_statistics.php');
+}
