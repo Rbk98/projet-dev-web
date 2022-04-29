@@ -70,7 +70,7 @@ function creations()
     require('view/my_creations.php');
 }
 
-function stat_histoire()
+function story_stat()
 {
     require('view/story_statistics.php');
 }
