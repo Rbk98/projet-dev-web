@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito:400,300,700");
 body {
-  font-family: 'Nunito', sans-serif !important;
+  font-family: "Nunito", sans-serif !important;
 }
 
-.h2_title{
+.h2_title {
   text-align: center;
   font-weight: normal;
   letter-spacing: 1px;
 }
 
-.hr_content{
+.hr_content {
   width: 30%;
   margin: auto;
   border: 2px solid lightskyblue;
@@ -17,17 +17,17 @@ body {
   opacity: initial;
 }
 
-.bg-gray-100{
+.bg-gray-100 {
   background-color: #f9f8f8;
 }
 
-.bg_navbar{
+.bg_navbar {
   background-color: #0883cd;
 }
-.bg_footer{
+.bg_footer {
   background-color: #0883cd;
 }
-.form {
+.background {
   border-radius: 20px;
   border: 1px solid rgb(226, 226, 226);
 }
@@ -37,11 +37,9 @@ body {
 }
 
 .form-control:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+  border-color: #08629b;
+  box-shadow: 0 0 0 0.2rem rgba(27, 117, 201, 0.247);
 }
-
-
 
 #container {
   max-width: 1024px;
@@ -59,12 +57,12 @@ body {
 }
 
 #monitor:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   bottom: 3%;
   left: 36%;
-  height: .5%;
+  height: 0.5%;
   width: 28%;
   background: #ddd;
   border-radius: 50%;
@@ -80,3 +78,31 @@ body {
   overflow: hidden;
 }
 
+.btn-success {
+  background-color: #0883cd;
+  border-color: #0883cd;
+}
+
+.btn-success:hover {
+  background-color: #08629b;
+  border-color: #08629b;
+}
+
+.btn-success:focus {
+  background-color: #08629b;
+  border-color: #08629b;
+  box-shadow: 0 0 0 0.2rem rgba(7, 91, 139, 0.25);
+}
+
+.btn-outline-success {
+  border-color: #0883cd;
+  color: #0883cd;
+}
+
+h4 {
+  color: rgb(119, 119, 119);
+}
+
+.choix:hover {
+  box-shadow: 5px 10px 10px 2px rgb(240, 240, 240);
+}

@@ -11,7 +11,7 @@
                     <a class="nav-link text-white" href="#">Rechercher des histoires</a>
                 </li>
                 <li class="nav-item px-2 pt-1">
-                    <a class="nav-link text-white" href="#">Mes créations</a>
+                    <a class="nav-link text-white" href="my_creations.php">Mes créations</a>
                 </li>
                 <li class="nav-item px-2 pt-1">
                     <a class="nav-link text-white" href="#">Mes histoires</a>

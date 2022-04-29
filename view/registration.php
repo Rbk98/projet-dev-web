@@ -8,26 +8,26 @@ ob_start();
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-lg-5">
                 <form>
-                    <fieldset class= "form bg-light p-4 ">
+                    <fieldset class= "background bg-light p-4 ">
                         <legend  class="test text-center">Inscription</legend>
                         <div class="row mb-5">
                             <div class="col-12 mb-3">
-                                <label for="nickname" class="col-form-label">Surnom :</label>
+                                <label for="nickname" class="col-form-label">Surnom</label>
                                 <input type="text" placeholder="Entrez un surnom" name="nickname" id="nickname"
                                     class="form-control">
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="birth_date" class="col-form-label">Date de naissance :</label>
+                                <label for="birth_date" class="col-form-label">Date de naissance</label>
                                 <input type="date" name="birth-date" placeholder="Entrez votre dâte de naissance"
                                     id="birth_date" class="form-control">
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="password" class="col-form-label ">Mot de passe :</label>
+                                <label for="password" class="col-form-label ">Mot de passe</label>
                                 <input type="password" name="password" placeholder="Entrez un mot de passe" id="password"
                                     class="form-control">
                             </div>
                             <div class="col-12">
-                                <label for="mail" class="col-form-label">Adresse email :</label>
+                                <label for="mail" class="col-form-label">Adresse email</label>
                                 <input type="email" name="mail" id="mail" placeholder="Entrez votre adresse e-mail"
                                     class="form-control">
                             </div>
