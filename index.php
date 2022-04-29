@@ -22,7 +22,13 @@ if (isset($_GET['action'])) {
                 readStory($idBook);
             }
         }
+    }else if ($_GET['action'] == 'mes-creations'){
+        creations();
+    //action à modifier une fois qu'on aura l'accès avec l'histoire en question
+    }else if ($_GET['action'] == 'info-histoire'){
+        story_stat();
     }
+
 } else {
     homeBooks();
 }

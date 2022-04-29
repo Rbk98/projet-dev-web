@@ -65,3 +65,12 @@ function indexUser()
     require('view/my_account.php');
 }
 
+function creations()
+{
+    require('view/my_creations.php');
+}
+
+function story_stat()
+{
+    require('view/story_statistics.php');
+}
