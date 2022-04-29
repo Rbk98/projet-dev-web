@@ -63,3 +63,7 @@ function indexUser()
     require('view/my_account.php');
 }
 
+function creations()
+{
+    require('view/my_creations.php');
+}

@@ -22,7 +22,10 @@ if (isset($_GET['action'])) {
                 readStory($idBook);
             }
         }
+    }else if ($_GET['action'] == 'mes-creations'){
+        creations();
     }
+
 } else {
     homeBooks();
 }
