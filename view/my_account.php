@@ -10,33 +10,33 @@
             <div class="row">
                 <div class="col-lg-5 pl-5">
                     <div class="row mb-3">
-                        <h5><i class="bi bi-person-lines-fill"></i> Nom</h5>
+                        <h5><i class="bi bi-person-lines-fill"></i> <?= $user['nickname'] ?></h5>
                     </div>
                     <div class="row mb-3">
-                        <h5><i class="bi bi-calendar-event"></i> Date de naissance</h5>
-                    </div>  
-                    <div class="row mb-3">
-                        <h5><i class="bi bi-at"></i> E-mail</h5>
+                        <h5><i class="bi bi-calendar-event"></i> <?= $user['birth'] ?></h5>
                     </div>
                     <div class="row mb-3">
-                        <h5><i class="bi bi-shield-lock"></i> Mot de passe</h5>
+                        <h5><i class="bi bi-at"></i><?= $user['mail'] ?></h5>
                     </div>
-                    <div class="row mb-3">
-                        <h5><i class="bi bi-check"></i> Lecteur</h5>
-                    </div>
-                    <div class="row mb-3">
-                        <h5><i class="bi bi-check-all"></i> Admin</h5>
-                    </div>
+                    <?php if ($user['role'] == 0) { ?>
+                        <div class="row mb-3">
+                            <h5><i class="bi bi-check"></i> Lecteur</h5>
+                        </div>
+                    <?php } else if ($user['role'] == 1) { ?>
+                        <div class="row mb-3">
+                            <h5><i class="bi bi-check-all"></i> Admin</h5>
+                        </div>
+                    <?php } ?>
                 </div>
                 <div class="col-lg-1 d-flex">
                     <div class="vr"></div>
                 </div>
                 <div class="col-lg-6 justify-content-center">
                     <div class="row pl-5 my-5">
-                        <h5><i class="bi bi-book-fill"></i> Vous avez lu ... histoires !</h5>
+                        <h5><i class="bi bi-book-fill"></i> Vous avez lu <?=$user['nb_reading'] ?> histoire(s) !</h5>
                     </div>
                     <div class="row pl-5 my-5">
-                        <h5><i class="bi bi-book-half"></i> Vous avez commencé ... histoires !</h5>
+                        <h5><i class="bi bi-book-half"></i> Vous avez commencé ... histoire(s) !</h5>
                     </div>
                 </div>
             </div>

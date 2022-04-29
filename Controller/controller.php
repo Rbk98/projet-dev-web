@@ -24,17 +24,18 @@ function readStory($idBook)
 
 function createUser()
 {
-    require('view/registration.php');
-
-    /*
-    if (isset($_POST['creation'])) {
+    if (isset($_POST['nickname']) && isset($_POST['birth_date']) && isset($_POST['password']) && isset($_POST['mail'])) {
         $nickname = $_POST['nickname'];
         $birth = $_POST['birth_date'];
         $mdp = $_POST['password'];
         $mail = $_POST['mail'];
-        $user = insertUser($nickname, $birth, $mdp, $mail);
-    }*/
-
+        $newUser = insertUser($nickname, $birth, $mdp, $mail);
+        if ($newUser) {
+            //TODO: Message votre compte a été créé
+            header('Location: index.php');
+        }
+    }
+    require('view/registration.php');
 }
 
 function connectUser()
@@ -60,6 +61,7 @@ function updateUser()
 
 function indexUser()
 {
+    $user = getUser($_SESSION['nickname']);
     require('view/my_account.php');
 }
 

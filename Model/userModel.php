@@ -1,11 +1,24 @@
 <?php
 
+function getUser($nickname){
+    $bdd = connectDb();
+
+    $sql = "SELECT * FROM User WHERE nickname= ?";
+    $user = $bdd->prepare($sql);
+    $user->execute([$nickname]);
+
+    return $user->fetch();
+}
+
 function insertUser($nickname, $birth, $mdp, $mail)
 {
     $bdd = connectDb();
 
-    $pass = password_hash($mdp, PASSWORD_DEFAULT);
-    return $bdd->query("INSERT INTO User(nickname, birth, password, mail) VALUES ('$nickname', '$birth', '$pass', '$mail') ");
+    $passHash = password_hash($mdp, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO User(nickname, birth, password, mail, role, nb_reading) VALUES (?,?,?,?, 0, 0) ";
+    $newUser = $bdd->prepare($sql);
+
+    return $newUser->execute([$nickname,$birth,$passHash,$mail]);
 }
 
 function loginUser($nickname, $mdp)
@@ -13,15 +26,18 @@ function loginUser($nickname, $mdp)
     $bdd = connectDb();
 
     if (($nickname != "") && ($mdp != "")) {
-        $sql = "SELECT * FROM user WHERE nickname='$nickname' AND password='$mdp'";
+        //TODO: Utiliser la fonction verifpassword pour le décodage
+        $sql = "SELECT * FROM user WHERE nickname=?";
         if (isset($bdd)) {
             $response = $bdd->prepare($sql);
+            $values = array($nickname);
         }
-        $response->execute();
+        $response->execute($values);
         $user = $response->fetch();
+        if(verifPassword($mdp,$user['password'])){
+            return $user;
+        }
     }
-
-    return $user;
 }
 
 function logoutUser()
@@ -33,14 +49,10 @@ function logoutUser()
 }
 
 
-function verifPassword($nickname, $mdp)
+function verifPassword($mdp, $mdpHash)
 {
-    $bdd = connectDb();
-    $req = $bdd->query("SELECT password FROM User WHERE nickname = '$nickname'");
-    $req->execute();
-    $result = $req->fetch();
 
-    $isPasswordCorrect = password_verify($mdp, $req['password']);
+    $isPasswordCorrect = password_verify($mdp, $mdpHash);
     return ($isPasswordCorrect != null);
 
 }
