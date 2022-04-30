@@ -2,10 +2,10 @@
 $title = 'Lire une histoire';
 ob_start();
 ?>
-    <div class="bg-gray-100 py-3">
-        <div id="container">
-            <div id="monitor">
-                <div id="monitorscreen">
+    <div class="bg-grey py-3">
+        <div class="containerscreen">
+            <div class="monitor">
+                <div class="monitorscreen">
                     <h3 class="text-center text-white mt-2">Le Prince de Pierrette</h3>
                     <p class="p-4 text-white">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Il était une fois un village tranquille au milieu du
@@ -40,6 +40,16 @@ ob_start();
                         faut choisir l’un ou l’autre.
 
                     </p>
+                </div>
+            </div>
+        </div>
+        <div class="containerscreen">
+            <div class="monitor">
+                <div class="container my-3">
+                    <div class="col-md-12 text-center">
+                        <button type="button" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-warning">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>

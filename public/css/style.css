@@ -27,9 +27,23 @@ body {
 .bg_footer {
   background-color: #0883cd;
 }
-.background {
+
+.carousel-inner,
+img {
+  width: 100%;
+  height: 300px;
+}
+
+.form {
   border-radius: 20px;
   border: 1px solid rgb(226, 226, 226);
+}
+
+.form_search {
+  border-radius: 20px;
+  border: 1px solid rgb(226, 226, 226);
+  width: 60%;
+  margin: auto;
 }
 
 .login_register {
@@ -41,12 +55,20 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(27, 117, 201, 0.247);
 }
 
-#container {
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.bg-grey {
+  background-color: #313131;
+}
+.containerscreen {
   max-width: 1024px;
   margin: auto;
 }
 
-#monitor {
+.monitor {
   background: #000;
   position: relative;
   border-top: 3px solid #888;
@@ -56,7 +78,7 @@ body {
   border-bottom-right-radius: 50% 2%;
 }
 
-#monitor:after {
+.monitor:after {
   content: "";
   display: block;
   position: absolute;
@@ -69,7 +91,7 @@ body {
   box-shadow: 0 0 3px 0 white;
 }
 
-#monitorscreen {
+.monitorscreen {
   position: relative;
   background-color: #777;
   background-size: cover;
@@ -105,4 +127,7 @@ h4 {
 
 .choix:hover {
   box-shadow: 5px 10px 10px 2px rgb(240, 240, 240);
+}
+.bg_crea {
+  background-color: rgb(194, 213, 254);
 }

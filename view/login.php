@@ -5,8 +5,8 @@ ob_start();
     <div class="container my-5">
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-lg-5">
-                <form>
-                    <fieldset class="background bg-light p-4">
+                <form name="connexion" action="index.php?action=connexion" method="POST">
+                    <fieldset class="form bg-light p-4">
                         <legend class="text-center">Connexion</legend>
                         <div class="row mb-5">
                             <div class="col-12 mb-3">
@@ -26,7 +26,7 @@ ob_start();
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-center">
-                            <p class="login_register">Pas encore de compte ? <a class="text-success text-decoration-none" href="registration.php">Je m'inscris</a></p>
+                            <p class="login_register">Pas encore de compte ? <a class="text-success text-decoration-none" href="index.php?action=creer-compte">Je m'inscris</a></p>
                         </div>
                     </fieldset>
                 </form>
