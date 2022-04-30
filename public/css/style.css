@@ -128,6 +128,12 @@ h4 {
 .choix:hover {
   box-shadow: 5px 10px 10px 2px rgb(240, 240, 240);
 }
-.bg_crea {
-  background-color: rgb(194, 213, 254);
+
+.hr_line {
+  width: 30%;
+  margin: left;
+  background-color: rgb(168, 222, 255);
+  border: 3px solid rgb(168, 222, 255);
+  border-radius: 5px;
+  opacity: initial;
 }

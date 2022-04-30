@@ -37,6 +37,7 @@
                 { ?>
                     <div class="container mb-3">
                         <h4>Histoire(s) en cours de création</h4>
+                        <hr class="hr_line"/>
                     </div>
                     <?php
                     $result=getStartedCreation();
@@ -68,38 +69,40 @@
                 //s'il y a des histoires en cours de création ET des histoires finies
                 if(getFinishedCreation()->rowCount()!=0 && getStartedCreation()->rowCount()!=0)
                 { ?>
-                    <div class="mb-2 mx-2">
-                        <hr></hr>
-                    </div>
+                    <!--<div class="mb-2 mx-2">
+                        <hr class="hr_content"/>
+                    </div>-->
                 <?php }
                 //s'il y a des histoires finies
                 if (getFinishedCreation()->rowCount()!=0)
                 { ?>
                     <div class="container m-3">
                         <h4>Histoires terminées</h4>
+                        <hr class="hr_line"/>
                     </div>
                     <?php
                     $result=getFinishedCreation();
                     $result=$result->fetchAll();
                     foreach($result as $ligne)
                     { ?>
+                        
                         <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
                             <div class="col-3 mb-5">
                                 <div class="card h-100">
                                     <img src="public/images/<?= $ligne['image']?>" class="card-img-top p-3" alt="book_img">
                                     <div class="card-body">
-                                        <h5 class="card-title"><?=$result['title']?></h5>
-                                        <span class="badge bg-info text-dark"><?=$result['genre']?></span>
-                                        <p class="card-text"><?=$result['summary']?></p>
+                                        <h5 class="card-title"><?=$ligne['title']?></h5>
+                                        <span class="badge bg-info text-dark"><?=$ligne['genre']?></span>
+                                        <p class="card-text"><?=$ligne['summary']?></p>
                                         <?php
-                                        if($result['state']==2)
+                                        if($ligne['state']==2)
                                         { ?>
-                                            <a href="index.php?action=mon-histoire&1" class="btn btn-success px-2 mb-2">
+                                            <a href="index.php?action=mon-histoire&1" class="btn px-2 mb-2 btn-success">
                                                 <i class="bi bi-eye"></i> Publié</a>
                                             <a href="index.php?action=info-histoire" class="btn btn-light px-2">
                                                 <i class="bi bi-graph-up"></i> Voir mes statistiques</a>
                                         <?php }
-                                        else if ($result['state']==3){?>
+                                        else if ($ligne['state']==3){?>
                                             <a href="index.php?action=info-histoire" class="btn btn-secondary px-2">
                                             <i class="bi bi-eye-slash"></i> Non publié</a>
                                         <?php } ?>
