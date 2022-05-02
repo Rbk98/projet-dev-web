@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le : lun. 02 mai 2022 à 07:39
+-- Généré le : lun. 02 mai 2022 à 07:54
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `bookproject`
 --
+CREATE DATABASE IF NOT EXISTS `bookproject` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `bookproject`;
 
 -- --------------------------------------------------------
 
@@ -104,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nickname`, `birth`, `password`, `mail`, `role`, `nb_reading`) VALUES
-(1, 'rbk98', '1998-10-28', '$2y$10$tq.TY6DNqZAQ2G.o.XK/C.IyaOjkNR0NSkrveTy9YB9X84AJvKMHS', 'rebeccagnt@orange.fr', 0, 0),
+(1, 'rbk98', '1998-10-28', '$2y$10$tq.TY6DNqZAQ2G.o.XK/C.IyaOjkNR0NSkrveTy9YB9X84AJvKMHS', 'rebeccagnt@orange.fr', 1, 0),
 (2, 'FKERL', '4444-04-24', '$2y$10$nq4h.teIswHaZhVf82HDIOHKAMOfBwmbAiZJrTg2bezROqDFUiQo.', 'rebeccagrenet1@gmail.com', 0, 0),
 (3, 'rbk', '9321-12-29', '$2y$10$msJrtNDwH8Ry6RJ0009CLe7eiHyBPtdPKp9jNk6kbxu9wSNEIUbe2', 'rebeccagrenet1@gmail.com', 0, 0);
 COMMIT;
