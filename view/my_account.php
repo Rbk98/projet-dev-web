@@ -1,6 +1,7 @@
-<?php $title = 'Mon compte'; ?>
-
-<?php ob_start(); ?>
+<?php
+$title = 'Mon compte';
+ob_start();
+?>
     <div class="container my-2">
         <h2 class="h2_title my-2">Mon compte</h2>
         <hr class="hr_content"/>
@@ -33,7 +34,7 @@
                 </div>
                 <div class="col-lg-6 justify-content-center">
                     <div class="row pl-5 my-5">
-                        <h5><i class="bi bi-book-fill"></i> Vous avez lu <?=$user['nb_reading'] ?> histoire(s) !</h5>
+                        <h5><i class="bi bi-book-fill"></i> Vous avez lu <?= $user['nb_reading'] ?> histoire(s) !</h5>
                     </div>
                     <div class="row pl-5 my-5">
                         <h5><i class="bi bi-book-half"></i> Vous avez commencé ... histoire(s) !</h5>

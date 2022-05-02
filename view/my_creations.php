@@ -1,6 +1,6 @@
-<?php $title = 'Mes creations';
-    require_once('./Model/bookModel.php');
-    ob_start();
+<?php
+$title = 'Mes créations';
+ob_start();
 ?>
 
     <div class="container my-2">
@@ -8,10 +8,11 @@
         <hr class="hr_content"/>
     </div>
 
-<?php if(isset($_SESSION['nickname']) && isset($_SESSION['role']))
+<?php
+if(isset($_SESSION['nickname']) && isset($_SESSION['role']))
 {
     if(!empty($_SESSION['nickname']) && !empty($_SESSION['role']))
-    {   
+    {
         if($_SESSION['role'] ==1)
         {
             //s'il n'y a pas encore d'histoire créée

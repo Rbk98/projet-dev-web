@@ -1,5 +1,7 @@
-<?php $title = 'Rechercher des histoires';
-ob_start(); ?>
+<?php
+$title = 'Rechercher des histoires';
+ob_start();
+?>
     <div class="container my-2">
 
         <div class="row d-flex justify-content-center">
@@ -20,7 +22,8 @@ ob_start(); ?>
                         </div>
                         <div class="row py-2 px-0">
                             <div class="col-12 d-grid gap-2 mb-3">
-                                <button type="submit" class="btn btn-success">Rechercher <i class="fa fa-search"></i></button>
+                                <button type="submit" class="btn btn-success">Rechercher <i class="fa fa-search"></i>
+                                </button>
                             </div>
                         </div>
                     </fieldset>

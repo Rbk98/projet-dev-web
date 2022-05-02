@@ -1,6 +1,6 @@
-<?php $title = 'Statistiques de mon histoire'; ?>
-
-<?php ob_start(); ?>
+<?php
+$title = 'Statistiques de mon histoire';
+ob_start(); ?>
 <div class="row text-align-right">
     <div class="col-md-3 mr-5">
         <img src="public/images/book_1.jpg" class="img-fluid" alt="book_img">

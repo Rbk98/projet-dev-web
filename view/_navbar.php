@@ -22,10 +22,12 @@
                     <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown"><i
                                 class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="index.php?action=creer-compte">Inscription</a>
-                        <a class="dropdown-item" href="index.php?action=connexion">Connexion</a>
-                        <a class="dropdown-item" href="index.php?action=deconnexion">Deconnexion</a>
-                        <a class="dropdown-item" href="index.php?action=mon-compte">Mon compte</a>
+                        <?php if (isset($_SESSION['id'])) { ?>
+                            <a class="dropdown-item" href="index.php?action=mon-compte">Mon compte</a>
+                            <a class="dropdown-item" href="index.php?action=deconnexion">Deconnexion</a>
+                        <?php } else { ?>
+                            <a class="dropdown-item" href="index.php?action=connexion">Connexion</a>
+                        <?php } ?>
                     </div>
                 </li>
             </ul>

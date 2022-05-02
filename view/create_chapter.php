@@ -1,6 +1,5 @@
-<?php $title = "Ajout d'histoire"; ?>
-
-<?php ob_start(); ?>
+<?php $title = "Ajouter une histoire";
+ob_start(); ?>
 <div class="container my-5">
         <h2 class="h2_title">Nom du livre</h2>
         <hr class="hr_content"/>
