@@ -11,24 +11,24 @@ ob_start();
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://placeimg.com/1080/500/animals" alt="First slide">
+                    <img class="d-block w-100" src="public/images/library_1.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2>Bienvenue sur notre site Lambda ! </h2>
-                        <p>Ici vous pouvez retrouver des histoires et participer à l'aventure bla bla bla.</p>
+                        <h1>Bienvenue sur notre site Lambda ! </h1>
+                        <h4 class="text-white">Ici vous pouvez retrouver des histoires et participer à l'aventure bla bla bla.</h4>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="https://placeimg.com/1080/500/arch" alt="Second slide">
+                    <img class="d-block w-100" src="public/images/book_open_2.jpg" alt="Second slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2>Des histoires variées... </h2>
-                        <p>De nombreux genres sont disponibles afin de plaire à tout le monde.</p>
+                        <h1>Des histoires variées... </h1>
+                        <h4 class="text-white">De nombreux genres sont disponibles afin de plaire à tout le monde.</h4>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="https://placeimg.com/1080/500/nature" alt="Third slide">
+                    <img class="d-block w-100 w3_carousel" src="public/images/book_open_1.jpg" alt="Third slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h2>Accès illimité... </h2>
-                        <p>Lors de la création de votre compte, vous aurez accès à votre espace et à vos histoires.</p>
+                        <h1>Accès illimité... </h1>
+                        <h4 class="text-white">Lors de la création de votre compte, vous aurez accès à votre espace et à vos histoires.</h4>
                     </div>
                 </div>
             </div>
@@ -53,9 +53,11 @@ ob_start();
                              alt="book_img">
                         <div class="card-body">
                             <h5 class="card-title"><?= $book['title'] ?></h5>
-                            <span class="badge bg-info text-dark"><?= $book['genre'] ?></span>
-                            <p class="card-text"><?= $book['summary'] ?></p>
-                            <a href="index.php?action=lire-histoire&id=1" class="btn btn-primary px-2">Commencer
+                            <span class="badge badge-danger"><?= $book['genre'] ?></span>
+                            <p class="card-text text-truncate--3"><?= $book['summary'] ?></p>
+                        </div>
+                        <div class="d-flex align-items-end flex-column card-body">
+                            <a href="index.php?action=lire-histoire&id=1" class="btn btn-primary px-2 mt-auto">Commencer
                                 l'histoire</a>
                         </div>
                         <div class="card-footer bg-white text-end">

@@ -73,12 +73,20 @@ function indexUser()
     require('view/my_account.php');
 }
 
-function creations()
+function indexCreations()
 {
+    $booksStarted = getStartedCreation();
+    $booksFinished = getFinishedCreation();
     require('view/my_creations.php');
 }
 
-function story_stat()
+function storyStat()
 {
     require('view/story_statistics.php');
+}
+
+
+function createStory()
+{
+    require('view/create_story.php');
 }

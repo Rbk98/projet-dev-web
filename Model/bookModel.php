@@ -22,17 +22,17 @@ function getBook($idBook){
 function getStartedCreation()
 {
     $bdd = connectDb();
-    $books = $bdd->query('SELECT * FROM cover WHERE writter=2 AND state=1');
-    //$books->execute(array($_SESSION['id_user']));
+    $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND state=1');
+    $booksStarted = $sql->execute(array($_SESSION['id']));
 
-    return $books;
+    return $booksStarted;
 }
 
 function getFinishedCreation()
 {
     $bdd = connectDb();
-    $books = $bdd->query('SELECT * FROM cover WHERE writter=2 AND (state=2 OR state=3)');
-    //$books->execute(array("writer"=>$_SESSION['id_user']));
+    $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND (state=2 OR state=3)');
+    $booksFinished = $sql->execute(array($_SESSION['id']));
 
-    return $books;
+    return $booksFinished;
 }

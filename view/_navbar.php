@@ -1,4 +1,4 @@
-<nav class="bg_navbar navbar navbar-expand-lg navbar-dark">
+<nav class="bg_navbar navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid ">
         <a class="navbar-brand" href="index.php">Projet lambda</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

@@ -7,7 +7,7 @@ ob_start();
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-lg-5">
                 <form name="creation" method="POST">
-                    <fieldset class= "form bg-light p-4 ">
+                    <fieldset class= "form bg-light p-4">
                         <legend class="test text-center">Inscription</legend>
                         <div class="row mb-5">
                             <div class="col-12 mb-3">

@@ -23,10 +23,13 @@ if (isset($_GET['action'])) {
             }
         }
     }else if ($_GET['action'] == 'mes-creations'){
-        creations();
+        indexCreations();
     //action à modifier une fois qu'on aura l'accès avec l'histoire en question
     }else if ($_GET['action'] == 'info-histoire'){
-        story_stat();
+        storyStat();
+    }
+    else if ($_GET['action'] == 'creer-histoire'){
+        createStory();
     }
 
 } else {
