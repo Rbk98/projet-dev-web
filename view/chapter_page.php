@@ -45,17 +45,6 @@
                 </div>
             </a>
         </div>
-        <div class="col-3">
-            <a href="book_page.php" class="text-dark text-decoration-none">
-                <div class="card choix">
-                    <h5 class="card-header text-center">Choix n°4</h5>
-                    <div class="card-body text-center">
-                        <p>Ce choix n'a pas encore été configuré</p>
-                        <span class="badge bg-danger">A configurer</span>
-                    </div>
-                </div>
-            </a>
-        </div>
     </div>
     
 </div>
