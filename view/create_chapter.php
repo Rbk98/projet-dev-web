@@ -25,8 +25,8 @@ ob_start(); ?>
                                 <input class="form-control" type="number" placeholder="Nombre de choix  que peut faire le lecteur à l’issu de ce chapitre" value="1" name="nb_choice" id="nb_choice" >                                    
                             </div>
                             <div class="col-12 d-grid gap-2 ">
-                                <a type="submit" class="btn btn-success mb-2" href="chapter_page.php">Configurer les choix du chapitre</a>
-                                <a type="submit" class="btn btn-outline-success" href="book_page.php">Configurer les choix plus tard</a>
+                                <a type="submit" class="btn btn-success mb-2" href="index.php?action=page-chapitre">Configurer les choix du chapitre</a>
+                                <a type="submit" class="btn btn-outline-success" href="index.php?action=page-livre">Configurer les choix plus tard</a>
                             </div>                            
                         </div> 
                     </fieldset>

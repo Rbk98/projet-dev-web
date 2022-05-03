@@ -24,14 +24,25 @@ if (isset($_GET['action'])) {
         }
     }else if ($_GET['action'] == 'mes-creations'){
         indexCreations();
+    
     //action à modifier une fois qu'on aura l'accès avec l'histoire en question
     }else if ($_GET['action'] == 'info-histoire'){
         storyStat();
     }
     else if ($_GET['action'] == 'creer-histoire'){
         createStory();
-    }
 
-} else {
-    homeBooks();
+    }else if ($_GET['action'] == 'page-livre'){
+        bookPage();
+
+    }else if ($_GET['action'] == 'creer-chapitre'){
+        createChapter();
+
+    }else if ($_GET['action'] == 'page-chapitre'){
+        chapterPage();
+
+
+    } else {
+        homeBooks();
+    }
 }

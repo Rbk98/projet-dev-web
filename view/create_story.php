@@ -40,7 +40,7 @@ ob_start();
                                        accept=".png,.jpg,.jpeg">
                             </div>
                             <div class="col-12 d-grid gap-2 ">
-                                <a type="submit" class="btn btn-success" href="book_page.php">Créer mon livre</a>
+                                <a type="submit" class="btn btn-success" href="index.php?action=page-livre">Créer mon livre</a>
                             </div>
                         </div>
 

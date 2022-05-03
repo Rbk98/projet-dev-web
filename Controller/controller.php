@@ -90,3 +90,18 @@ function createStory()
 {
     require('view/create_story.php');
 }
+
+function bookPage()
+{
+    require('view/book_page.php');
+}
+
+function createChapter()
+{
+    require('view/create_chapter.php');
+}
+
+function chapterPage()
+{
+    require('view/chapter_page.php');
+}
