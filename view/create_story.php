@@ -26,12 +26,12 @@ ob_start();
                                 <label for="genre" class="col-form-label ">Genre</label>
                                 <select class="form-select" name="genre" id="genre">
                                     <option value="">Sélectionnez le genre de votre livre</option>
-                                    <option value="aventure">Aventure</option>
-                                    <option value="action">Action</option>
-                                    <option value="children">Enfants</option>
-                                    <option value="romance">Romance</option>
-                                    <option value="thriller">Thriller</option>
-                                    <option value="horror">Horreur</option>
+                                    <option value="Fantastique">Fantastique</option>
+                                    <option value="Aventure">Aventure</option>
+                                    <option value="Comédie">Comédie</option>
+                                    <option value="Romance">Romance</option>
+                                    <option value="Thriller">Thriller</option>
+                                    <option value="Drame">Drame</option>
                                 </select>
                             </div>
                             <div class="col-12 mb-5">
