@@ -36,3 +36,21 @@ function getFinishedCreation()
     $booksFinished = $sql->fetchAll();
     return $booksFinished;
 }
+
+function getStartedReading()
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT * FROM reading WHERE id_user=? AND status=0');
+    $sql->execute(array($_SESSION['id']));
+    $readingsStarted = $sql->fetchAll();
+    return $readingsStarted;
+}
+
+function getFinishedReading()
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT * FROM reading WHERE id_user=? AND status=1');
+    $sql->execute(array($_SESSION['id']));
+    $readingsFinished = $sql->fetchAll();
+    return $readingsFinished;
+}
