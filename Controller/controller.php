@@ -119,3 +119,8 @@ function chapterPage()
 {
     require('view/chapter_page.php');
 }
+
+function indexReandings()
+{
+    require('view/my_readings.php');
+}

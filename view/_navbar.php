@@ -20,7 +20,7 @@
                         </li>
                     <?php } ?>
                     <li class="nav-item px-2 pt-1">
-                        <a class="nav-link text-white" href="#">Mes histoires</a>
+                        <a class="nav-link text-white" href="index.php?action=mes-lectures">Mes lectures</a>
                     </li>
                 <?php } ?>
                 
