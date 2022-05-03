@@ -34,7 +34,13 @@ function createUser()
             if ($newUser) {
                 //TODO: Message votre compte a été créé
                 //$message = 'Vous venez de créer votre compte ! Rendez-vous sur la page de connexion';
-                header('Location: index.php');
+                $user = loginUser($nickname, $mdp);
+                if ($user) {
+                    $_SESSION['id'] = $user['id_user'];
+                    $_SESSION['nickname'] = $user['nickname'];
+                    $_SESSION['role'] = $user['role'];
+                    header('Location: index.php');
+                }
             }
         }
         else{
