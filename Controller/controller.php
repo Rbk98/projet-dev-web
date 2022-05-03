@@ -88,8 +88,20 @@ function storyStat()
 }
 
 
-function createStory()
+function createCover()
 {
+    if (isset($_POST['title']) && isset($_POST['resume']) && isset($_POST['genre']) && isset($_POST['nb_lives']) && isset($_POST['nb_chapters_max'])) {
+        $title = $_POST['title'];
+        $resume = $_POST['resume'];
+        $genre = $_POST['genre'];
+        $nb_lives = $_POST['nb_lives'];
+        $nb_chapters_max = $_POST['nb_chapters_max'];
+        $newCover = insertCover($title,$resume,$genre, $nb_lives, $nb_chapters_max);
+        if ($newCover) {
+            header('Location: index.php?action=mes-creations');
+        }
+
+    }
     require('view/create_story.php');
 }
 

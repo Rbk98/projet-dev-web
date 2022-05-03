@@ -9,7 +9,8 @@ function getBestBooks()
     return $books;
 }
 
-function getBook($idBook){
+function getBook($idBook)
+{
     $bdd = connectDb();
     $book = $bdd->prepare("SELECT * FROM cover WHERE id_book =?");
     $book->execute(array($idBook));
@@ -35,4 +36,13 @@ function getFinishedCreation()
     $sql->execute(array($_SESSION['id']));
     $booksFinished = $sql->fetchAll();
     return $booksFinished;
+}
+
+function insertCover($title, $resume, $genre, $nb_lives, $nb_chapters)
+{
+    $bdd = connectDb();
+    $newCover = $bdd->prepare('INSERT INTO Cover(title, summary,genre,writer,date,nb_lives,nb_chapters_max,nb_win, nb_reading, status) VALUES (?,?,?,?,?,?,?,0,0,0) ');
+    $date = date('Y-m-d');
+    return $newCover->execute([$title,$resume,$genre,$_SESSION['id'], $date, $nb_lives, $nb_chapters]);
+
 }
