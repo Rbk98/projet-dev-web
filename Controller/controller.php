@@ -75,8 +75,8 @@ function indexUser()
 
 function indexCreations()
 {
-    $booksStarted = getStartedCreation();
-    $booksFinished = getFinishedCreation();
+    $startedBooks = getStartedCreation();
+    $finishedBooks = getFinishedCreation();
     require('view/my_creations.php');
 }
 
@@ -104,4 +104,11 @@ function createChapter()
 function chapterPage()
 {
     require('view/chapter_page.php');
+}
+
+function indexReadings()
+{
+    $startedReadings = getStartedReading();
+    $finishedReadings = getFinishedReading();
+    require('view/my_readings.php');
 }

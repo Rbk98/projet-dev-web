@@ -40,9 +40,10 @@ if (isset($_GET['action'])) {
 
     }else if ($_GET['action'] == 'page-chapitre'){
         chapterPage();
-
-
-    } else {
-        homeBooks();
+    }else if ($_GET['action'] == 'mes-lectures'){
+        indexReadings();
     }
 }
+else {
+        homeBooks();
+    }
