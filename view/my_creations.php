@@ -6,6 +6,8 @@ ob_start();
     <div class="container my-2">
         <h2 class="h2_title my-2">Mes créations</h2>
         <hr class="hr_content"/>
+
+
     </div>
 
 <?php
@@ -21,7 +23,8 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
                             <i class="fa fa-book fa-2x mb-4" style="color:#0883cd;"></i>
                             <p class="mb-4">Vous n'avez pour l'instant créé aucune histoire. </br>Commencez à écrire
                                 votre première histoire dès maintenant ! </p>
-                            <a type="sumbit" class="btn btn-success" href="index.php?action=creer-histoire">Créer mon histoire</a>
+                            <a type="sumbit" class="btn btn-success" href="index.php?action=creer-histoire">Créer mon
+                                histoire</a>
                         </div>
                     </div>
                 </div>
@@ -30,13 +33,13 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
     <?php } else {
         //s'il y a des histoires en cours de création
         if (!empty($booksStarted)) { ?>
-            <div class="container mb-3">
+            <div class="">
                 <h4>Histoire(s) en cours de création</h4>
                 <hr class="hr_line"/>
             </div>
-            <?php
-            foreach ($booksStarted as $book) { ?>
-                <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
+            <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
+                <?php
+                foreach ($booksStarted as $book) { ?>
                     <div class="col-2">
                         <div class="card h-75">
                             <img src="public/images/<?= $book['image'] ?>" class="card-img-top py-3" alt="book_img">
@@ -47,7 +50,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } ?>
                 <div class="col-2">
                     <div class="card h-75">
                         <div class="card-body">
@@ -57,7 +60,8 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
                         </div>
                     </div>
                 </div>
-            <?php }
+            </div>
+            <?php
         }
         //s'il y a des histoires en cours de création ET des histoires finies
         if (!empty($booksFinished) && !empty($booksStarted)) { ?>
