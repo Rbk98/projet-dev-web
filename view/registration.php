@@ -20,7 +20,7 @@ ob_start();
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="birth_date" class="col-form-label">Date de naissance :</label>
-                                <input type="date" name="birth_date" placeholder="Entrez votre date de naissance"
+                                <input type="date" name="birth_date" placeholder="aaaa-mm-jj"
                                     id="birth_date" class="form-control" required>
                             </div>
                             <div class="col-12 mb-3">
