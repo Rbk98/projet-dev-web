@@ -19,10 +19,13 @@ ob_start();
                                 <input type="password" class="form-control" id="password" name="password"
                                     placeholder="Entrez votre mot de passe" required>
                             </div>
+                            <?php if(isset($error)){
+                                echo '<div class="col-12 pt-2 text-center"><span class="error text-danger">' . $error . '</span></div>';
+                            }?>
                         </div>
                         <div class="row">
                             <div class="col-12 d-grid gap-2 mb-3">
-                                <button type="sumbit" class="btn btn-success ">Se connecter</button>
+                                <button type="submit" class="btn btn-success ">Se connecter</button>
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-center">

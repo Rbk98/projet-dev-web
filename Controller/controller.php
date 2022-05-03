@@ -56,6 +56,8 @@ function connectUser()
             $_SESSION['nickname'] = $user['nickname'];
             $_SESSION['role'] = $user['role'];
             header('Location: index.php');
+        }else{
+            $error = "Utilisateur ou mot de passe incorrect";
         }
     }
     require('view/login.php');
