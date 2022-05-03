@@ -1,7 +1,6 @@
 <?php
 function connectDb()
 {
-
     try {
         //Local deployment
         $server = "localhost";

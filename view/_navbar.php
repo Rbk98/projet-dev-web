@@ -10,12 +10,20 @@
                 <li class="nav-item px-2 pt-1">
                     <a class="nav-link text-white" href="index.php?action=rechercher">Rechercher des histoires</a>
                 </li>
-                <li class="nav-item px-2 pt-1">
-                    <a class="nav-link text-white" href="index.php?action=mes-creations">Mes créations</a>
-                </li>
-                <li class="nav-item px-2 pt-1">
-                    <a class="nav-link text-white" href="#">Mes histoires</a>
-                </li>
+                <?php if (isset($_SESSION['id']) && $_SESSION['role']==1) { ?>
+                    
+                <?php } ?>
+                <?php if (isset($_SESSION['id'])) { 
+                    if ($_SESSION['role']==1) { ?>
+                        <li class="nav-item px-2 pt-1">
+                            <a class="nav-link text-white" href="index.php?action=mes-creations">Mes créations</a>
+                        </li>
+                    <?php } ?>
+                    <li class="nav-item px-2 pt-1">
+                        <a class="nav-link text-white" href="#">Mes histoires</a>
+                    </li>
+                <?php } ?>
+                
             </ul>
             <ul class="navbar-nav" style="margin-left: 5px;">
                 <li class="nav-item dropdown">
