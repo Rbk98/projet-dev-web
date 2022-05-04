@@ -5,7 +5,7 @@ ob_start();
     <div class="container my-5">
         <div class="row d-flex justify-content-center">
             <div class="col-7  " >
-                <div class="row p-lg-5 bg-light background_book ">
+                <div class="row p-lg-5 bg-light background_type ">
                     <div class="col-12 mb-4 ">
                         <h2 class="h2_title">Nom de l'histoire</h2>
                         <hr class="hr_content"/>

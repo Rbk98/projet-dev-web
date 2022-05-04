@@ -7,7 +7,7 @@ function connectDb()
         $username = "projetS2";
         $password = "amr2022";
         $db = "bookproject";
-        $bdd = new PDO('mysql:host=localhost;dbname=bookproject;charset=utf8', 'projetS2', 'amr2022');
+        $bdd = new PDO('mysql:host='.$server.';dbname='.$db.';charset=utf8', $username, $password);
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }

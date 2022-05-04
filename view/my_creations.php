@@ -2,26 +2,28 @@
 $title = 'Mes créations';
 ob_start();
 ?>
+    <div class="container my-2">
+        <h2 class="h2_title my-2">Mes créations</h2>
+        <hr class="hr_content"/>
 
-<div class="container my-2">
-    <h2 class="h2_title my-2">Mes créations</h2>
-    <hr class="hr_content"/>
-    <?php
-    if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
-        //s'il n'y a pas encore d'histoire créée
-        if (empty($startedBooks) && empty($finishedBooks)) {
-            ?>
-            <div class="container my-5">
-                <div class="row">
-                    <div class="col d-flex justify-content-center">
-                        <div class="card text-center" style="width: 30rem;">
-                            <div class="card-body">
-                                <i class="fa fa-book fa-2x mb-4" style="color:#0883cd;"></i>
-                                <p class="mb-4">Vous n'avez pour l'instant créé aucune histoire. </br>Commencez à écrire
-                                    votre première histoire dès maintenant ! </p>
-                                <a type="sumbit" class="btn btn-success" href="index.php?action=creer-histoire">Créer mon
-                                    histoire</a>
-                            </div>
+
+    </div>
+
+<?php
+if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
+    //s'il n'y a pas encore d'histoire créée
+    if (empty($booksStarted) && empty($booksFinished)) {
+        ?>
+        <div class="container my-5">
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <div class="card text-center" style="width: 30rem;">
+                        <div class="card-body">
+                            <i class="fa fa-book fa-2x mb-4" style="color:#0883cd;"></i>
+                            <p class="mb-4">Vous n'avez pour l'instant créé aucune histoire. <br/>Commencez à écrire
+                                votre première histoire dès maintenant ! </p>
+                            <a type="sumbit" class="btn btn-success" href="index.php?action=creer-histoire">Créer mon
+                                histoire</a>
                         </div>
                     </div>
                 </div>

@@ -1,15 +1,15 @@
 <?php
-$title = 'Mes créations';
+$title = 'Mes lectures';
 ob_start();
 ?>
+
 <div class="container my-2">
     <h2 class="h2_title my-2">Mes lectures</h2>
     <hr class="hr_content"/>
-    <?php
-    if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
-        //s'il n'y a pas encore d'histoire créée
-        if (empty($startedReadings) && empty($finishedReadings)) {
-            ?>
+
+    <?php if (isset($_SESSION['nickname'])) {
+        //s'il n'y a pas encore d'histoire commencée
+        if (empty($readingsStarted) && empty($readingsFinished)) { ?>
             <div class="container my-5">
                 <div class="row">
                     <div class="col d-flex justify-content-center">
@@ -62,7 +62,6 @@ ob_start();
                     <hr class="hr_line"/>
                 </div>
                 <?php
-
                 foreach ($finishedReadings as $book) { ?>
 
                     <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
@@ -84,4 +83,5 @@ ob_start();
     } ?>
 </div>
 <?php $content = ob_get_clean();
+
 require('base.php'); ?>

@@ -175,11 +175,21 @@ h4 {
   width: auto;
 }
 
-.background_book {
+.background_type {
   border: 1px solid rgb(230, 230, 230);
   border-radius: 2%;
 }
 
 .icon {
   color: #0883cd;
+}
+
+.infos {
+  background-color: white;
+  border: 1px solid rgb(230, 230, 230);
+  border-radius: 10px;
+}
+
+.intitule {
+  margin: 0px;
 }
