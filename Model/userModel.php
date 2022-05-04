@@ -33,8 +33,10 @@ function loginUser($nickname, $mdp)
         }
         $response->execute($value);
         $user = $response->fetch();
-        if(verifPassword($mdp,$user['password'])){
-            return $user;
+        if($user){
+            if(verifPassword($mdp,$user['password'])){
+                return $user;
+            }
         }
     }
 }
