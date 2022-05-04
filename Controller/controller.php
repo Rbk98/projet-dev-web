@@ -107,3 +107,12 @@ function chapterPage()
 {
     require('view/chapter_page.php');
 }
+
+function searchBookGenre()
+{
+    if (isset($_POST['genre'])) {
+        $genre = $_POST['genre'];        
+        $bookGenre = getBookGenre($genre);              
+    }
+    require('view/search.php');
+}

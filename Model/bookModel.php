@@ -36,3 +36,13 @@ function getFinishedCreation()
     $booksFinished = $sql->fetchAll();
     return $booksFinished;
 }
+
+function getBookGenre($genre){
+    $bdd=connectDb();
+    $sql=$bdd->prepare('SELECT * FROM cover WHERE genre=? ');
+    $sql->execute(array($genre));
+    $books=$sql->fetchAll();  // Accès à la première ligne de résultat
+    return $books;
+    
+    
+}
