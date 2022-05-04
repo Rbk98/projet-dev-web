@@ -76,7 +76,7 @@ ob_start();
                         <?php
                         foreach ($finishedBooks as $book) { ?>
                             <div class="col-6 col-lg-3 mb-5 mb-lg-0">
-                                <div class="card ">
+                                <div class="card mb-4">
                                     <img src="public/images/<?= $book['image'] ?>" class="card-img-top" alt="book_img">
                                     <div class="card-body">
                                         <h5 class="card-title book_title"><?= $book['title'] ?></h5>
