@@ -8,14 +8,14 @@ ob_start();
 
         <div class="row d-flex justify-content-between">
            
-                <div class="col-5 d-flex justify-content-center  background_type bg-light p-5 my-4">            
+                <div class="col-12 col-lg-5 d-flex justify-content-center  background_type bg-light p-5 my-4">            
                     <div class="d-flex justify-content-center flex-column">
                         <div class="row mb-5">
                             <h4 class="text-center">Mes informations personnelles :</h4>
                         </div>
 
                         <div class="row d-flex align-items-center mb-4">
-                            <div class="col-5">
+                            <div class="col-12 col-lg-5">
                                 <p class="intitule">Surnom :</p>
                             </div>
                             <div class="col ">
@@ -26,7 +26,7 @@ ob_start();
                         </div>
 
                         <div class="row d-flex align-items-center mb-4">
-                            <div class="col-5">
+                            <div class="col-12 col-lg-5">
                                 <p class="intitule">Date de naissance :</p>
                             </div>
                             <div class="col">
@@ -37,7 +37,7 @@ ob_start();
                         </div>
 
                         <div class="row d-flex align-items-center mb-4">
-                            <div class="col-5">
+                            <div class="col-12 col-lg-5">
                                 <p class="intitule">Adresse e-mail :</p>
                             </div>
                             <div class="col">
@@ -48,7 +48,7 @@ ob_start();
                         </div>
 
                         <div class="row d-flex align-items-center mb-5">
-                            <div class="col-5">
+                            <div class="col-12 col-lg-5">
                                 <p class="intitule">Status :</p>
                             </div>
                             <div class="col">
@@ -70,8 +70,8 @@ ob_start();
         
         
             
-                <div class="col-5 d-flex justify-content-center flex-column justify-content-between background_type bg-light p-5 my-4 ">            
-                    <div class="d-flex justify-content-center flex-column mb-4">
+                <div class="col-12 col-lg-5 d-flex justify-content-center flex-column justify-content-between  my-4 ">            
+                    <div class="d-flex justify-content-center flex-column mb-4 background_type bg-light p-5">
                         <div class="row mb-3 ">
                             <h4 class="text-center">Mes informations de lecture :</h4>
                         </div>
@@ -84,20 +84,22 @@ ob_start();
                         <button type="submit" class="btn btn-success">Voir mes lectures</button>
                     </div>
 
-                    <hr>
-
-                    <div class="d-flex justify-content-center flex-column">
-                        <div class="row mb-3">
-                            <h4 class="text-center">Mes informations de créations :</h4>
+                    
+                    <?php if (isset($_SESSION['id'])) { 
+                    if ($_SESSION['role']==1) { ?>                    
+                        <div class="d-flex justify-content-center flex-column background_type bg-light p-5">
+                            <div class="row mb-3">
+                                <h4 class="text-center">Mes informations de créations :</h4>
+                            </div>
+                            <div class="row mb-1">
+                                <h6><i class="bi bi-book-fill"></i> Nombre d'histoires créées :  </h6>
+                            </div>
+                            <div class="row mb-3">
+                                <h6><i class="bi bi-book-half"></i> Nombre d'histoires publiées : ...</h6>
+                            </div>
+                            <button type="submit" class="btn btn-success">Voir mes histoires</button>
                         </div>
-                        <div class="row mb-1">
-                            <h6><i class="bi bi-book-fill"></i> Nombre d'histoires créées :  </h6>
-                        </div>
-                        <div class="row mb-3">
-                            <h6><i class="bi bi-book-half"></i> Nombre d'histoires publiées : ...</h6>
-                        </div>
-                        <button type="submit" class="btn btn-success">Voir mes histoires</button>
-                    </div>
+                    <?php }}?>
                 </div>
             
         </div>
