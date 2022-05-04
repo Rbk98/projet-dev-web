@@ -25,8 +25,8 @@ function getStartedCreation()
     $bdd = connectDb();
     $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND status=1');
     $sql->execute(array($_SESSION['id']));
-    $booksStarted = $sql->fetchAll();
-    return $booksStarted;
+    $startedBooks = $sql->fetchAll();
+    return $startedBooks;
 }
 
 function getFinishedCreation()
@@ -34,8 +34,26 @@ function getFinishedCreation()
     $bdd = connectDb();
     $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND (status=2 OR status=3)');
     $sql->execute(array($_SESSION['id']));
-    $booksFinished = $sql->fetchAll();
-    return $booksFinished;
+    $finishedBooks = $sql->fetchAll();
+    return $finishedBooks;
+}
+
+function getStartedReading()
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT * FROM reading WHERE writer=? AND status=0');
+    $sql->execute(array($_SESSION['id']));
+    $startedReadings = $sql->fetchAll();
+    return $startedReadings;
+}
+
+function getFinishedReading()
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT * FROM reading WHERE writer=? AND status=1');
+    $sql->execute(array($_SESSION['id']));
+    $finishedReadings = $sql->fetchAll();
+    return $finishedReadings;
 }
 
 function getBookGenre($genre){

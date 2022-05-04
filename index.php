@@ -37,8 +37,9 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'page-chapitre') {
         chapterPage();
     }else if ($_GET['action'] == 'mes-lectures'){
-        indexReandings();
+        indexReadings();
     }
+}
 } else {
     homeBooks();
 }

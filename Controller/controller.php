@@ -83,8 +83,8 @@ function indexUser()
 
 function indexCreations()
 {
-    $booksStarted = getStartedCreation();
-    $booksFinished = getFinishedCreation();
+    $startedBooks = getStartedCreation();
+    $finishedBooks = getFinishedCreation();
     require('view/my_creations.php');
 }
 
@@ -126,6 +126,13 @@ function chapterPage()
     require('view/chapter_page.php');
 }
 
+function indexReadings()
+{
+    $startedReadings = getStartedReading();
+    $finishedReadings = getFinishedReading();
+      require('view/my_readings.php');
+}
+
 function searchBookGenre()
 {
     if (isset($_POST['genre'])) {
@@ -133,8 +140,4 @@ function searchBookGenre()
         $bookGenre = getBookGenre($genre);              
     }
     require('view/search.php');
-}
-function indexReandings()
-{
-    require('view/my_readings.php');
 }

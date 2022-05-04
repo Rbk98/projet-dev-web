@@ -26,54 +26,53 @@ ob_start();
                 </div>
             </div>
         <?php } else {
-            //s'il y a des histoires en cours de lecture
-            if (!empty($readingsStarted)) { ?>
-                <div>
+            //s'il y a des histoires en cours de création
+            if (!empty($startedReadings)) { ?>
+                <div class="">
                     <h4>Histoire(s) en cours de lecture</h4>
                     <hr class="hr_line"/>
                 </div>
                 <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
                     <?php
-                    foreach ($readingsStarted as $reading) { ?>
-                        <div class="col-3 mb-5">
-                            <div class="card h-100">
-                                <img src="public/images/<?= $reading['image'] ?>" class="card-img-top py-3" alt="book_img">
+                    foreach ($booksStarted as $book) { ?>
+                        <div class="col-2">
+                            <div class="card h-75">
+                                <img src="public/images/<?= $book['image'] ?>" class="card-img-top py-3" alt="book_img">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $reading['title'] ?></h5>
-                                    <span class="badge bg-info text-dark"><?= $reading['genre'] ?></span>
-                                    <p class="card-text"><?= $reading['summary'] ?></p>
-                                    <a href="index.php?action=continuer-lecture" class="btn btn-primary px-2">Continuer
+                                    <h5 class="card-title"><?= $book['title'] ?></h5>
+                                    <!-- ref à changer -->
+                                    <a href="#" class="btn btn-primary px-2">Continuer
                                         la lecture</a>
                                 </div>
                             </div>
                         </div>
-                    <?php }
-            }
-            //s'il y a des histoires en cours de lecture ET des histoires finies
-            if (!empty($readingsFinished) && !empty($readingsStarted)) { ?>
-                <!--<div class="mb-2 mx-2">
+                    <?php } ?>
+                </div>
+            <?php}
+            //s'il y a des histoires en cours de création ET des histoires finies
+            if (!empty($finishedReadings) && !empty($startedReadings)) { ?>
+                <div class="mb-2 mx-2">
                     <hr class="hr_content"/>
-                </div>-->
+                </div>
             <?php }
-            //s'il y a des lectures finies
-            if (!empty($readingsFinished)) { ?>
+            //s'il y a des histoires finies
+            if (!empty($finishedReadings)) { ?>
                 <div class="container m-3">
                     <h4>Lectures terminées</h4>
                     <hr class="hr_line"/>
                 </div>
                 <?php
-    
-                foreach ($readingsFinished as $reading) { ?>
-    
+                foreach ($finishedReadings as $book) { ?>
+
                     <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
                         <div class="col-3 mb-5">
                             <div class="card h-100">
-                                <img src="public/images/<?= $reading['image'] ?>" class="card-img-top p-3" alt="book_img">
+                                <img src="public/images/<?= $book['image'] ?>" class="card-img-top p-3" alt="book_img">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $reading['title'] ?></h5>
-                                    <span class="badge bg-info text-dark"><?= $reading['genre'] ?></span>
-                                    <p class="card-text"><?= $reading['summary'] ?></p>
-                                    <a href="index.php?action=read-story" class="btn btn-light px-2">Relire</a>
+                                    <h5 class="card-title"><?= $book['title'] ?></h5>
+                                    <span class="badge bg-info text-dark"><?= $book['genre'] ?></span>
+                                    <p class="card-text"><?= $book['summary'] ?></p>
+                                    <btn href="index.php?action=lire-histoire" class="btn btn-primary px-2">Relire</btn>
                                 </div>
                             </div>
                         </div>
@@ -81,9 +80,8 @@ ob_start();
                 <?php }
             }
         }
-    }?>
+    } ?>
 </div>
+<?php $content = ob_get_clean();
 
-<?php
-$content = ob_get_clean();
 require('base.php'); ?>
