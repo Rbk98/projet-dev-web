@@ -59,7 +59,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
                         </div>
                     </div>
                 </div>
-            <?php}
+            <?php }
             //s'il y a des histoires en cours de création ET des histoires finies
             if (!empty($finishedBooks) && !empty($startedBooks)) { ?>
             <!--<div class="mb-2 mx-2">
@@ -85,12 +85,12 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
                                     <span class="badge bg-info text-dark"><?= $book['genre'] ?></span>
                                     <p class="card-text"><?= $book['summary'] ?></p>
                                     <?php
-                                    if ($book['state'] == 2) { ?>
+                                    if ($book['status'] == 2) { ?>
                                         <a href="index.php?action=mon-histoire&1" class="btn px-2 mb-2 btn-success">
                                             <i class="bi bi-eye"></i> Publié</a>
                                         <a href="index.php?action=info-histoire" class="btn btn-light px-2">
                                             <i class="bi bi-graph-up"></i> Voir mes statistiques</a>
-                                    <?php } else if ($book['state'] == 3) { ?>
+                                    <?php } else if ($book['status'] == 3) { ?>
                                         <a href="index.php?action=info-histoire" class="btn btn-secondary px-2">
                                             <i class="bi bi-eye-slash"></i> Non publié</a>
                                     <?php } ?>

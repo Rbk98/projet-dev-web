@@ -13,6 +13,10 @@ function homeBooks()
 
 function search()
 {
+    if (isset($_POST['genre'])) {
+        $genre = $_POST['genre'];
+        $bookGenre = getBookGenre($genre);
+    }
     require('view/search.php');
 }
 
@@ -131,13 +135,4 @@ function indexReadings()
     $startedReadings = getStartedReading();
     $finishedReadings = getFinishedReading();
       require('view/my_readings.php');
-}
-
-function searchBookGenre()
-{
-    if (isset($_POST['genre'])) {
-        $genre = $_POST['genre'];        
-        $bookGenre = getBookGenre($genre);              
-    }
-    require('view/search.php');
 }
