@@ -7,7 +7,10 @@ if (isset($_GET['action'])) {
         homeBooks();
     } else if ($_GET['action'] == 'creer-compte') {
         createUser();
-    } else if ($_GET['action'] == 'rechercher') {
+    }else if ($_GET['action'] == 'modifier-son-compte') {
+        updateUser();
+    }
+    else if ($_GET['action'] == 'rechercher') {
         search();
     } else if ($_GET['action'] == 'connexion') {
         connectUser();
@@ -27,7 +30,12 @@ if (isset($_GET['action'])) {
 
         //action à modifier une fois qu'on aura l'accès avec l'histoire en question
     } else if ($_GET['action'] == 'info-histoire') {
-        storyStat();
+        if (isset($_GET['id'])) {
+            $idBook = intval($_GET['id']);
+            if ($idBook != 0) {
+                storyStat($idBook);
+            }
+        }
     } else if ($_GET['action'] == 'creer-histoire') {
         createCover();
     } else if ($_GET['action'] == 'page-livre') {

@@ -12,7 +12,7 @@ function getBestBooks()
 function getBook($idBook)
 {
     $bdd = connectDb();
-    $book = $bdd->prepare("SELECT * FROM cover WHERE id_book =?");
+    $book = $bdd->prepare("SELECT * FROM cover WHERE id_cover =?");
     $book->execute(array($idBook));
     if ($book->rowCount() == 1)
         return $book->fetch();  // Accès à la première ligne de résultat

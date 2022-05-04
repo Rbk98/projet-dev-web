@@ -21,6 +21,15 @@ function insertUser($nickname, $birth, $mdp, $mail)
     return $newUser->execute([$nickname,$birth,$passHash,$mail]);
 }
 
+function changeUser($birth, $mdp, $mail, $id){
+    $bdd = connectDb();
+
+    $passHash = password_hash($mdp, PASSWORD_DEFAULT);
+    $sql = "UPDATE User SET birth=?, password=?, mail=? WHERE id_user=? ";
+    $updateUser = $bdd->prepare($sql);
+
+    return $updateUser->execute([$birth,$passHash,$mail,$id]);
+}
 function loginUser($nickname, $mdp)
 {
     $bdd = connectDb();
@@ -33,8 +42,10 @@ function loginUser($nickname, $mdp)
         }
         $response->execute($value);
         $user = $response->fetch();
-        if(verifPassword($mdp,$user['password'])){
-            return $user;
+        if($user){
+            if(verifPassword($mdp,$user['password'])){
+                return $user;
+            }
         }
     }
 }
