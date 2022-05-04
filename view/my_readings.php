@@ -34,12 +34,12 @@ ob_start();
                 </div>
                 <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
                     <?php
-                    foreach ($booksStarted as $book) { ?>
+                    foreach ($booksStarted as $reading) { ?>
                         <div class="col-2">
                             <div class="card h-75">
-                                <img src="public/images/<?= $book['image'] ?>" class="card-img-top py-3" alt="book_img">
+                                <img src="public/images/<?= $reading['image'] ?>" class="card-img-top py-3" alt="book_img">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $book['title'] ?></h5>
+                                    <h5 class="card-title"><?= $reading['title'] ?></h5>
                                     <!-- ref à changer -->
                                     <a href="#" class="btn btn-primary px-2">Continuer
                                         la lecture</a>
@@ -62,16 +62,16 @@ ob_start();
                     <hr class="hr_line"/>
                 </div>
                 <?php
-                foreach ($finishedReadings as $book) { ?>
+                foreach ($finishedReadings as $reading) { ?>
 
                     <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
                         <div class="col-3 mb-5">
                             <div class="card h-100">
-                                <img src="public/images/<?= $book['image'] ?>" class="card-img-top p-3" alt="book_img">
+                                <img src="public/images/<?= $reading['image'] ?>" class="card-img-top p-3" alt="book_img">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $book['title'] ?></h5>
-                                    <span class="badge bg-info text-dark"><?= $book['genre'] ?></span>
-                                    <p class="card-text"><?= $book['summary'] ?></p>
+                                    <h5 class="card-title"><?= $reading['title'] ?></h5>
+                                    <span class="badge bg-info text-dark"><?= $reading['genre'] ?></span>
+                                    <p class="card-text"><?= $reading['summary'] ?></p>
                                     <btn href="index.php?action=lire-histoire" class="btn btn-primary px-2">Relire</btn>
                                 </div>
                             </div>
