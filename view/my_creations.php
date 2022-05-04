@@ -64,19 +64,17 @@ ob_start();
                 //s'il y a des histoires finies
                 if (!empty($finishedBooks)) { ?>
                     <div class="row mb-5 d-flex justify-content-center justify-content-lg-between align-items-center infos bg-light p-3 m-0">
-                        <div class="col-12 col-lg-auto mb-3 mb-lg-0">
-                            <h4 class="intitule mx-2 text-center">Histoires terminées</h4>
-                        </div>
-                        <div class="col-12 col-lg-auto d-flex justify-content-center justify-content-lg-start">
-                            <a type="sumbit" class="btn btn-success" href="index.php?action=mon-compte">Voir mes chiffres</a>
-                        </div>
+                        
+                            <h4 class="intitule mx-2 text-center text-lg-left">Histoires terminées</h4>
+                        
+                        
                     </div>
 
                     <div class="row mb-5">
                         <?php
                         foreach ($finishedBooks as $book) { ?>
-                            <div class="col-6 col-lg-3 mb-5 mb-lg-0">
-                                <div class="card mb-4">
+                            <div class="col-6 col-lg-3 mb-5 ">
+                                <div class="card ">
                                     <img src="public/images/<?= $book['image'] ?>" class="card-img-top" alt="book_img">
                                     <div class="card-body">
                                         <h5 class="card-title book_title"><?= $book['title'] ?></h5>
