@@ -2,9 +2,9 @@
 $title = 'Mes créations';
 ob_start();
 ?>
-    <div class="container my-2">
+    <div class="container my-3">
         <h2 class="h2_title my-2">Mes créations</h2>
-        <hr class="hr_content"/>
+        <hr class="hr_content mb-5"/>
 
 
         <?php
@@ -29,33 +29,30 @@ ob_start();
             <?php } else {
                 //s'il y a des histoires en cours de création
                 if (!empty($startedBooks)) { ?>
-                    <div class="">
-                        <h4>Histoire(s) en cours de création</h4>
-                        <hr class="hr_line"/>
+                    <div class="row mb-5 d-flex justify-content-center justify-content-lg-between align-items-center infos bg-light p-3 m-0">
+                        <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                            <h4 class="intitule mx-2 text-center">Histoire(s) en cours de création</h4>
+                        </div>
+                        <div class="col-12 col-lg-auto d-flex justify-content-center justify-content-lg-start">
+                            <a type="sumbit" class="btn btn-success" href="index.php?action=creer-histoire">Ajouter une histoire</a>
+                        </div>
                     </div>
-                    <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
+                    <div class="row mb-5">
                         <?php
                         foreach ($startedBooks as $book) { ?>
-                            <div class="col-2">
-                                <div class="card h-75">
-                                    <img src="public/images/<?= $book['image'] ?>" class="card-img-top py-3" alt="book_img">
+                            <div class="col-6 col-lg-3 mb-5 mb-lg- ">
+                                <div class="card ">
+                                    <img src="public/images/<?= $book['image'] ?>" class="card-img-top" alt="book_img">
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $book['title'] ?></h5>
-                                        <a href="index.php?action=modifier-histoire" class="btn btn-primary px-2">Continuer
-                                            l'édition</a>
+                                        <p class="card-text  text-truncate--3"><?= $book['summary'] ?></p>
+                                        <div class="d-grid gap-2">
+                                            <a href="index.php?action=modifier-histoire" class="btn btn-primary px-2">Editer</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        <?php } ?>
-                        <div class="col-2">
-                            <div class="card h-75">
-                                <div class="card-body">
-                                    <a href="index.php?action=creer-histoire"><i class="bi bi-plus-circle"
-                                                                                 style="font-size:100px; "></i></a>
-                                    <h6 class="card-title mt-5 d-flex justify-content-center">Créer une nouvelle histoire</h6>
-                                </div>
-                            </div>
-                        </div>
+                        <?php } ?>                        
                     </div>
                 <?php }
                 //s'il y a des histoires en cours de création ET des histoires finies
@@ -66,41 +63,60 @@ ob_start();
                 <?php }
                 //s'il y a des histoires finies
                 if (!empty($finishedBooks)) { ?>
-                    <div class="container m-3">
-                        <h4>Histoires terminées</h4>
-                        <hr class="hr_line"/>
+                    <div class="row mb-5 d-flex justify-content-center justify-content-lg-between align-items-center infos bg-light p-3 m-0">
+                        <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                            <h4 class="intitule mx-2 text-center">Histoires terminées</h4>
+                        </div>
+                        <div class="col-12 col-lg-auto d-flex justify-content-center justify-content-lg-start">
+                            <a type="sumbit" class="btn btn-success" href="index.php?action=mon-compte">Voir mes chiffres</a>
+                        </div>
                     </div>
-                    <?php
 
-                    foreach ($finishedBooks as $book) { ?>
-
-                        <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
-                            <div class="col-3 mb-5">
-                                <div class="card h-100">
-                                    <img src="public/images/<?= $book['image'] ?>" class="card-img-top p-3" alt="book_img">
+                    <div class="row mb-5">
+                        <?php
+                        foreach ($finishedBooks as $book) { ?>
+                            <div class="col-6 col-lg-3 mb-5 mb-lg-0">
+                                <div class="card ">
+                                    <img src="public/images/<?= $book['image'] ?>" class="card-img-top" alt="book_img">
                                     <div class="card-body">
-                                        <h5 class="card-title"><?= $book['title'] ?></h5>
-                                        <span class="badge bg-info text-dark"><?= $book['genre'] ?></span>
-                                        <p class="card-text"><?= $book['summary'] ?></p>
+                                        <h5 class="card-title book_title"><?= $book['title'] ?></h5>
+                                        <span class="badge badge-pill badge_style mb-3"><?= $book['genre'] ?></span>
+                                        <p class="card-text  text-truncate--3"><?= $book['summary'] ?></p>
                                         <?php
-                                        if ($book['status'] == 2) { ?>
-                                            <a href="index.php?action=mon-histoire&1" class="btn px-2 mb-2 btn-success">
-                                                <i class="bi bi-eye"></i> Publié</a>
-                                            <a href="index.php?action=info-histoire" class="btn btn-light px-2">
-                                                <i class="bi bi-graph-up"></i> Voir mes statistiques</a>
-                                        <?php } else if ($book['status'] == 3) { ?>
-                                            <a href="index.php?action=info-histoire" class="btn btn-secondary px-2">
-                                                <i class="bi bi-eye-slash"></i> Non publié</a>
+                                            if ($book['status'] == 1) { ?>
+                                                <div class="row ">
+                                                    <div class="col-12 col-lg-6  mb-2 ">
+                                                        <a href="index.php?action=mon-histoire&1" class="btn px-2  btn-success btn-block mb-2">
+                                                        <i class="bi bi-eye"></i> Publié</a>
+                                                     </div>
+                                                     <div class="col-12 col-lg-6  px-2 ">
+                                                        <a href="index.php?action=info-histoire" class="btn btn-light btn-block ">
+                                                        <i class="bi bi-graph-up"></i> Stats</a>
+                                                     </div>
+                                                </div>
+                                                
+                                                
+                                            <?php } else if ($book['status'] == 2) { ?>
+                                                <div>
+                                                    <a href="index.php?action=info-histoire" class="btn btn-secondary btn-block px-2">
+                                                    <i class="bi bi-eye-slash"></i> Non publié</a>
+                                                </div>
                                         <?php } ?>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php }
-                }
-            }
-            } ?>
+                        <?php } ?>                        
+                    </div>                   
+
+                    
+                <?php } ?>
+                
+            <?php } ?>
+                    
+                
+           
         </div>
+        <?php } ?>
 
     </div>
 

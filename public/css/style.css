@@ -65,6 +65,10 @@ body {
   -webkit-box-orient: vertical;
 }
 
+.book_title {
+  text-overflow: ellipsis;
+}
+
 .form {
   border-radius: 20px;
   border: 1px solid rgb(226, 226, 226);
@@ -161,14 +165,6 @@ h4 {
   box-shadow: 5px 10px 10px 2px rgb(240, 240, 240);
 }
 
-.hr_line {
-  width: 30%;
-  background-color: rgb(168, 222, 255);
-  border: 3px solid rgb(168, 222, 255);
-  border-radius: 5px;
-  opacity: initial;
-}
-
 .book_img {
   display: block;
   height: 300px;
@@ -192,4 +188,9 @@ h4 {
 
 .intitule {
   margin: 0px;
+}
+
+.badge_style {
+  background-color: #c0eaf7;
+  color: rgb(67, 69, 70);
 }
