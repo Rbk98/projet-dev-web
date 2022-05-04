@@ -75,6 +75,18 @@ function connectUser()
 
 function updateUser()
 {
+    $user = getUser($_SESSION['id']);
+
+    if (isset($_POST['birth_date']) && isset($_POST['password']) && isset($_POST['mail'])) {
+        $birth = $_POST['birth_date'];
+        $mdp = $_POST['password'];
+        $mail = $_POST['mail'];
+        $updateUser = changeUser($birth,$mdp,$mail,$_SESSION['id']);
+        if ($updateUser) {
+            header('Location: index.php?action=mon-compte');
+        }
+    }
+    require('view/update_account.php');
 
 }
 

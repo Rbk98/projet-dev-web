@@ -63,7 +63,7 @@ ob_start();
                                     <?php } ?>
                             </div>
                         </div> 
-                        <button type="submit" class="btn btn-success">Modifier mes infos</button>
+                        <button type="submit" class="btn btn-success"><a href="index.php?action=modifier-son-compte" class="text-decoration-none text-white">Modifier mes infos</a></button>
                     </div>
                 </div>
             

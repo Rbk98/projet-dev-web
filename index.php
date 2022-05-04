@@ -7,7 +7,10 @@ if (isset($_GET['action'])) {
         homeBooks();
     } else if ($_GET['action'] == 'creer-compte') {
         createUser();
-    } else if ($_GET['action'] == 'rechercher') {
+    }else if ($_GET['action'] == 'modifier-son-compte') {
+        updateUser();
+    }
+    else if ($_GET['action'] == 'rechercher') {
         search();
     } else if ($_GET['action'] == 'connexion') {
         connectUser();
