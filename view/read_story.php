@@ -6,7 +6,7 @@ ob_start();
         <div class="containerscreen">
             <div class="monitor">
                 <div class="monitorscreen">
-                    <h3 class="text-center text-white mt-2">Le Prince de Pierrette</h3>
+                    <h3 class="text-center text-white mt-2"><?=$book['title']?></h3>
                     <p class="p-4 text-white">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Il était une fois un village tranquille au milieu du
                         royaume de

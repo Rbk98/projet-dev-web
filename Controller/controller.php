@@ -92,8 +92,9 @@ function indexCreations()
     require('view/my_creations.php');
 }
 
-function storyStat()
+function storyStat($idBook)
 {
+    $book = getBook($idBook);
     require('view/story_statistics.php');
 }
 
