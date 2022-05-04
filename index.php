@@ -29,16 +29,15 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'info-histoire') {
         storyStat();
     } else if ($_GET['action'] == 'creer-histoire') {
-        createStory();
-
+        createCover();
     } else if ($_GET['action'] == 'page-livre') {
         bookPage();
-
     } else if ($_GET['action'] == 'creer-chapitre') {
         createChapter();
-
     } else if ($_GET['action'] == 'page-chapitre') {
         chapterPage();
+    }else if ($_GET['action'] == 'mes-lectures'){
+        indexReandings();
     }
 } else {
     homeBooks();

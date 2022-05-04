@@ -21,7 +21,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
                     <div class="card text-center" style="width: 30rem;">
                         <div class="card-body">
                             <i class="fa fa-book fa-2x mb-4" style="color:#0883cd;"></i>
-                            <p class="mb-4">Vous n'avez pour l'instant créé aucune histoire. </br>Commencez à écrire
+                            <p class="mb-4">Vous n'avez pour l'instant créé aucune histoire. <br/>Commencez à écrire
                                 votre première histoire dès maintenant ! </p>
                             <a type="sumbit" class="btn btn-success" href="index.php?action=creer-histoire">Créer mon
                                 histoire</a>

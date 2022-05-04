@@ -8,7 +8,7 @@ ob_start(); ?>
 <div class="container mb-5 ">
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-lg-5">
-                <form>
+                <form name="creation_chapter" method="POST">
                     <fieldset class= "form bg-light p-4 background ">
                         <legend class="text-center mb-3">Création d'un chapitre</legend>
                         <div class="row mb-2">
@@ -22,7 +22,7 @@ ob_start(); ?>
                             </div>                            
                             <div class="col-12 mb-5">
                                 <label for="nb_choice" class="col-form-label">Nombre de choix possibles</label>
-                                <input class="form-control" type="number" placeholder="Nombre de choix  que peut faire le lecteur à l’issu de ce chapitre" value="1" name="nb_choice" id="nb_choice" >                                    
+                                <input class="form-control" type="number" placeholder="Nombre de choix  que peut faire le lecteur à l’issu de ce chapitre" name="nb_choice" id="nb_choice" >
                             </div>
                             <div class="col-12 d-grid gap-2 ">
                                 <a type="submit" class="btn btn-success mb-2" href="index.php?action=page-chapitre">Configurer les choix du chapitre</a>
