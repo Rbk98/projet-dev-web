@@ -26,7 +26,7 @@ ob_start(); ?>
                             </div>
                             <div class="col-12 d-grid gap-2 ">
                                 <a type="submit" class="btn btn-success mb-2" href="index.php?action=page-chapitre">Configurer les choix du chapitre</a>
-                                <a type="submit" class="btn btn-outline-success" href="index.php?action=page-livre">Configurer les choix plus tard</a>
+                                <a type="submit" class="btn btn-outline-success" href="index.php?action=afficher-livre">Configurer les choix plus tard</a>
                             </div>                            
                         </div> 
                     </fieldset>

@@ -7,10 +7,9 @@ if (isset($_GET['action'])) {
         homeBooks();
     } else if ($_GET['action'] == 'creer-compte') {
         createUser();
-    }else if ($_GET['action'] == 'modifier-son-compte') {
+    } else if ($_GET['action'] == 'modifier-son-compte') {
         updateUser();
-    }
-    else if ($_GET['action'] == 'rechercher') {
+    } else if ($_GET['action'] == 'rechercher') {
         search();
     } else if ($_GET['action'] == 'connexion') {
         connectUser();
@@ -24,8 +23,7 @@ if (isset($_GET['action'])) {
             if ($idBook != 0) {
                 readStory($idBook);
             }
-        }
-        else{
+        } else {
             homeBooks();
         }
     } else if ($_GET['action'] == 'mes-creations') {
@@ -38,19 +36,35 @@ if (isset($_GET['action'])) {
             if ($idBook != 0) {
                 storyStat($idBook);
             }
-        }
-        else{
+        } else {
             homeBooks();
         }
     } else if ($_GET['action'] == 'creer-histoire') {
         createCover();
-    } else if ($_GET['action'] == 'page-livre') {
-        bookPage();
-    } else if ($_GET['action'] == 'creer-chapitre') {
+    } else if ($_GET['action'] == 'afficher-livre') {
+        if (isset($_GET['id'])) {
+            $idCover = intval($_GET['id']);
+            if ($idCover != 0) {
+                readCover($idCover);
+            }
+        } else {
+            homeBooks();
+        }
+    }else if ($_GET['action'] == 'modifier-livre') {
+        if (isset($_GET['id'])) {
+            $idCover = intval($_GET['id']);
+            if ($idCover != 0) {
+                updateCover($idCover);
+            }
+        } else {
+            homeBooks();
+        }
+    }
+    else if ($_GET['action'] == 'creer-chapitre') {
         createChapter();
     } else if ($_GET['action'] == 'page-chapitre') {
         chapterPage();
-    }else if ($_GET['action'] == 'mes-lectures'){
+    } else if ($_GET['action'] == 'mes-lectures') {
         indexReadings();
     }
 } else {

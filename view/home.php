@@ -59,7 +59,7 @@ ob_start();
                             <p class="card-text text-truncate--3"><?= $book['summary'] ?></p>
                         </div>
                         <div class="d-flex align-items-end flex-column card-body">
-                            <?php if (isset($_SESSION['id']) && (!userBookReading($_SESSION['id'], $book['id_cover']))) { ?>
+                            <?php if (!isset($_SESSION['id']) || (!userBookReading($_SESSION['id'], $book['id_cover']))) { ?>
                                 <a href="index.php?action=lire-histoire&id=<?= $book['id_cover'] ?>"
                                    class="btn btn-primary px-2 mt-auto">Commencer
                                     l'histoire</a>
@@ -82,14 +82,19 @@ ob_start();
         <div class="container">
             <div class="row justify-content-around px-5">
                 <div class="col-lg-4 col-md-4 col-sm-12 py-2">
-                    <img class="rounded-circle z-depth-2" alt="library" width="250px" height="250px" src="public/images/book_home.jpg"
+                    <img class="rounded-circle z-depth-2" alt="library" width="250px" height="250px"
+                         src="public/images/book_home.jpg"
                          data-holder-rendered="true">
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12">
-                    <h4>Nom du site : Quel est le concept ? </h4>
+                    <h4>UStory : Quel est le concept ? </h4>
                     <h4 class="subheading">Devenez le héros de votre histoire et inventer votre propre suite !</h4>
-                    <p class="text-muted">Bla-bla-bla explication de ce que le site fait, des différentes possibilités tu peux être administrateur ou uniquement lire des histoires. Cependant il faut se créer un compte pour pouvoir accéder aux histoires. Un suivi est disponible et un espace pour savoir quels histoires tu as déjà lu.</p>
-                    <a href="index.php?action=creer-compte" class="btn btn-success px-3">Je souhaite créer mon compte !</a>
+                    <p class="text-muted">Bla-bla-bla explication de ce que le site fait, des différentes possibilités
+                        tu peux être administrateur ou uniquement lire des histoires. Cependant il faut se créer un
+                        compte pour pouvoir accéder aux histoires. Un suivi est disponible et un espace pour savoir
+                        quels histoires tu as déjà lu.</p>
+                    <a href="index.php?action=creer-compte" class="btn btn-success px-3">Je souhaite créer mon compte
+                        !</a>
                 </div>
             </div>
         </div>
@@ -110,7 +115,7 @@ ob_start();
                             <p class="card-text text-truncate--3"><?= $b['summary'] ?></p>
                         </div>
                         <div class="d-flex align-items-end flex-column card-body">
-                            <?php if (!userBookReading($_SESSION['id'], $b['id_cover'])) { ?>
+                            <?php if (!isset($_SESSION['id']) || (!userBookReading($_SESSION['id'], $b['id_cover']))) { ?>
                                 <a href="index.php?action=lire-histoire&id=<?= $b['id_cover'] ?>"
                                    class="btn btn-primary px-2 mt-auto">Commencer
                                     l'histoire</a>

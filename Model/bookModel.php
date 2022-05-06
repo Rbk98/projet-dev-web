@@ -80,8 +80,27 @@ function getBookGenre($genre){
 function insertCover($title, $resume, $genre, $nb_lives, $nb_chapters)
 {
     $bdd = connectDb();
-    $newCover = $bdd->prepare('INSERT INTO Cover(title, summary,genre,writer,date,nb_lives,nb_chapters_max,nb_win, nb_reading, status) VALUES (?,?,?,?,?,?,?,0,0,0) ');
+    $newCover = $bdd->prepare('INSERT INTO cover(title, summary,genre,writer,date,nb_lives,nb_chapters_max,nb_win, nb_reading, status) VALUES (?,?,?,?,?,?,?,0,0,0) ');
     $date = date('Y-m-d');
 
     return $newCover->execute([$title, $resume, $genre, $_SESSION['id'], $date, $nb_lives, $nb_chapters]);
+}
+
+
+function getCover($id_cover)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT * FROM cover WHERE id_cover=?');
+    $sql->execute([$id_cover]);
+    $cover_page = $sql->fetch();
+
+    return $cover_page;
+}
+
+function changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_cover)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('UPDATE cover SET title=?, summary=?, genre=? WHERE id_cover=?');
+
+    return $sql->execute([$title, $summary, $genre, $id_cover]);
 }

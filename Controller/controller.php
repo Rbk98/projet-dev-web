@@ -29,16 +29,15 @@ function readStory($idBook)
 
 function createUser()
 {
+
     if (isset($_POST['nickname']) && isset($_POST['birth_date']) && isset($_POST['password']) && isset($_POST['mail'])) {
         $nickname = $_POST['nickname'];
-        if(verifNickname($nickname)){
+        if (verifNickname($nickname)) {
             $birth = $_POST['birth_date'];
             $mdp = $_POST['password'];
             $mail = $_POST['mail'];
             $newUser = insertUser($nickname, $birth, $mdp, $mail);
             if ($newUser) {
-                //TODO: Message votre compte a été créé
-                //$message = 'Vous venez de créer votre compte ! Rendez-vous sur la page de connexion';
                 $user = loginUser($nickname, $mdp);
                 if ($user) {
                     $_SESSION['id'] = $user['id_user'];
@@ -47,8 +46,7 @@ function createUser()
                     header('Location: index.php');
                 }
             }
-        }
-        else{
+        } else {
             $error = "Le surnom existe déjà. Veuillez en choisir un nouveau";
         }
     }
@@ -67,7 +65,7 @@ function connectUser()
             $_SESSION['nickname'] = $user['nickname'];
             $_SESSION['role'] = $user['role'];
             header('Location: index.php');
-        }else{
+        } else {
             $error = "Utilisateur ou mot de passe incorrect";
         }
     }
@@ -82,7 +80,7 @@ function updateUser()
         $birth = $_POST['birth_date'];
         $mdp = $_POST['password'];
         $mail = $_POST['mail'];
-        $updateUser = changeUser($birth,$mdp,$mail,$_SESSION['id']);
+        $updateUser = changeUser($birth, $mdp, $mail, $_SESSION['id']);
         if ($updateUser) {
             header('Location: index.php?action=mon-compte');
         }
@@ -120,7 +118,7 @@ function createCover()
         $genre = $_POST['genre'];
         $nb_lives = $_POST['nb_lives'];
         $nb_chapters_max = $_POST['nb_chapters_max'];
-        $newCover = insertCover($title,$resume,$genre, $nb_lives, $nb_chapters_max);
+        $newCover = insertCover($title, $resume, $genre, $nb_lives, $nb_chapters_max);
         if ($newCover) {
             header('Location: index.php?action=mes-creations');
         }
@@ -129,10 +127,27 @@ function createCover()
     require('view/create_story.php');
 }
 
-function bookPage()
+function readCover($id_cover)
 {
-    $page = getPage($id_chapter, $id_);
-    require('view/book_page.php');
+    $cover = getCover($id_cover);
+    require('view/cover_page.php');
+}
+
+function updateCover($id_cover)
+{
+    $cover = getCover($id_cover);
+    if (isset($_POST['title']) && isset($_POST['summary']) && isset($_POST['genre']) && isset($_POST['nb_lives']) && isset($_POST['nb_chapters_max'])) {
+        $title = $_POST['title'];
+        $summary = $_POST['summary'];
+        $genre = $_POST['genre'];
+        $nb_lives = $_POST['nb_lives'];
+        $nb_chapters_max = $_POST['nb_chapters_max'];
+        $updateCover = changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_cover);
+        if ($updateCover) {
+            header('Location: index.php?action=afficher-livre&id='.$id_cover);
+        }
+    }
+    require('view/update_cover.php');
 }
 
 function createChapter()
@@ -149,5 +164,5 @@ function indexReadings()
 {
     $startedReadings = getStartedReading();
     $finishedReadings = getFinishedReading();
-      require('view/my_readings.php');
+    require('view/my_readings.php');
 }
