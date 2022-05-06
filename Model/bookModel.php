@@ -49,6 +49,15 @@ function getFinishedCreation()
     return $finishedBooks;
 }
 
+function getPublishedCreation()
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND status=2');
+    $sql->execute(array($_SESSION['id']));
+    $publishedBooks = $sql->fetchAll();
+    return $publishedBooks;
+}
+
 function getStartedReading()
 {
     $bdd = connectDb();
