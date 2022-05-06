@@ -30,13 +30,8 @@ ob_start();
                 //s'il y a des histoires en cours de création
                 if (!empty($startedBooks)) { ?>
                     <div class="row mb-5 d-flex justify-content-center justify-content-lg-between align-items-center infos bg-light p-3 m-0">
-                        <div class="col-12 col-lg-auto mb-3 mb-lg-0">
-                            <h4 class="intitule mx-2 text-center">Histoire(s) en cours de création</h4>
-                        </div>
-                        <div class="col-12 col-lg-auto d-flex justify-content-center justify-content-lg-start">
-                            <a type="sumbit" class="btn btn-success" href="index.php?action=creer-histoire">Ajouter une histoire</a>
-                        </div>
-                    </div>
+                        <h4 class="intitule mx-2 text-center text-lg-left">Histoires en cours de création</h4>                       
+                   </div>
                     <div class="row mb-5">
                         <?php
                         foreach ($startedBooks as $book) { ?>
@@ -64,11 +59,8 @@ ob_start();
                 //s'il y a des histoires finies
                 if (!empty($finishedBooks)) { ?>
                     <div class="row mb-5 d-flex justify-content-center justify-content-lg-between align-items-center infos bg-light p-3 m-0">
-                        
-                            <h4 class="intitule mx-2 text-center text-lg-left">Histoires terminées</h4>
-                        
-                        
-                    </div>
+                        <h4 class="intitule mx-2 text-center text-lg-left">Histoires terminées</h4>                       
+                   </div>
 
                     <div class="row mb-5">
                         <?php

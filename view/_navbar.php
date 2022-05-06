@@ -16,8 +16,13 @@
                 <?php if (isset($_SESSION['id'])) { 
                     if ($_SESSION['role']==1) { ?>
                         <li class="nav-item px-2 pt-1">
+                            <a class="nav-link text-white" href="index.php?action=creer-histoire">Créer une histoire</a>
+                        </li>
+                        
+                        <li class="nav-item px-2 pt-1">
                             <a class="nav-link text-white" href="index.php?action=mes-creations">Mes créations</a>
                         </li>
+                        
                     <?php } ?>
                     <li class="nav-item px-2 pt-1">
                         <a class="nav-link text-white" href="index.php?action=mes-lectures">Mes lectures</a>
