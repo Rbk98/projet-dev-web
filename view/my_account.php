@@ -47,7 +47,7 @@ ob_start();
                             </div>
                         </div>
 
-                        <div class="row d-flex align-items-center mb-5">
+                        <div class="row d-flex align-items-center mb-4">
                             <div class="col-12 col-lg-5">
                                 <p class="intitule">Status :</p>
                             </div>
@@ -62,14 +62,18 @@ ob_start();
                                         </div>
                                     <?php } ?>
                             </div>
-                        </div> 
-                        <button type="submit" class="btn btn-success"><a href="index.php?action=modifier-son-compte" class="text-decoration-none text-white">Modifier mes infos</a></button>
-                    </div>
+                        </div>
+                        <?php if($user['role'] == 0 && $user['nb_reading']>=5){ ?>
+                            <div class="infos p-3 mb-4 d-flex justify-content-center flex-column">
+                                <p class="text-center">Bravo, vous avez débloqué le mode admin ! Pour y accéder, cliquer sur le bouton dessous :</p>
+                                <form method="POST">
+                            <input type="submit" class="btn btn-success" name="switchAdmin" value="Passer en mode Admin"/>
+                        </form>
+                            </div>
+                        <?php } ?> 
+                                                        </div>
                 </div>
-            
-        
-        
-            
+
                 <div class="col-12 col-lg-5 d-flex justify-content-center flex-column justify-content-between  my-4 ">            
                     <div class="d-flex justify-content-center flex-column mb-4 background_type bg-light p-5">
                         <div class="row mb-3 ">
@@ -79,29 +83,29 @@ ob_start();
                             <h6><i class="bi bi-book-fill"></i> Nombre d'histoires lues : <?= $user['nb_reading'] ?> </h6>
                         </div>
                         <div class="row mb-3">
-                            <h6><i class="bi bi-book-half"></i> Nombre d'histoires commencées : ...</h6>
+                            <h6><i class="bi bi-book-half"></i> Nombre d'histoires commencées : <?= count(getStartedReading()) ?></h6>
                         </div>
-                        <button type="submit" class="btn btn-success">Voir mes lectures</button>
-                    </div>
+                            <a href="index.php?action=mes-lectures" class="btn btn-success">Voir mes lectures</a>
+                        </div>
 
                     
                     <?php if (isset($_SESSION['id'])) { 
-                    if ($_SESSION['role']==1) { ?>                    
-                        <div class="d-flex justify-content-center flex-column background_type bg-light p-5">
-                            <div class="row mb-3">
-                                <h4 class="text-center">Mes informations de créations :</h4>
-                            </div>
-                            <div class="row mb-1">
-                                <h6><i class="bi bi-book-fill"></i> Nombre d'histoires créées :  </h6>
-                            </div>
-                            <div class="row mb-3">
-                                <h6><i class="bi bi-book-half"></i> Nombre d'histoires publiées : ...</h6>
-                            </div>
-                            <button type="submit" class="btn btn-success">Voir mes histoires</button>
-                        </div>
-                    <?php }}?>
+                        if ($_SESSION['role']==1) { ?>                    
+                            <div class="d-flex justify-content-center flex-column background_type bg-light p-5">
+                                <div class="row mb-3">
+                                    <h4 class="text-center">Mes informations de créations :</h4>
+                                </div>
+                                <div class="row mb-1">
+                                    <h6><i class="bi bi-book-fill"></i> Nombre d'histoires créées : <?= count(getStartedCreation())+count(getFinishedCreation())?> </h6>
+                                </div>
+                                <div class="row mb-3">
+                                    <h6><i class="bi bi-book-half"></i> Nombre d'histoires publiées : <?= count(getPublishedCreation()) ?> </h6>
+                                </div>
+                                    <a href="index.php?action=mes-creations" class="btn btn-success">Voir mes histoires</a>
+                                </div>
+                        <?php }
+                    }?>
                 </div>
-            
         </div>
      </div>
 

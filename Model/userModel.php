@@ -91,3 +91,9 @@ function userBookReading($id_user, $id_cover)
     return $startReading;
 }
 
+function switchToAdmin($id_user)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('UPDATE user SET role=1 WHERE id_user=?');
+    $sql->execute([$id_user]);
+}

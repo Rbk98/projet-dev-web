@@ -66,6 +66,8 @@ if (isset($_GET['action'])) {
         chapterPage();
     } else if ($_GET['action'] == 'mes-lectures') {
         indexReadings();
+    }else if ($_GET['action'] == 'passer-admin'){
+        switchStatus();
     }
 } else {
     homeBooks();

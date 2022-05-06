@@ -59,11 +59,17 @@ ob_start();
                             <p class="card-text text-truncate--3"><?= $book['summary'] ?></p>
                         </div>
                         <div class="d-flex align-items-end flex-column card-body">
-                            <?php if (!isset($_SESSION['id']) || (!userBookReading($_SESSION['id'], $book['id_cover']))) { ?>
-                                <a href="index.php?action=lire-histoire&id=<?= $book['id_cover'] ?>"
-                                   class="btn btn-primary px-2 mt-auto">Commencer
-                                    l'histoire</a>
-                            <?php } else { ?>
+                            <?php if (!isset($_SESSION['id']) || (!userBookReading($_SESSION['id'], $book['id_cover']))) {
+                                if (!isset($_SESSION['id'])) { ?>
+                                    <a href="index.php?action=connexion"
+                                       class="btn btn-primary px-2 mt-auto">Commencer
+                                        l'histoire</a>
+                                <?php } else { ?>
+                                    <a href="index.php?action=lire-histoire&id=<?= $book['id_cover'] ?>"
+                                       class="btn btn-primary px-2 mt-auto">Commencer
+                                        l'histoire</a>
+                                <?php }
+                            } else { ?>
                                 <a href="index.php?action=lire-histoire&id=<?= $book['id_cover'] ?>"
                                    class="btn btn-info px-2 mt-auto">Continuer
                                     l'histoire</a>
@@ -115,11 +121,15 @@ ob_start();
                             <p class="card-text text-truncate--3"><?= $b['summary'] ?></p>
                         </div>
                         <div class="d-flex align-items-end flex-column card-body">
-                            <?php if (!isset($_SESSION['id']) || (!userBookReading($_SESSION['id'], $b['id_cover']))) { ?>
-                                <a href="index.php?action=lire-histoire&id=<?= $b['id_cover'] ?>"
-                                   class="btn btn-primary px-2 mt-auto">Commencer
-                                    l'histoire</a>
-                            <?php } else { ?>
+                            <?php if (!isset($_SESSION['id']) || (!userBookReading($_SESSION['id'], $b['id_cover']))) {
+                                if (!isset($_SESSION['id'])) { ?>
+                                    <a href="index.php?action=connexion" class="btn btn-primary px-2 mt-auto">Commencer
+                                        l'histoire</a>
+                                <?php } else { ?>
+                                    <a href="index.php?action=lire-histoire&id=<?= $b['id_cover'] ?>" class="btn btn-primary px-2 mt-auto">Commencer
+                                        l'histoire</a>
+                                <?php }
+                            } else { ?>
                                 <a href="index.php?action=lire-histoire&id=<?= $b['id_cover'] ?>"
                                    class="btn btn-info px-2 mt-auto">Continuer
                                     l'histoire</a>
