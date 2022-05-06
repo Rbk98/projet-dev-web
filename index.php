@@ -25,6 +25,9 @@ if (isset($_GET['action'])) {
                 readStory($idBook);
             }
         }
+        else{
+            homeBooks();
+        }
     } else if ($_GET['action'] == 'mes-creations') {
         indexCreations();
 
@@ -35,6 +38,9 @@ if (isset($_GET['action'])) {
             if ($idBook != 0) {
                 storyStat($idBook);
             }
+        }
+        else{
+            homeBooks();
         }
     } else if ($_GET['action'] == 'creer-histoire') {
         createCover();

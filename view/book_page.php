@@ -21,6 +21,7 @@ ob_start();
                             Duis laoreet, nibh et faucibus pharetra, nisl elit dignissim lorem, et tincidunt risus dui vel urna. 
                             Fusce sit amet mi malesuada, luctus urna ut, mattis turpis.
                         </p>
+                        <a href="#" class="btn btn-primary">Modifier mon histoire</a>
                     </div>
                     
                 </div>  

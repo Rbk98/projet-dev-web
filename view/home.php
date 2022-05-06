@@ -59,7 +59,7 @@ ob_start();
                             <p class="card-text text-truncate--3"><?= $book['summary'] ?></p>
                         </div>
                         <div class="d-flex align-items-end flex-column card-body">
-                            <?php if (!userBookReading($_SESSION['id'], $book['id_cover'])) { ?>
+                            <?php if (isset($_SESSION['id']) && (!userBookReading($_SESSION['id'], $book['id_cover']))) { ?>
                                 <a href="index.php?action=lire-histoire&id=<?= $book['id_cover'] ?>"
                                    class="btn btn-primary px-2 mt-auto">Commencer
                                     l'histoire</a>

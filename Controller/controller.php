@@ -131,6 +131,7 @@ function createCover()
 
 function bookPage()
 {
+    $page = getPage($id_chapter, $id_);
     require('view/book_page.php');
 }
 
