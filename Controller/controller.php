@@ -6,7 +6,8 @@ require_once('Model/bookModel.php');
 
 function homeBooks()
 {
-    $books = getBestBooks();
+    $bestBooks = getBestBooks();
+    $books = getAllBooks();
 
     require('view/home.php');
 }

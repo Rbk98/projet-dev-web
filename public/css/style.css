@@ -54,9 +54,6 @@ body {
   display: inline-block;
 }
 
-.w3_carousel {
-}
-
 .text-truncate--3 {
   overflow: hidden;
   text-overflow: ellipsis;

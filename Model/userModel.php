@@ -77,3 +77,12 @@ function verifNickname($nickname){
 
     return ($isNickameCorrect == null);
 }
+
+function userBookReading($id_user,$id_cover)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT * FROM reading WHERE id_user=? AND status=0 AND id_cover=?');
+    $sql->execute([$id_user,$id_cover]);
+    $startReading = $sql->fetch();
+    return $startReading;
+}
