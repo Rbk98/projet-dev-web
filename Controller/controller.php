@@ -95,6 +95,10 @@ function indexUser()
 {
     $user = getUser($_SESSION['id']);
 
+    if(isset($_POST['switchAdmin'])){
+        switchToAdmin($_SESSION['id']);
+    }
+
     require('view/my_account.php');
 }
 

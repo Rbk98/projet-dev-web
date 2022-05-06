@@ -47,7 +47,7 @@ ob_start();
                             </div>
                         </div>
 
-                        <div class="row d-flex align-items-center mb-5">
+                        <div class="row d-flex align-items-center mb-4">
                             <div class="col-12 col-lg-5">
                                 <p class="intitule">Status :</p>
                             </div>
@@ -62,14 +62,18 @@ ob_start();
                                         </div>
                                     <?php } ?>
                             </div>
-                        </div> 
-                        <button type="submit" class="btn btn-success"><a href="index.php?action=modifier-son-compte" class="text-decoration-none text-white">Modifier mes infos</a></button>
-                    </div>
+                        </div>
+                        <?php if($user['role'] == 0 && $user['nb_reading']>=5){ ?>
+                            <div class="infos p-3 mb-4 d-flex justify-content-center flex-column">
+                                <p class="text-center">Bravo, vous avez débloqué le mode admin ! Pour y accéder, cliquer sur le bouton dessous :</p>
+                                <form method="POST">
+                            <input type="submit" class="btn btn-success" name="switchAdmin" value="Passer en mode Admin"/>
+                        </form>
+                            </div>
+                        <?php } ?> 
+                                                        </div>
                 </div>
-            
-        
-        
-            
+
                 <div class="col-12 col-lg-5 d-flex justify-content-center flex-column justify-content-between  my-4 ">            
                     <div class="d-flex justify-content-center flex-column mb-4 background_type bg-light p-5">
                         <div class="row mb-3 ">

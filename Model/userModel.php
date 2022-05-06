@@ -30,6 +30,7 @@ function changeUser($birth, $mdp, $mail, $id){
 
     return $updateUser->execute([$birth,$passHash,$mail,$id]);
 }
+
 function loginUser($nickname, $mdp)
 {
     $bdd = connectDb();
@@ -85,4 +86,11 @@ function userBookReading($id_user,$id_cover)
     $sql->execute([$id_user,$id_cover]);
     $startReading = $sql->fetch();
     return $startReading;
+}
+
+function switchToAdmin($id_user)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('UPDATE user SET role=1 WHERE id_user=?');
+    $sql->execute([$id_user]);
 }
