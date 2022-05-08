@@ -1,5 +1,5 @@
 <?php
-$title = 'Modifier son compte';
+$title = 'UStory - Modifier son compte';
 ob_start();
 ?>
 

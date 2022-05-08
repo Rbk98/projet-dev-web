@@ -4,6 +4,11 @@ session_start();
 require_once('Model/userModel.php');
 require_once('Model/bookModel.php');
 
+function accessDenied()
+{
+    require('view/access_forbiden.php');
+}
+
 function homeBooks()
 {
     $bestBooks = getBestBooks();
@@ -38,13 +43,8 @@ function createUser()
             $mail = $_POST['mail'];
             $newUser = insertUser($nickname, $birth, $mdp, $mail);
             if ($newUser) {
-                $user = loginUser($nickname, $mdp);
-                if ($user) {
-                    $_SESSION['id'] = $user['id_user'];
-                    $_SESSION['nickname'] = $user['nickname'];
-                    $_SESSION['role'] = $user['role'];
-                    header('Location: index.php');
-                }
+                connectUser();
+                header('Location: index.php');
             }
         } else {
             $error = "Le surnom existe déjà. Veuillez en choisir un nouveau";
@@ -91,11 +91,12 @@ function updateUser()
 
 function indexUser()
 {
-    $user = getUser($_SESSION['id']);
-
-    if(isset($_POST['switchAdmin'])){
+    if (isset($_POST['switchAdmin'])) {
         switchToAdmin($_SESSION['id']);
+        $_SESSION['role'] = 1;
     }
+
+    $user = getUser($_SESSION['id']);
 
     require('view/my_account.php');
 }
@@ -148,7 +149,7 @@ function updateCover($id_cover)
         $nb_chapters_max = $_POST['nb_chapters_max'];
         $updateCover = changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_cover);
         if ($updateCover) {
-            header('Location: index.php?action=afficher-livre&id='.$id_cover);
+            header('Location: index.php?action=afficher-livre&id=' . $id_cover);
         }
     }
     require('view/update_cover.php');

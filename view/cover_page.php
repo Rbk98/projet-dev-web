@@ -1,5 +1,5 @@
 <?php
-$title = "Ajout d'histoire";
+$title = "UStory - Ajout d'histoire";
 ob_start();
 ?>
     <div class="container my-5">
@@ -17,7 +17,8 @@ ob_start();
                         <p class="text-justify">&nbsp;&nbsp;&nbsp;<?= $cover['summary'] ?></p>
                     </div>
                     <div class="col-12 d-flex justify-content-center">
-                        <a href="index.php?action=modifier-livre&id=<?= $cover['id_cover'] ?>" class="btn btn-primary">Modifier mon histoire</a>
+                        <a href="index.php?action=modifier-livre&id=<?= $cover['id_cover'] ?>" class="btn btn-primary">Modifier
+                            mon histoire</a>
                     </div>
                 </div>
                 <div class="row mt-5">

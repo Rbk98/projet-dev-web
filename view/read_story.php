@@ -1,5 +1,5 @@
 <?php
-$title = 'Lire une histoire';
+$title = 'UStory - Lire une histoire';
 ob_start();
 ?>
     <div class="bg-grey py-3">

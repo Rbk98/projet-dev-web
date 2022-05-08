@@ -1,5 +1,5 @@
 <?php
-$title = 'Mes créations';
+$title = 'UStory - Mes créations';
 ob_start();
 ?>
 <div class="container my-3">

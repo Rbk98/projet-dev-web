@@ -1,5 +1,5 @@
 <?php
-$title = 'Accueil';
+$title = 'UStory - Accueil';
 ob_start();
 ?>
     <div>
@@ -13,7 +13,7 @@ ob_start();
                 <div class="carousel-item active">
                     <img class="d-block w-100" src="public/images/old_library.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h1>Bienvenue sur notre site Lambda ! </h1>
+                        <h1>Bienvenue sur UStory ! </h1>
                         <h4 class="text-white">Ici vous pouvez retrouver des histoires et participer à l'aventure bla
                             bla bla.</h4>
                     </div>
@@ -94,12 +94,12 @@ ob_start();
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12">
                     <h4>UStory : Quel est le concept ? </h4>
-                    <h4 class="subheading">Devenez le héros de votre histoire et inventer votre propre suite !</h4>
+                    <h4 class="subheading">Devenez le héros de votre histoire !</h4>
                     <p class="text-muted">Bla-bla-bla explication de ce que le site fait, des différentes possibilités
                         tu peux être administrateur ou uniquement lire des histoires. Cependant il faut se créer un
                         compte pour pouvoir accéder aux histoires. Un suivi est disponible et un espace pour savoir
                         quels histoires tu as déjà lu.</p>
-                    <a href="index.php?action=creer-compte" class="btn btn-success px-3">Je souhaite créer mon compte
+                    <a href="index.php?action=creer-compte" class="btn btn-success px-4 py-2">Je souhaite créer mon compte
                         !</a>
                 </div>
             </div>

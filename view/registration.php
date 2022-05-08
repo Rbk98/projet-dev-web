@@ -1,5 +1,5 @@
 <?php
-$title = 'Inscription';
+$title = 'UStory - Inscription';
 ob_start();
 ?>
 

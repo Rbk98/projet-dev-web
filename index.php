@@ -8,13 +8,21 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'creer-compte') {
         createUser();
     } else if ($_GET['action'] == 'modifier-son-compte') {
-        updateUser();
+        if (isset($_SESSION['id'])) {
+            updateUser();
+        } else {
+            accessDenied();
+        }
     } else if ($_GET['action'] == 'rechercher') {
         search();
     } else if ($_GET['action'] == 'connexion') {
         connectUser();
     } else if ($_GET['action'] == 'mon-compte') {
-        indexUser();
+        if (isset($_SESSION['id'])) {
+            indexUser();
+        } else {
+            accessDenied();
+        }
     } else if ($_GET['action'] == 'deconnexion') {
         logoutUser();
     } else if ($_GET['action'] == 'lire-histoire') {
@@ -27,7 +35,11 @@ if (isset($_GET['action'])) {
             homeBooks();
         }
     } else if ($_GET['action'] == 'mes-creations') {
-        indexCreations();
+        if (isset($_SESSION['id']) && $_SESSION['role'] == 1) {
+            indexCreations();
+        } else {
+            accessDenied();
+        }
 
         //action à modifier une fois qu'on aura l'accès avec l'histoire en question
     } else if ($_GET['action'] == 'info-histoire') {
@@ -40,7 +52,11 @@ if (isset($_GET['action'])) {
             homeBooks();
         }
     } else if ($_GET['action'] == 'creer-histoire') {
-        createCover();
+        if (isset($_SESSION['id']) && $_SESSION['role'] == 1) {
+            createCover();
+        } else {
+            accessDenied();
+        }
     } else if ($_GET['action'] == 'afficher-livre') {
         if (isset($_GET['id'])) {
             $idCover = intval($_GET['id']);
@@ -50,24 +66,33 @@ if (isset($_GET['action'])) {
         } else {
             homeBooks();
         }
-    }else if ($_GET['action'] == 'modifier-livre') {
+    } else if ($_GET['action'] == 'modifier-livre') {
         if (isset($_GET['id'])) {
             $idCover = intval($_GET['id']);
             if ($idCover != 0) {
                 updateCover($idCover);
             }
         } else {
-            homeBooks();
+            accessDenied();
         }
-    }
-    else if ($_GET['action'] == 'creer-chapitre') {
-        createChapter();
+    } else if ($_GET['action'] == 'creer-chapitre') {
+        if (isset($_SESSION['id']) && $_SESSION['role'] == 1) {
+            createChapter();
+        } else {
+            accessDenied();
+        }
     } else if ($_GET['action'] == 'page-chapitre') {
-        chapterPage();
+        if (isset($_SESSION['id']) && $_SESSION['role'] == 1) {
+            chapterPage();
+        } else {
+            accessDenied();
+        }
     } else if ($_GET['action'] == 'mes-lectures') {
-        indexReadings();
-    }else if ($_GET['action'] == 'passer-admin'){
-        switchStatus();
+        if (isset($_SESSION['id'])) {
+            indexReadings();
+        } else {
+            accessDenied();
+        }
     }
 } else {
     homeBooks();

@@ -1,5 +1,5 @@
 <?php
-$title = 'Connexion';
+$title = 'UStory - Connexion';
 ob_start();
 ?>
     <div class="container my-5">

@@ -97,7 +97,7 @@ ob_start();
 
 
                 <?php if (isset($_SESSION['id'])) {
-                    if ($_SESSION['role'] == 1) { ?>
+                    if ($user['role'] == 1) { ?>
                         <div class="d-flex justify-content-center flex-column background_type bg-light p-5">
                             <div class="row mb-3">
                                 <h4 class="text-center">Mes informations de créations :</h4>

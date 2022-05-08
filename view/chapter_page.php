@@ -1,6 +1,5 @@
-<?php $title = "Ajout d'histoire"; ?>
-
-<?php ob_start(); ?>
+<?php $title = "UStory - Ajout de chapitre";
+ob_start(); ?>
     <div class="container my-5">
         <div class="row mb-5">
             <div class="col">
@@ -48,7 +47,6 @@
         </div>
 
     </div>
-
 
 <?php $content = ob_get_clean();
 require('base.php'); ?>
