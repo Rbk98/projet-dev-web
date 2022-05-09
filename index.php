@@ -58,18 +58,18 @@ if (isset($_GET['action'])) {
         }
     } else if ($_GET['action'] == 'page-livre') {
         if (isset($_GET['id'])) {
-            $idBook = intval($_GET['id']);
-            if ($idBook != 0) {
-                bookPage($idBook);
+            $idCover = intval($_GET['id']);
+            if ($idCover != 0) {
+                readCover($idCover);
             }
         } else {
             homeBooks();
         }
     } else if ($_GET['action'] == 'creer-chapitre') {
         if (isset($_GET['id'])) {
-            $idBook = intval($_GET['id']);
-            if ($idBook != 0) {
-                createChapter($idBook);
+            $idCover = intval($_GET['id']);
+            if ($idCover != 0) {
+                createChapter($idCover);
             }
         } else {
             homeBooks();
@@ -104,7 +104,14 @@ if (isset($_GET['action'])) {
         }
     } else if ($_GET['action'] == 'creer-chapitre') {
         if (isset($_SESSION['id']) && $_SESSION['role'] == 1) {
-            createChapter();
+            if (isset($_GET['id'])) {
+                $idCover = intval($_GET['id']);
+                if ($idCover != 0) {
+                    createChapter($idCover);
+                }
+            } else {
+                accessDenied();
+            }
         } else {
             accessDenied();
         }

@@ -30,16 +30,6 @@ function getAllBooks()
     return $books;
 }
 
-function getBookGenre($genre)
-{
-    $bdd = connectDb();
-    $sql = $bdd->prepare('SELECT * FROM cover WHERE genre=? AND status=2 ');
-    $sql->execute(array($genre));
-    $books = $sql->fetchAll();  // Accès à la première ligne de résultat
-    return $books;
-}
-
-// ========================= CREATIONS =============================
 function getStartedCreation()
 {
     $bdd = connectDb();
@@ -68,7 +58,6 @@ function getPublishedCreation()
     return $publishedBooks;
 }
 
-// ============================ READINGS ============================
 function getStartedReading()
 {
     $bdd = connectDb();
@@ -87,88 +76,26 @@ function getFinishedReading()
     return $finishedReadings;
 }
 
-function updateNumberReading()
+function getBookGenre($genre)
 {
     $bdd = connectDb();
-    $nbReadings = $bdd->prepare('SELECT nb_reading FROM user WHERE id_user=?');
-    $nbReadings->execute($_SESSION['id']);
-    $nbReadings++;
-    $sql = $bdd->prepare('UPDATE user SET nb_reading=? WHERE id_user=?');
-    return $sql->execute([$nbReadings], $_SESSION['id']);
+    $sql = $bdd->prepare('SELECT * FROM cover WHERE genre=? AND status=2 ');
+    $sql->execute(array($genre));
+    $books = $sql->fetchAll();  // Accès à la première ligne de résultat
+    return $books;
 }
 
-function getReadingProgress($cover)
-{
-    $bdd = connectDb();
-    $sql = $bdd->prepare('SELECT * FROM reading WHERE id_user=? AND id_cover=?');
-    $sql->execute(array($_SESSION['id'], $cover));
-    $sql->fetchAll();
-    $chapter = 1;
-    foreach ($sql as $ligne) {
-        if ($ligne['id_chapter'] > $chapter) {
-            $chapter = $ligne['id_chapter'];
-        }
-    }
-    return $chapter;
-}
-
-function startReading($cover)
-{
-    $bdd = connectDb();
-    //récupération du nombre de vie au début de l'histoire
-    $query = $bdd->prepare('SELECT nb_lives FROM cover WHERE id_cover=?');
-    $query->execute(array($cover));
-    $nbLives = $query->fetch();
-    $nbLives = intval($nbLives);
-    //insertion dans la bdd du commencement d'une histoire
-    $sql = $bdd->prepare('INSERT INTO reading(id_user, id_cover, id_chapter, id_choice, nb_lives) VALUES (?, ?, 1, 0, ?)');
-    $sql->execute(array($_SESSION['id'], $cover, $nbLives));
-}
-
-function updateStatusReading($cover)
-{
-    $bdd = connectDb();
-    $sql = $bdd->prepare('UPDATE reading SET status=1 WHERE id_user=? AND id_cover=?');
-    $sql->execute(array($_SESSION['id'], $cover));
-}
-
-// ============================= COVER ================================
 function insertCover($title, $resume, $genre, $nb_lives, $nb_chapters)
 {
     $bdd = connectDb();
-    $newCover = $bdd->prepare('INSERT INTO cover(title, summary,genre,writer,date,nb_lives,nb_chapters_max,nb_win, nb_reading, status) VALUES (?,?,?,?,?,?,?,0,0,0) ');
+    $sql = $bdd->prepare('INSERT INTO cover(title, summary,genre,writer,date,nb_lives,nb_chapters_max,nb_win, nb_reading, status) VALUES (?,?,?,?,?,?,?,0,0,0) ');
     $date = date('Y-m-d');
-
-    return $newCover->execute([$title, $resume, $genre, $_SESSION['id'], $date, $nb_lives, $nb_chapters]);
+    $sql->execute([$title, $resume, $genre, $_SESSION['id'], $date, $nb_lives, $nb_chapters]);
+    $idNewCover = $bdd->lastInsertId();
+    return $idNewCover;
 }
 
-function getCover($id_cover)
-{
-    $bdd = connectDb();
-    $sql = $bdd->prepare('SELECT * FROM cover WHERE id_cover=?');
-    $sql->execute([$id_cover]);
-    $cover_page = $sql->fetch();
-
-    return $cover_page;
-}
-
-function changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_cover)
-{
-    $bdd = connectDb();
-    $sql = $bdd->prepare('UPDATE cover SET title=?, summary=?, genre=? WHERE id_cover=?');
-
-    return $sql->execute([$title, $summary, $genre, $id_cover]);
-}
-
-function removeCover($id_cover)
-{
-    $bdd = connectDb();
-
-    $sql = $bdd->prepare('DELETE FROM cover WHERE id_cover=?');
-    return $sql->execute([$id_cover]);
-}
-
-// ======================== CHAPTER =================================
+///CHAPTER
 function insertChapter($idCover, $title, $content, $nb_choices)
 {
     $bdd = connectDb();
@@ -185,7 +112,7 @@ function getChapter($idBook, $idChap)
     return $sql->fetch();
 }
 
-//======================= CHOICES ===============================
+///CHOICES
 
 function createChoices($idChap, $idCover)
 {
@@ -208,4 +135,67 @@ function getAllChoices($idChapter, $idCover)
     $sql->execute(array($idChapter, $idCover));
     $choices = $sql->fetchAll();
     return $choices;
+}
+function getCover($id_cover)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT * FROM cover WHERE id_cover=?');
+    $sql->execute([$id_cover]);
+    $cover_page = $sql->fetch();
+
+    return $cover_page;
+}
+
+function changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_cover)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('UPDATE cover SET title=?, summary=?, genre=? WHERE id_cover=?');
+
+    return $sql->execute([$title, $summary, $genre, $id_cover]);
+}
+
+
+function removeCover($id_cover)
+{
+    $bdd = connectDb();
+
+    $sql = $bdd->prepare('DELETE FROM cover WHERE id_cover=?');
+    return $sql->execute([$id_cover]);
+}
+function updateNumberReading()
+{
+    $bdd = connectDb();
+    $nbReadings = $bdd->prepare('SELECT nb_reading FROM user WHERE id_user=?');
+    $nbReadings->execute($_SESSION['id']);
+    $nbReadings++;
+    $sql = $bdd->prepare('UPDATE user SET nb_reading=? WHERE id_user=?');
+    return $sql->execute([$nbReadings], $_SESSION['id']);
+}
+
+function startStory($cover)
+{
+    $bdd = connectDb();
+    //récupération du nombre de vie au début de l'histoire
+    $query = $bdd->prepare('SELECT nb_lives FROM cover WHERE id_cover=?');
+    $query->execute(array($cover));
+    $nbLives = $query->fetch();
+    $nbLives = intval($nbLives);
+    //insertion dans la bdd du commencement d'une histoire
+    $sql = $bdd->prepare('INSERT INTO reading(id_user, id_cover, id_chapter, id_choice, nb_lives) VALUES (?, ?, 1, 0, ?)');
+    $sql->execute(array($_SESSION['id'], $cover, $nbLives));
+}
+
+function getReadingProgress($cover)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT * FROM reading WHERE id_user=? AND id_cover=?');
+    $sql->execute(array($_SESSION['id'], $cover));
+    $sql->fetchAll();
+    $chapter = 1;
+    foreach ($sql as $ligne) {
+        if ($ligne['id_chapter'] > $chapter) {
+            $chapter = $ligne['id_chapter'];
+        }
+    }
+    return $chapter;
 }
