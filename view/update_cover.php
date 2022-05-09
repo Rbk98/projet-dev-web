@@ -49,6 +49,9 @@ ob_start();
                                 <button type="submit" class="btn btn-success">Modifier mon livre</button>
                             </div>
                         </div>
+                        <div class="text-center py-2">
+                            <a href="index.php?action=mes-creations">Retour</a>
+                        </div>
                     </fieldset>
                 </form>
             </div>

@@ -43,7 +43,7 @@ ob_start();
                                     <p class="card-text  text-truncate--3"><?= $book['summary'] ?></p>
                                     <div class="row">
                                         <div class="d-grid gap-2 text-center">
-                                            <a href="index.php?action=modifier-histoire"
+                                            <a href="index.php?action=modifier-livre&id=<?= $book['id_cover'] ?>"
                                                class="btn btn-primary px-2">Editer</a>
                                         </div>
                                         <div class="d-grid gap-2 text-center">
@@ -99,12 +99,12 @@ ob_start();
                                     <?php } else if ($book['status'] == 1) { ?>
                                         <div>
                                             <a href="index.php?action=info-histoire"
-                                               class="btn btn-secondary btn-block px-2">
+                                               class="btn btn-secondary btn-block px-2 mb-2">
                                                 <i class="bi bi-eye-slash"></i> Non publié</a>
                                             <div class="d-grid gap-2">
                                                 <form name="delete_cover" method="POST">
                                                     <a href="index.php?action=supprimer-livre&id=<?= $book['id_cover'] ?>"
-                                                       class="btn btn-danger btn-block my-2 px-2">Supprimer</a>
+                                                       class="btn btn-danger btn-block mt-3 mb-2 px-2">Supprimer</a>
                                                 </form>
                                             </div>
                                         </div>

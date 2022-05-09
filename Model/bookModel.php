@@ -198,12 +198,3 @@ function getReadingProgress($cover)
     }
     return $chapter;
 }
-
-function getChapterContent($id_cover, $id_chapter)
-{
-    $bdd = connectDb();
-    $chapter = $bdd->prepare('SELECT * FROM chapter WHERE id_cover=? AND id_chapter=?');
-    $chapter->execute(array($id_cover, $id_chapter));
-    if ($chapter->rowCount() == 1) return $chapter->fetch();
-    else throw new Exception("Aucun chapitre ne correspond à l'identifiant '$id_chapter'");
-}
