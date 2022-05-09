@@ -21,9 +21,13 @@ function search()
     require('view/search.php');
 }
 
-function readStory($idBook)
+function readStory($idBook, $idChapter)
 {
     $book = getBook($idBook);
+    $chapter = getChapterContent($idBook, $idChapter);
+    if (!userBookReading($_SESSION['id'], $idBook)) {
+        startStory($idBook);
+    }
     require('view/read_story.php');
 }
 
@@ -86,14 +90,13 @@ function updateUser()
         }
     }
     require('view/update_account.php');
-
 }
 
 function indexUser()
 {
     $user = getUser($_SESSION['id']);
 
-    if(isset($_POST['switchAdmin'])){
+    if (isset($_POST['switchAdmin'])) {
         switchToAdmin($_SESSION['id']);
     }
 
@@ -126,7 +129,6 @@ function createCover()
         if ($newCover) {
             header('Location: index.php?action=mes-creations');
         }
-
     }
     require('view/create_story.php');
 }
@@ -148,7 +150,7 @@ function updateCover($id_cover)
         $nb_chapters_max = $_POST['nb_chapters_max'];
         $updateCover = changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_cover);
         if ($updateCover) {
-            header('Location: index.php?action=afficher-livre&id='.$id_cover);
+            header('Location: index.php?action=afficher-livre&id=' . $id_cover);
         }
     }
     require('view/update_cover.php');

@@ -18,10 +18,11 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'deconnexion') {
         logoutUser();
     } else if ($_GET['action'] == 'lire-histoire') {
-        if (isset($_GET['id'])) {
-            $idBook = intval($_GET['id']);
-            if ($idBook != 0) {
-                readStory($idBook);
+        if (isset($_GET['idb']) && isset($_GET['idc'])) {
+            $idBook = intval($_GET['idb']);
+            $idChapter = intval($_GET['idc']);
+            if ($idBook != 0 && $idChapter != 0) {
+                readStory($idBook, $idChapter);
             }
         } else {
             homeBooks();
@@ -50,7 +51,7 @@ if (isset($_GET['action'])) {
         } else {
             homeBooks();
         }
-    }else if ($_GET['action'] == 'modifier-livre') {
+    } else if ($_GET['action'] == 'modifier-livre') {
         if (isset($_GET['id'])) {
             $idCover = intval($_GET['id']);
             if ($idCover != 0) {
@@ -59,15 +60,12 @@ if (isset($_GET['action'])) {
         } else {
             homeBooks();
         }
-    }
-    else if ($_GET['action'] == 'creer-chapitre') {
+    } else if ($_GET['action'] == 'creer-chapitre') {
         createChapter();
     } else if ($_GET['action'] == 'page-chapitre') {
         chapterPage();
     } else if ($_GET['action'] == 'mes-lectures') {
         indexReadings();
-    }else if ($_GET['action'] == 'passer-admin'){
-        switchStatus();
     }
 } else {
     homeBooks();
