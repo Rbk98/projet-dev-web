@@ -117,7 +117,7 @@ if (isset($_GET['action'])) {
         }
     } else if ($_GET['action'] == 'page-chapitre') {
         if (isset($_SESSION['id']) && $_SESSION['role'] == 1) {
-            chapterPage();
+            //chapterPage();
         } else {
             accessDenied();
         }
@@ -140,10 +140,10 @@ if (isset($_GET['action'])) {
         switchToAdmin($_SESSION['id']);
     } else if ($_GET['action'] == 'finir-histoire') {
         if (isset($_GET['idb']) && isset($_GET['idc'])) {
-            $idBook = intval($_GET['idb']);
+            $idCover = intval($_GET['idb']);
             $idChapter = intval($_GET['idc']);
-            if ($idBook != 0 && $idChapter != 0) {
-                endStory($idBook, $idChapter);
+            if ($idCover != 0 && $idChapter != 0) {
+                endStory($idCover);
             }
         }
     } else {

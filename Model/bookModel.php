@@ -199,3 +199,18 @@ function getReadingProgress($cover)
     }
     return $chapter;
 }
+
+function updateStatusReading($cover, $chapter)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('UPDATE reading SET status=1 WHERE id_user=? AND id_cover=? AND id_chapter=?');
+    $sql->execute(array($_SESSION['id'], $cover, $chapter));
+}
+
+function deleteReadingStory($cover)
+{
+    $bdd = connectDb();
+
+    $sql = $bdd->prepare('DELETE FROM reading WHERE id_user=? AND id_cover=?');
+    return $sql->execute([$_SESSION['id']], [$cover]);
+}

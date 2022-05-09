@@ -32,14 +32,13 @@ function readStory($idBook, $idChapter)
     $book = getBook($idBook);
     $chapter = getChapter($idBook, $idChapter);
     if (!userBookReading($_SESSION['id'], $idBook)) {
-        //startReading($idBook);
+        startReading($idBook);
     }
     require('view/read_story.php');
 }
 
 function createUser()
 {
-
     if (isset($_POST['nickname']) && isset($_POST['birth_date']) && isset($_POST['password']) && isset($_POST['mail'])) {
         $nickname = $_POST['nickname'];
         if (verifNickname($nickname)) {
@@ -201,4 +200,10 @@ function deleteCover($id_cover)
     }
 
     require('view/my_creations.php');
+}
+
+function endStory($cover)
+{
+    $book = getBook($cover);
+    require('view/end_story.php');
 }
