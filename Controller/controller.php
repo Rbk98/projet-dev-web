@@ -156,13 +156,29 @@ function updateCover($id_cover)
     require('view/update_cover.php');
 }
 
-function createChapter()
+function createChapter($idCover)
 {
+    if (isset($_POST['title_chap']) && isset($_POST['content']) && isset($_POST['number_choices'])) {
+        $title = $_POST['title_chap'];
+        $content = $_POST['content'];
+        $nb_choices = $_POST['number_choices'];
+
+        $newChapter = insertChapter($idCover, $title, $content, $nb_choices);
+        $idChap = $newChapter['id_chapter'];
+        $book = getBook($idCover);
+        if ($newChapter) {
+            header('Location: index.php?action=page_choix&idChap=' . $idChap . '&idCover=' . $idCover);
+        }
+    }
     require('view/create_chapter.php');
 }
 
-function chapterPage()
+function choicesPage($idChap, $idCover)
 {
+    $book = getBook($idCover);
+    $chapter = getChapter($idCover, $idChap);
+    createChoices($idChap, $idCover);
+    $choices = getAllChoices($idChap, $idCover);
     require('view/chapter_page.php');
 }
 

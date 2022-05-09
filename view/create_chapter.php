@@ -22,11 +22,10 @@ ob_start(); ?>
                             </div>                            
                             <div class="col-12 mb-5">
                                 <label for="nb_choice" class="col-form-label">Nombre de choix possibles</label>
-                                <input class="form-control" type="number" placeholder="Nombre de choix  que peut faire le lecteur à l’issu de ce chapitre" name="nb_choice" id="nb_choice" >
+                                <input class="form-control" type="number_choices" placeholder="Nombre de choix  que peut faire le lecteur à l’issu de ce chapitre" name="nb_choice" id="nb_choice" >
                             </div>
                             <div class="col-12 d-grid gap-2 ">
-                                <a type="submit" class="btn btn-success mb-2" href="index.php?action=page-chapitre">Configurer les choix du chapitre</a>
-                                <a type="submit" class="btn btn-outline-success" href="index.php?action=afficher-livre">Configurer les choix plus tard</a>
+                                <a class="btn btn-success mb-2" href="index.php?action=creer-chapitre">Configurer les choix du chapitre</a>                                
                             </div>                            
                         </div> 
                     </fieldset>

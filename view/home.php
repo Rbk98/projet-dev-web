@@ -119,11 +119,11 @@ ob_start();
                                 <a href="index.php?action=connexion" class="btn btn-primary px-2 mt-auto">Commencer
                                     l'histoire</a>
                             <?php } else { ?>
-                                <a href="index.php?action=lire-histoire&id=<?= $b['id_cover'] ?>" class="btn btn-primary px-2 mt-auto">Commencer
+                                <a href="index.php?action=lire-histoire&idb=<?= $b['id_cover'] ?>&idc=1" class="btn btn-primary px-2 mt-auto">Commencer
                                     l'histoire</a>
                             <?php }
                         } else { ?>
-                            <a href="index.php?action=lire-histoire&id=<?= $b['id_cover'] ?>" class="btn btn-info px-2 mt-auto">Continuer
+                            <a href="index.php?action=lire-histoire&idb=<?= $b['id_cover'] ?>&idc=<?= getReadingProgress($_SESSION['id'], $book['id_cover']) ?>" class="btn btn-info px-2 mt-auto">Continuer
                                 l'histoire</a>
                         <?php } ?>
                     </div>

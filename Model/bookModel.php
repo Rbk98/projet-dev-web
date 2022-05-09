@@ -94,7 +94,47 @@ function insertCover($title, $resume, $genre, $nb_lives, $nb_chapters)
     return $newCover->execute([$title, $resume, $genre, $_SESSION['id'], $date, $nb_lives, $nb_chapters]);
 }
 
+///CHAPTER
+function insertChapter($idCover, $title, $content, $nb_choices)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('INSERT INTO chapter(id_cover,title,content,nb_choices) VALUES (?,?,?,?) ');
 
+    return $sql->execute([$idCover, $title, $content, $nb_choices]);
+}
+
+function getChapter($idBook, $idChap)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare("SELECT * FROM chapter WHERE id_cover =? AND id_chapter=?");
+    $sql->execute(array($idBook, $idChap));
+    return $sql->fetch();
+}
+
+///CHOICES
+
+function createChoices($idChap, $idCover)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare("SELECT nb_choices FROM chapter WHERE id_chapter=? AND id_cover=?");
+    $sql->execute(array($idChap, $idCover));
+    $sql->fetch();
+
+    for ($i = 0; $i < $sql; $i++) {
+        $bdd = connectDb();
+        $sql = $bdd->prepare('INSERT INTO choice(id_cover,id_current_chapter) VALUES (?,?) ');
+        $sql->execute([$idCover, $idCover]);
+    }
+}
+
+function getAllChoices($idChapter, $idCover)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare("SELECT * FROM choice WHERE id_chapter=? AND id_cover=?");
+    $sql->execute(array($idChapter, $idCover));
+    $choices = $sql->fetchAll();
+    return $choices;
+}
 function getCover($id_cover)
 {
     $bdd = connectDb();
