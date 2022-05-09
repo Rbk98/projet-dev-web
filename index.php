@@ -93,6 +93,8 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
+    }else{
+        accessDenied();
     }
 } else {
     homeBooks();
