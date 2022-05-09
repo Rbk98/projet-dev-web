@@ -48,7 +48,7 @@ ob_start();
                         </div>
                     <?php } ?>
                 </div>
-            <?php}
+            <?php }
             //s'il y a des histoires en cours de création ET des histoires finies
             if (!empty($finishedReadings) && !empty($startedReadings)) { ?>
                 <div class="mb-2 mx-2">
@@ -72,7 +72,7 @@ ob_start();
                                     <h5 class="card-title"><?= $reading['title'] ?></h5>
                                     <span class="badge bg-info text-dark"><?= $reading['genre'] ?></span>
                                     <p class="card-text"><?= $reading['summary'] ?></p>
-                                    <btn href="index.php?action=lire-histoire" class="btn btn-primary px-2">Relire</btn>
+                                    <a href="index.php?action=lire-histoire" class="btn btn-primary px-2">Relire</a>
                                 </div>
                             </div>
                         </div>

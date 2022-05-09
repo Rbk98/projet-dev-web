@@ -41,7 +41,12 @@ ob_start();
             <div class="container-fluid">
                 <div class="row">
                     <?php if (isset($bookGenre)) {
-                        foreach ($bookGenre as $book) { ?>
+                        if (!$bookGenre) { ?>
+                            <div class="text-center">
+                                <h5 class="py-3">Aucun résultat n'est associé à votre recherche.</h5>
+                            </div>
+                        <?php } ?>
+                        <?php foreach ($bookGenre as $book) { ?>
                             <div class="col-xl-3 col-md-6 col-sm-6">
                                 <div class="card h-100">
                                     <img width="200px" height="auto" src="public/images/cover4.jpg"
@@ -53,14 +58,14 @@ ob_start();
                                         <p class="card-text text-truncate--3"><?= $book['summary'] ?></p>
                                     </div>
                                     <div class="d-flex align-items-end flex-column card-body">
-                                        <?php if (!userBookReading($_SESSION['id'], $book['id_cover'])) { ?>
+                                        <?php if (!isset($_SESSION['id']) || (!userBookReading($_SESSION['id'], $book['id_cover']))) { ?>
                                             <a href="index.php?action=lire-histoire&id=<?= $book['id_cover'] ?>"
                                                class="btn btn-primary px-2 mt-auto">Commencer
                                                 l'histoire</a>
                                         <?php } else { ?>
-                                        <a href="index.php?action=lire-histoire&id=<?= $book['id_cover'] ?>']"
-                                           class="btn btn-primary px-2 mt-auto">Continuer
-                                            l'histoire</a>
+                                            <a href="index.php?action=lire-histoire&id=<?= $book['id_cover'] ?>"
+                                               class="btn btn-primary px-2 mt-auto">Continuer
+                                                l'histoire</a>
                                         <?php } ?>
                                     </div>
                                     <div class="card-footer bg-white text-end">

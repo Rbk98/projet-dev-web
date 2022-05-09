@@ -1,9 +1,10 @@
 <?php
 
-function getUser($id_user){
+function getUser($id_user)
+{
     $bdd = connectDb();
 
-    $sql = "SELECT * FROM User WHERE id_user= ? LIMIT 1";
+    $sql = "SELECT * FROM user WHERE id_user= ? LIMIT 1";
     $user = $bdd->prepare($sql);
     $user->execute([$id_user]);
 
@@ -15,21 +16,23 @@ function insertUser($nickname, $birth, $mdp, $mail)
     $bdd = connectDb();
 
     $passHash = password_hash($mdp, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO User(nickname, birth, password, mail, role, nb_reading) VALUES (?,?,?,?, 0, 0) ";
+    $sql = "INSERT INTO user(nickname, birth, password, mail, role, nb_reading) VALUES (?,?,?,?, 0, 0) ";
     $newUser = $bdd->prepare($sql);
 
-    return $newUser->execute([$nickname,$birth,$passHash,$mail]);
+    return $newUser->execute([$nickname, $birth, $passHash, $mail]);
 }
 
-function changeUser($birth, $mdp, $mail, $id){
+function changeUser($birth, $mdp, $mail, $id)
+{
     $bdd = connectDb();
 
     $passHash = password_hash($mdp, PASSWORD_DEFAULT);
-    $sql = "UPDATE User SET birth=?, password=?, mail=? WHERE id_user=? ";
+    $sql = "UPDATE user SET birth=?, password=?, mail=? WHERE id_user=? ";
     $updateUser = $bdd->prepare($sql);
 
-    return $updateUser->execute([$birth,$passHash,$mail,$id]);
+    return $updateUser->execute([$birth, $passHash, $mail, $id]);
 }
+
 function loginUser($nickname, $mdp)
 {
     $bdd = connectDb();
@@ -42,8 +45,8 @@ function loginUser($nickname, $mdp)
         }
         $response->execute($value);
         $user = $response->fetch();
-        if($user){
-            if(verifPassword($mdp,$user['password'])){
+        if ($user) {
+            if (verifPassword($mdp, $user['password'])) {
                 return $user;
             }
         }
@@ -65,7 +68,8 @@ function verifPassword($mdp, $mdpHash)
     return ($isPasswordCorrect != null);
 }
 
-function verifNickname($nickname){
+function verifNickname($nickname)
+{
     $bdd = connectDb();
     $sql = "SELECT * FROM user WHERE nickname=?";
     if (isset($bdd)) {
@@ -78,11 +82,18 @@ function verifNickname($nickname){
     return ($isNickameCorrect == null);
 }
 
-function userBookReading($id_user,$id_cover)
+function userBookReading($id_user, $id_cover)
 {
     $bdd = connectDb();
     $sql = $bdd->prepare('SELECT * FROM reading WHERE id_user=? AND status=0 AND id_cover=?');
-    $sql->execute([$id_user,$id_cover]);
+    $sql->execute([$id_user, $id_cover]);
     $startReading = $sql->fetch();
     return $startReading;
+}
+
+function switchToAdmin($id_user)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('UPDATE user SET role=1 WHERE id_user=?');
+    $sql->execute([$id_user]);
 }

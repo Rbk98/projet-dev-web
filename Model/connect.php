@@ -1,15 +1,21 @@
 <?php
+
 function connectDb()
 {
-    try {
-        //Local deployment
-        $server = "localhost";
-        $username = "projetS2";
-        $password = "amr2022";
-        $db = "bookproject";
-        $bdd = new PDO('mysql:host='.$server.';dbname='.$db.';charset=utf8', $username, $password);
-    } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-    }
+    /*Local deployment*/
+    $server = "localhost";
+    $username = "projetS2";
+    $password = "amr2022";
+    $db = "bookproject";
+
+    /*ZZZ deployment
+    $server = "localhost";
+    $username = "rgrenet";
+    $password = "22BdxS2!rbk";
+    $db = "rgrenet";
+    */
+    $bdd = new PDO('mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8', $username, $password,
+        array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
     return $bdd;
 }
