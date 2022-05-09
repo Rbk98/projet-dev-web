@@ -2,11 +2,11 @@
 $title = 'UStory - Lire une histoire';
 ob_start();
 ?>
-    <div class="bg-grey py-3">
+    <div class="bg-light py-3">
+        <h4 class="text-center pt-4 my-2"><?= $book['title'] ?></h4>
         <div class="containerscreen">
             <div class="monitor">
                 <div class="monitorscreen">
-                    <h3 class="text-center text-white mt-2"><?=$book['title']?></h3>
                     <p class="p-4 text-white">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Il était une fois un village tranquille au milieu du
                         royaume de
@@ -43,14 +43,11 @@ ob_start();
                 </div>
             </div>
         </div>
-        <div class="containerscreen">
-            <div class="monitor">
-                <div class="container my-3">
-                    <div class="col-md-12 text-center">
-                        <button type="button" class="btn btn-primary">Submit</button>
-                        <button type="button" class="btn btn-warning">Cancel</button>
-                    </div>
-                </div>
+        <div class="text-center py-4">
+            <div class="btn-group btn-group-lg" role="group">
+                <button type="button" class="btn btn-primary mx-2">Choix 1</button>
+                <button type="button" class="btn btn-primary mx-2">Choix 2</button>
+                <button type="button" class="btn btn-primary mx-2">Choix 3</button>
             </div>
         </div>
     </div>
