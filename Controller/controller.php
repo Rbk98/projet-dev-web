@@ -4,6 +4,7 @@ session_start();
 require_once('Model/userModel.php');
 require_once('Model/bookModel.php');
 
+
 function accessDenied()
 {
     require('view/access_forbiden.php');
@@ -31,7 +32,7 @@ function readStory($idBook, $idChapter)
     $book = getBook($idBook);
     $chapter = getChapter($idBook, $idChapter);
     if (!userBookReading($_SESSION['id'], $idBook)) {
-        startStory($idBook);
+        startReading($idBook);
     }
     require('view/read_story.php');
 }
@@ -199,4 +200,11 @@ function deleteCover($id_cover)
     }
 
     require('view/my_creations.php');
+}
+
+function endStory($idBook)
+{
+    $book = getBook($idBook);
+    updateStatusReading(($idBook));
+    require('view/end_story.php');
 }
