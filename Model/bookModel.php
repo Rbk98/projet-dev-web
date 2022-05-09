@@ -134,7 +134,7 @@ function getAllChoices(){
     $sql->execute();
     $choices = $sql->fetchAll();
     return $choices;
-
+}
 function getCover($id_cover)
 {
     $bdd = connectDb();
