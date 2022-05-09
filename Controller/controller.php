@@ -129,18 +129,35 @@ function createCover()
     require('view/create_story.php');
 }
 
-function bookPage()
+function bookPage($idBook)
 {
+    $book = getBook($idBook);    
     require('view/book_page.php');
 }
 
-function createChapter()
+function createChapter($idCover)
 {
+    if (isset($_POST['title_chap']) && isset($_POST['content']) && isset($_POST['number_choices'])) {
+        $title = $_POST['title_chap'];
+        $content = $_POST['content'];
+        $nb_choices = $_POST['number_choices'];
+        
+        $newChapter = insertChapter($idCover,$title,$content,$nb_choices);
+        $idChap=$newChapter['id_chapter'];
+        $book=getBook($idCover);
+        if ($newChapter) {
+            header('Location: index.php?action=page_choix&idChap='.$idChap.'&idCover='.$idCover);
+        }
+    }
     require('view/create_chapter.php');
 }
 
-function chapterPage()
-{
+function choicesPage($idChap,$idCover)
+{ 
+    $book = getBook($idBook);  
+    $chapter = getChapter($idBook,$idChap);    
+    createChoices($idChap,$idCover);
+    $choices=getChoices($idChap,$idCover);
     require('view/chapter_page.php');
 }
 

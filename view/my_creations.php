@@ -42,7 +42,7 @@ ob_start();
                                         <h5 class="card-title text-truncate"><?= $book['title'] ?></h5>
                                         <p class="card-text  text-truncate--3"><?= $book['summary'] ?></p>
                                         <div class="d-grid gap-2">
-                                            <a href="index.php?action=modifier-histoire" class="btn btn-primary px-2">Editer</a>
+                                            <a href="index.php?action=modifier-histoire&id=<?= $book['id_cover']?>" class="btn btn-primary px-2">Editer</a>
                                         </div>
                                     </div>
                                 </div>

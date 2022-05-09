@@ -39,11 +39,39 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'creer-histoire') {
         createCover();
     } else if ($_GET['action'] == 'page-livre') {
-        bookPage();
+        if (isset($_GET['id'])) {
+            $idBook = intval($_GET['id']);
+            if ($idBook != 0) {
+                bookPage($idBook);
+            }
+        }
+        else{
+            hommeBooks();
+        }
+        
     } else if ($_GET['action'] == 'creer-chapitre') {
-        createChapter();
-    } else if ($_GET['action'] == 'page-chapitre') {
-        chapterPage();
+        if (isset($_GET['id'])) {
+            $idBook = intval($_GET['id']);
+            if ($idBook != 0) {
+                createChapter($idBook);
+            }
+        }
+        else{
+            hommeBooks();
+        }
+        
+    } else if ($_GET['action'] == 'page-choix') {
+        if (isset($_GET['idChap'])&& isset($_GET['idCover'])) {
+            $idChap= intval($_GET['idChap']);
+            $idCover= intval($_GET['idCover']);
+            if ($idChap != 0 && $idCover !=0 ) {
+                choicesPage($idChap,$idCover);
+            }
+        }
+        else{
+            hommeBooks();
+        }
+        
     }else if ($_GET['action'] == 'mes-lectures'){
         indexReadings();
     }
