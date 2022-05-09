@@ -26,10 +26,11 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'deconnexion') {
         logoutUser();
     } else if ($_GET['action'] == 'lire-histoire') {
-        if (isset($_GET['id'])) {
-            $idBook = intval($_GET['id']);
-            if ($idBook != 0) {
-                readStory($idBook);
+        if (isset($_GET['idb']) && isset($_GET['idc'])) {
+            $idBook = intval($_GET['idb']);
+            $idChapter = intval($_GET['idc']);
+            if ($idBook != 0 && $idChapter != 0) {
+                readStory($idBook, $idChapter);
             }
         } else {
             homeBooks();
@@ -56,6 +57,34 @@ if (isset($_GET['action'])) {
             createCover();
         } else {
             accessDenied();
+        }
+    } else if ($_GET['action'] == 'page-livre') {
+        if (isset($_GET['id'])) {
+            $idBook = intval($_GET['id']);
+            if ($idBook != 0) {
+                bookPage($idBook);
+            }
+        } else {
+            homeBooks();
+        }
+    } else if ($_GET['action'] == 'creer-chapitre') {
+        if (isset($_GET['id'])) {
+            $idBook = intval($_GET['id']);
+            if ($idBook != 0) {
+                createChapter($idBook);
+            }
+        } else {
+            homeBooks();
+        }
+    } else if ($_GET['action'] == 'page-choix') {
+        if (isset($_GET['idChap']) && isset($_GET['idCover'])) {
+            $idChap = intval($_GET['idChap']);
+            $idCover = intval($_GET['idCover']);
+            if ($idChap != 0 && $idCover != 0) {
+                choicesPage($idChap, $idCover);
+            }
+        } else {
+            homeBooks();
         }
     } else if ($_GET['action'] == 'afficher-livre') {
         if (isset($_GET['id'])) {
@@ -102,6 +131,8 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
+    }else if ($_GET['action'] == 'passer-admin') {
+        switchToAdmin($_SESSION['id']);
     }
     else{
         accessDenied();

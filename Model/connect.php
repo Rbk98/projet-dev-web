@@ -14,8 +14,12 @@ function connectDb()
     $password = "22BdxS2!rbk";
     $db = "rgrenet";
     */
-    $bdd = new PDO('mysql:host=' . $server . ':3308;dbname=' . $db . ';charset=utf8', $username, $password,
-        array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    $bdd = new PDO(
+        'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8',
+        $username,
+        $password,
+        array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+    );
 
     return $bdd;
 }

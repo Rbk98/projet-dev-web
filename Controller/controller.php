@@ -26,9 +26,13 @@ function search()
     require('view/search.php');
 }
 
-function readStory($idBook)
+function readStory($idBook, $idChapter)
 {
     $book = getBook($idBook);
+    $chapter = getChapterContent($idBook, $idChapter);
+    if (!userBookReading($_SESSION['id'], $idBook)) {
+        startStory($idBook);
+    }
     require('view/read_story.php');
 }
 
@@ -86,7 +90,6 @@ function updateUser()
         }
     }
     require('view/update_account.php');
-
 }
 
 function indexUser()
@@ -127,7 +130,6 @@ function createCover()
         if ($newCover) {
             header('Location: index.php?action=mes-creations');
         }
-
     }
     require('view/create_story.php');
 }
@@ -155,10 +157,32 @@ function updateCover($id_cover)
     require('view/update_cover.php');
 }
 
-function createChapter()
+function createChapter($idCover)
 {
+    if (isset($_POST['title_chap']) && isset($_POST['content']) && isset($_POST['number_choices'])) {
+        $title = $_POST['title_chap'];
+        $content = $_POST['content'];
+        $nb_choices = $_POST['number_choices'];
+
+        $newChapter = insertChapter($idCover, $title, $content, $nb_choices);
+        $idChap = $newChapter['id_chapter'];
+        $book = getBook($idCover);
+        if ($newChapter) {
+            header('Location: index.php?action=page_choix&idChap=' . $idChap . '&idCover=' . $idCover);
+        }
+    }
     require('view/create_chapter.php');
 }
+
+function choicesPage($idChap, $idCover)
+{
+    $book = getBook($idCover);
+    $chapter = getChapter($idCover, $idChap);
+    createChoices($idChap, $idCover);
+    $choices = getAllChoices($idChap, $idCover);
+    require('view/chapter_page.php');
+}
+
 
 function indexReadings()
 {

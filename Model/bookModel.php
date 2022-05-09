@@ -76,14 +76,13 @@ function getFinishedReading()
     return $finishedReadings;
 }
 
-function getBookGenre($genre){
-    $bdd=connectDb();
-    $sql=$bdd->prepare('SELECT * FROM cover WHERE genre=? AND status=2 ');
+function getBookGenre($genre)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT * FROM cover WHERE genre=? AND status=2 ');
     $sql->execute(array($genre));
-    $books=$sql->fetchAll();  // Accès à la première ligne de résultat
+    $books = $sql->fetchAll();  // Accès à la première ligne de résultat
     return $books;
-    
-    
 }
 
 function insertCover($title, $resume, $genre, $nb_lives, $nb_chapters)
@@ -95,7 +94,47 @@ function insertCover($title, $resume, $genre, $nb_lives, $nb_chapters)
     return $newCover->execute([$title, $resume, $genre, $_SESSION['id'], $date, $nb_lives, $nb_chapters]);
 }
 
+///CHAPTER
+function insertChapter($idCover, $title, $content, $nb_choices)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('INSERT INTO chapter(id_cover,title,content,nb_choices) VALUES (?,?,?,?) ');
 
+    return $sql->execute([$idCover, $title, $content, $nb_choices]);
+}
+
+function getChapter($idBook, $idChap)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare("SELECT * FROM chapter WHERE id_cover =? AND id_chapter=?");
+    $sql->execute(array($idBook, $idChap));
+    return $sql->fetch();
+}
+
+///CHOICES
+
+function createChoices($idChap, $idCover)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare("SELECT nb_choices FROM chapter WHERE id_chapter=? AND id_cover=?");
+    $sql->execute(array($idChap, $idCover));
+    $sql->fetch();
+
+    for ($i = 0; $i < $sql; $i++) {
+        $bdd = connectDb();
+        $sql = $bdd->prepare('INSERT INTO choice(id_cover,id_current_chapter) VALUES (?,?) ');
+        $sql->execute([$idCover, $idCover]);
+    }
+}
+
+function getAllChoices($idChapter, $idCover)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare("SELECT * FROM choice WHERE id_chapter=? AND id_cover=?");
+    $sql->execute(array($idChapter, $idCover));
+    $choices = $sql->fetchAll();
+    return $choices;
+}
 function getCover($id_cover)
 {
     $bdd = connectDb();
@@ -121,4 +160,50 @@ function removeCover($id_cover){
     $sql = $bdd->prepare('DELETE FROM cover WHERE id_cover=?');
     return $sql->execute([$id_cover]);
 
+}
+function updateNumberReading()
+{
+    $bdd = connectDb();
+    $nbReadings = $bdd->prepare('SELECT nb_reading FROM user WHERE id_user=?');
+    $nbReadings->execute($_SESSION['id']);
+    $nbReadings++;
+    $sql = $bdd->prepare('UPDATE user SET nb_reading=? WHERE id_user=?');
+    return $sql->execute([$nbReadings], $_SESSION['id']);
+}
+
+function startStory($cover)
+{
+    $bdd = connectDb();
+    //récupération du nombre de vie au début de l'histoire
+    $query = $bdd->prepare('SELECT nb_lives FROM cover WHERE id_cover=?');
+    $query->execute(array($cover));
+    $nbLives = $query->fetch();
+    $nbLives = intval($nbLives);
+    //insertion dans la bdd du commencement d'une histoire
+    $sql = $bdd->prepare('INSERT INTO reading(id_user, id_cover, id_chapter, id_choice, nb_lives) VALUES (?, ?, 1, 0, ?)');
+    $sql->execute(array($_SESSION['id'], $cover, $nbLives));
+}
+
+function getReadingProgress($cover)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT * FROM reading WHERE id_user=? AND id_cover=?');
+    $sql->execute(array($_SESSION['id'], $cover));
+    $sql->fetchAll();
+    $chapter = 1;
+    foreach ($sql as $ligne) {
+        if ($ligne['id_chapter'] > $chapter) {
+            $chapter = $ligne['id_chapter'];
+        }
+    }
+    return $chapter;
+}
+
+function getChapterContent($id_cover, $id_chapter)
+{
+    $bdd = connectDb();
+    $chapter = $bdd->prepare('SELECT * FROM chapter WHERE id_cover=? AND id_chapter=?');
+    $chapter->execute(array($id_cover, $id_chapter));
+    if ($chapter->rowCount() == 1) return $chapter->fetch();
+    else throw new Exception("Aucun chapitre ne correspond à l'identifiant '$id_chapter'");
 }
