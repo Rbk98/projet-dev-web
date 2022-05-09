@@ -14,8 +14,7 @@ ob_start();
                     <img class="d-block w-100" src="public/images/old_library.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
                         <h1>Bienvenue sur UStory ! </h1>
-                        <h4 class="text-white">Ici vous pouvez retrouver des histoires et participer à l'aventure bla
-                            bla bla.</h4>
+                        <h4 class="text-white">Participez à l'aventure et créez vos propres histoires.</h4>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -29,8 +28,8 @@ ob_start();
                     <img class="d-block w-100 w3_carousel" src="public/images/book_open3.png" alt="Third slide">
                     <div class="carousel-caption d-none d-md-block">
                         <h1>Accès illimité... </h1>
-                        <h4 class="text-white">Lors de la création de votre compte, vous aurez accès à votre espace et à
-                            vos histoires.</h4>
+                        <h4 class="text-white">Lors de la création de votre compte, vous aurez accès à tous les livres
+                            et un espace dédié pour retrouver vos histoires.</h4>
                     </div>
                 </div>
             </div>
@@ -99,7 +98,8 @@ ob_start();
                         tu peux être administrateur ou uniquement lire des histoires. Cependant il faut se créer un
                         compte pour pouvoir accéder aux histoires. Un suivi est disponible et un espace pour savoir
                         quels histoires tu as déjà lu.</p>
-                    <a href="index.php?action=creer-compte" class="btn btn-success px-4 py-2">Je souhaite créer mon compte
+                    <a href="index.php?action=creer-compte" class="btn btn-success px-4 py-2">Je souhaite créer mon
+                        compte
                         !</a>
                 </div>
             </div>
@@ -126,7 +126,8 @@ ob_start();
                                     <a href="index.php?action=connexion" class="btn btn-primary px-2 mt-auto">Commencer
                                         l'histoire</a>
                                 <?php } else { ?>
-                                    <a href="index.php?action=lire-histoire&id=<?= $b['id_cover'] ?>" class="btn btn-primary px-2 mt-auto">Commencer
+                                    <a href="index.php?action=lire-histoire&id=<?= $b['id_cover'] ?>"
+                                       class="btn btn-primary px-2 mt-auto">Commencer
                                         l'histoire</a>
                                 <?php }
                             } else { ?>
