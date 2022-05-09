@@ -126,9 +126,10 @@ function createCover()
         $genre = $_POST['genre'];
         $nb_lives = $_POST['nb_lives'];
         $nb_chapters_max = $_POST['nb_chapters_max'];
-        $newCover = insertCover($title, $resume, $genre, $nb_lives, $nb_chapters_max);
+        $idNewCover = insertCover($title, $resume, $genre, $nb_lives, $nb_chapters_max);
+        $newCover = getCover($idNewCover);
         if ($newCover) {
-            header('Location: index.php?action=mes-creations');
+            header('Location: index.php?action=page-livre&id='. $newCover['id_cover'] . '');
         }
     }
     require('view/create_story.php');

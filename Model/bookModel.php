@@ -88,10 +88,11 @@ function getBookGenre($genre)
 function insertCover($title, $resume, $genre, $nb_lives, $nb_chapters)
 {
     $bdd = connectDb();
-    $newCover = $bdd->prepare('INSERT INTO cover(title, summary,genre,writer,date,nb_lives,nb_chapters_max,nb_win, nb_reading, status) VALUES (?,?,?,?,?,?,?,0,0,0) ');
+    $sql = $bdd->prepare('INSERT INTO cover(title, summary,genre,writer,date,nb_lives,nb_chapters_max,nb_win, nb_reading, status) VALUES (?,?,?,?,?,?,?,0,0,0) ');
     $date = date('Y-m-d');
-
-    return $newCover->execute([$title, $resume, $genre, $_SESSION['id'], $date, $nb_lives, $nb_chapters]);
+    $sql->execute([$title, $resume, $genre, $_SESSION['id'], $date, $nb_lives, $nb_chapters]);
+    $idNewCover = $bdd->lastInsertId();
+    return $idNewCover;
 }
 
 ///CHAPTER
