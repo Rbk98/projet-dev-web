@@ -1,5 +1,5 @@
 <?php
-$title = 'Rechercher des histoires';
+$title = 'UStory - Rechercher des histoires';
 ob_start();
 ?>
     <div class="container my-2">

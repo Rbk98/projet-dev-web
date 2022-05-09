@@ -1,25 +1,27 @@
 <?php $title = "Ajouter une histoire";
 ob_start(); ?>
-<div class="container my-5">
+    <div class="container my-5">
         <h2 class="h2_title">Nom du livre</h2>
         <hr class="hr_content"/>
-</div>
+    </div>
 
-<div class="container mb-5 ">
+    <div class="container mb-5 ">
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-lg-5">
                 <form name="creation_chapter" method="POST">
-                    <fieldset class= "form bg-light p-4 background ">
+                    <fieldset class="form bg-light p-4 background ">
                         <legend class="text-center mb-3">Création d'un chapitre</legend>
                         <div class="row mb-2">
                             <div class="col-12 mb-3">
                                 <label for="title_chap" class="col-form-label">Titre</label>
-                                <input type="text" placeholder="Titre du chapitre" name="title_chap" id="title_chap" class="form-control">                                    
+                                <input type="text" placeholder="Titre du chapitre" name="title_chap" id="title_chap"
+                                       class="form-control">
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="content" class="col-form-label">Contenu</label>
-                                <textarea class="form-control" placeholder="Contenu du chapitre" id="content" style="height: 100px"></textarea>
-                            </div>                            
+                                <textarea class="form-control" placeholder="Contenu du chapitre" id="content"
+                                          style="height: 100px"></textarea>
+                            </div>
                             <div class="col-12 mb-5">
                                 <label for="nb_choice" class="col-form-label">Nombre de choix possibles</label>
                                 <input class="form-control" type="number_choices" placeholder="Nombre de choix  que peut faire le lecteur à l’issu de ce chapitre" name="nb_choice" id="nb_choice" >

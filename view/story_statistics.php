@@ -1,5 +1,5 @@
 <?php
-$title = 'Statistiques de mon histoire';
+$title = 'UStory - Statistiques de l\'histoire';
 ob_start(); ?>
 <div class="row text-align-right">
     <div class="col-md-3 mr-5">

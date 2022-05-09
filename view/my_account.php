@@ -44,7 +44,12 @@ ob_start();
                         <div class="infos p-2">
                             <?= $user['mail'] ?>
                         </div>
-                    </div>
+                    <?php } ?>
+                    <button type="submit" class="btn btn-success"><a href="index.php?action=modifier-son-compte"
+                                                                     class="text-decoration-none text-white">Modifier
+                            mes infos</a></button>
+
+                     
                 </div>
 
                 <div class="row d-flex align-items-center mb-4">
@@ -91,12 +96,21 @@ ob_start();
                 <a href="index.php?action=mes-lectures" class="btn btn-success">Voir mes lectures</a>
             </div>
 
-
-            <?php if (isset($_SESSION['id'])) {
-                if ($_SESSION['role'] == 1) { ?>
-                    <div class="d-flex justify-content-center flex-column background_type bg-light p-5">
-                        <div class="row mb-3">
-                            <h4 class="text-center">Mes informations de créations :</h4>
+                <?php if (isset($_SESSION['id'])) {
+                    if ($user['role'] == 1) { ?>
+                        <div class="d-flex justify-content-center flex-column background_type bg-light p-5">
+                            <div class="row mb-3">
+                                <h4 class="text-center">Mes informations de créations :</h4>
+                            </div>
+                            <div class="row mb-1">
+                                <h6><i class="bi bi-book-fill"></i> Nombre d'histoires créées
+                                    : <?= count(getStartedCreation()) + count(getFinishedCreation()) ?> </h6>
+                            </div>
+                            <div class="row mb-3">
+                                <h6><i class="bi bi-book-half"></i> Nombre d'histoires publiées
+                                    : <?= count(getPublishedCreation()) ?> </h6>
+                            </div>
+                            <a href="index.php?action=mes-creations" class="btn btn-success">Voir mes histoires</a>
                         </div>
                         <div class="row mb-1">
                             <h6><i class="bi bi-book-fill"></i> Nombre d'histoires créées :

@@ -1,7 +1,8 @@
 <?php
-$title = 'Lire une histoire';
+$title = 'UStory - Lire une histoire';
 ob_start();
 ?>
+
 <div class="bg-grey py-3">
     <div class="containerscreen">
         <div class="monitor">
@@ -14,16 +15,12 @@ ob_start();
             </div>
         </div>
     </div>
-    <div class="containerscreen">
-        <div class="monitor">
-            <div class="container my-3">
-                <div class="col-md-12 text-center">
-                    <button type="button" class="btn btn-primary">Submit</button>
-                    <button type="button" class="btn btn-warning">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="text-center py-4">
+            <div class="btn-group btn-group-lg" role="group">
+                <button type="button" class="btn btn-primary mx-2">Choix 1</button>
+                <button type="button" class="btn btn-primary mx-2">Choix 2</button>
+                <button type="button" class="btn btn-primary mx-2">Choix 3</button>
+  </div>
 </div>
 
 <?php $content = ob_get_clean();

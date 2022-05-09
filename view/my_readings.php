@@ -1,5 +1,5 @@
 <?php
-$title = 'Mes lectures';
+$title = 'UStory - Mes lectures';
 ob_start();
 ?>
 
@@ -39,10 +39,11 @@ ob_start();
                             <div class="card h-75">
                                 <img src="public/images/cover4.jpg" class="card-img-top py-3" alt="book_img">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $reading['title'] ?></h5>
-                                    <!-- ref à changer -->
-                                    <a href="#" class="btn btn-primary px-2">Continuer
-                                        la lecture</a>
+                                    <i class="fa fa-book fa-2x mb-4" style="color:#0883cd;"></i>
+                                    <p class="mb-4">Vous n'avez pour l'instant lu aucune histoire. </br>Commencez à lire
+                                        votre première histoire dès maintenant ! </p>
+                                    <a type="sumbit" class="btn btn-success" href="index.php?action=rechercher">Lire une
+                                        histoire</a>
                                 </div>
                             </div>
                         </div>
@@ -61,9 +62,13 @@ ob_start();
                     <h4>Lectures terminées</h4>
                     <hr class="hr_line" />
                 </div>
-                <?php
-                foreach ($finishedReadings as $reading) { ?>
-
+            <?php } else {
+                //s'il y a des histoires en cours de création
+                if (!empty($startedReadings)) { ?>
+                    <div class="">
+                        <h4>Histoire(s) en cours de lecture</h4>
+                        <hr class="hr_line"/>
+                    </div>
                     <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
                         <div class="col-3 mb-5">
                             <div class="card h-100">
@@ -75,13 +80,13 @@ ob_start();
                                     <a href="index.php?action=lire-histoire" class="btn btn-primary px-2">Relire</a>
                                 </div>
                             </div>
-                        </div>
+                        <?php } ?>
                     </div>
+
     <?php }
             }
-        }
-    } ?>
-</div>
+        } ?>
+    </div>
 <?php $content = ob_get_clean();
 
 require('base.php'); ?>

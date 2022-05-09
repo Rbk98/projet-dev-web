@@ -1,4 +1,4 @@
-<?php $title = "Ajouter une histoire";
+<?php $title = "UStory - Ajouter une histoire";
 ob_start();
 ?>
     <div class="container my-5">

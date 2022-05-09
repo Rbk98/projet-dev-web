@@ -4,6 +4,11 @@ session_start();
 require_once('Model/userModel.php');
 require_once('Model/bookModel.php');
 
+function accessDenied()
+{
+    require('view/access_forbiden.php');
+}
+
 function homeBooks()
 {
     $bestBooks = getBestBooks();
@@ -42,13 +47,8 @@ function createUser()
             $mail = $_POST['mail'];
             $newUser = insertUser($nickname, $birth, $mdp, $mail);
             if ($newUser) {
-                $user = loginUser($nickname, $mdp);
-                if ($user) {
-                    $_SESSION['id'] = $user['id_user'];
-                    $_SESSION['nickname'] = $user['nickname'];
-                    $_SESSION['role'] = $user['role'];
-                    header('Location: index.php');
-                }
+                connectUser();
+                header('Location: index.php');
             }
         } else {
             $error = "Le surnom existe déjà. Veuillez en choisir un nouveau";
@@ -94,11 +94,12 @@ function updateUser()
 
 function indexUser()
 {
-    $user = getUser($_SESSION['id']);
-
     if (isset($_POST['switchAdmin'])) {
         switchToAdmin($_SESSION['id']);
+        $_SESSION['role'] = 1;
     }
+
+    $user = getUser($_SESSION['id']);
 
     require('view/my_account.php');
 }
@@ -182,9 +183,20 @@ function choicesPage($idChap, $idCover)
     require('view/chapter_page.php');
 }
 
+
 function indexReadings()
 {
     $startedReadings = getStartedReading();
     $finishedReadings = getFinishedReading();
     require('view/my_readings.php');
+}
+
+function deleteCover($id_cover)
+{
+    $deleteUser = removeCover($id_cover);
+    if ($deleteUser) {
+        header('Location: index.php?action=mes-creations');
+    }
+
+    require('view/my_creations.php');
 }

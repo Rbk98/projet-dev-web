@@ -1,5 +1,5 @@
 <?php
-$title = 'Modifier son compte';
+$title = 'UStory - Modifier son compte';
 ob_start();
 ?>
 
@@ -37,6 +37,7 @@ ob_start();
                             <div class="col-12 d-grid gap-2 mb-3">
                                 <button type="submit" class="btn btn-success">Modifier mes infos</button>
                             </div>
+                            <a class="text-center" href="index.php?action=mon-compte">Retour</a>
                         </div>
                     </fieldset>
                 </form>

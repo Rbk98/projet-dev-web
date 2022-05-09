@@ -1,5 +1,5 @@
 <?php
-$title = 'Mes créations';
+$title = 'UStory - Mes créations';
 ob_start();
 ?>
 <div class="container my-3">
@@ -20,7 +20,7 @@ ob_start();
                             <i class="fa fa-book fa-2x mb-4" style="color:#0883cd;"></i>
                             <p class="mb-4">Vous n'avez pour l'instant créé aucune histoire. <br/>Commencez à écrire
                                 votre première histoire dès maintenant ! </p>
-                            <a type="sumbit" class="btn btn-success" href="index.php?action=creer-histoire">Créer mon
+                            <a class="btn btn-success" href="index.php?action=creer-histoire">Créer mon
                                 histoire</a>
                         </div>
                     </div>
@@ -41,21 +41,23 @@ ob_start();
                                 <div class="card-body">
                                     <h5 class="card-title text-truncate"><?= $book['title'] ?></h5>
                                     <p class="card-text  text-truncate--3"><?= $book['summary'] ?></p>
-                                    <div class="d-grid gap-2">
-                                        <a href="index.php?action=modifier-histoire"
-                                           class="btn btn-primary px-2">Editer</a>
+                                    <div class="row">
+                                        <div class="d-grid gap-2 text-center">
+                                            <a href="index.php?action=modifier-histoire"
+                                               class="btn btn-primary px-2">Editer</a>
+                                        </div>
+                                        <div class="d-grid gap-2 text-center">
+                                            <form name="delete_cover" method="POST">
+                                                <a href="index.php?action=supprimer-livre&id=<?= $book['id_cover'] ?>"
+                                                   class="btn btn-danger btn-block my-2 px-2">Supprimer</a>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     <?php } ?>
                 </div>
-            <?php }
-            //s'il y a des histoires en cours de création ET des histoires finies
-            if (!empty($finishedBooks) && !empty($startedBooks)) { ?>
-                <!--<div class="mb-2 mx-2">
-                    <hr class="hr_content"/>
-                </div>-->
             <?php }
             //s'il y a des histoires finies
             if (!empty($finishedBooks)) { ?>
@@ -86,6 +88,12 @@ ob_start();
                                                    class="btn btn-light btn-block ">
                                                     <i class="bi bi-graph-up"></i> Stats</a>
                                             </div>
+                                            <div class="d-grid gap-2">
+                                                <form name="delete_cover" method="POST">
+                                                    <a href="index.php?action=supprimer-livre&id=<?= $book['id_cover'] ?>"
+                                                       class="btn btn-danger btn-block my-2 px-2">Supprimer</a>
+                                                </form>
+                                            </div>
                                         </div>
 
                                     <?php } else if ($book['status'] == 1) { ?>
@@ -93,6 +101,12 @@ ob_start();
                                             <a href="index.php?action=info-histoire"
                                                class="btn btn-secondary btn-block px-2">
                                                 <i class="bi bi-eye-slash"></i> Non publié</a>
+                                            <div class="d-grid gap-2">
+                                                <form name="delete_cover" method="POST">
+                                                    <a href="index.php?action=supprimer-livre&id=<?= $book['id_cover'] ?>"
+                                                       class="btn btn-danger btn-block my-2 px-2">Supprimer</a>
+                                                </form>
+                                            </div>
                                         </div>
                                     <?php } ?>
                                 </div>
