@@ -113,3 +113,12 @@ function changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_
 
     return $sql->execute([$title, $summary, $genre, $id_cover]);
 }
+
+
+function removeCover($id_cover){
+    $bdd = connectDb();
+
+    $sql = $bdd->prepare('DELETE FROM cover WHERE id_cover=?');
+    return $sql->execute([$id_cover]);
+
+}

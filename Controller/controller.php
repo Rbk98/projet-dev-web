@@ -160,14 +160,19 @@ function createChapter()
     require('view/create_chapter.php');
 }
 
-function chapterPage()
-{
-    require('view/chapter_page.php');
-}
-
 function indexReadings()
 {
     $startedReadings = getStartedReading();
     $finishedReadings = getFinishedReading();
     require('view/my_readings.php');
+}
+
+function deleteCover($id_cover)
+{
+    $deleteUser = removeCover($id_cover);
+    if ($deleteUser) {
+        header('Location: index.php?action=mes-creations');
+    }
+
+    require('view/my_creations.php');
 }

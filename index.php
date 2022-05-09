@@ -93,7 +93,17 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
-    }else{
+    }else if($_GET['action'] == 'supprimer-livre'){
+        if (isset($_GET['id'])) {
+            $idCover = intval($_GET['id']);
+            if ($idCover != 0) {
+                deleteCover($idCover);
+            }
+        } else {
+            accessDenied();
+        }
+    }
+    else{
         accessDenied();
     }
 } else {
