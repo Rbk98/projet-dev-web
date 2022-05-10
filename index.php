@@ -56,15 +56,6 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
-    } else if ($_GET['action'] == 'page-livre') {
-        if (isset($_GET['id'])) {
-            $idCover = intval($_GET['id']);
-            if ($idCover != 0) {
-                readCover($idCover);
-            }
-        } else {
-            homeBooks();
-        }
     } else if ($_GET['action'] == 'creer-chapitre') {
         if (isset($_GET['id'])) {
             $idCover = intval($_GET['id']);

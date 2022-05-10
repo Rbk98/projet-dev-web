@@ -4,12 +4,6 @@ session_start();
 require_once('Model/userModel.php');
 require_once('Model/bookModel.php');
 
-
-function accessDenied()
-{
-    require('view/access_forbiden.php');
-}
-
 function homeBooks()
 {
     $bestBooks = getBestBooks();
@@ -27,18 +21,15 @@ function search()
     require('view/search.php');
 }
 
-function readStory($idBook, $idChapter)
+function readStory($idBook)
 {
     $book = getBook($idBook);
-    $chapter = getChapter($idBook, $idChapter);
-    if (!userBookReading($_SESSION['id'], $idBook)) {
-        startReading($idBook);
-    }
     require('view/read_story.php');
 }
 
 function createUser()
 {
+
     if (isset($_POST['nickname']) && isset($_POST['birth_date']) && isset($_POST['password']) && isset($_POST['mail'])) {
         $nickname = $_POST['nickname'];
         if (verifNickname($nickname)) {
@@ -47,8 +38,13 @@ function createUser()
             $mail = $_POST['mail'];
             $newUser = insertUser($nickname, $birth, $mdp, $mail);
             if ($newUser) {
-                connectUser();
-                header('Location: index.php');
+                $user = loginUser($nickname, $mdp);
+                if ($user) {
+                    $_SESSION['id'] = $user['id_user'];
+                    $_SESSION['nickname'] = $user['nickname'];
+                    $_SESSION['role'] = $user['role'];
+                    header('Location: index.php');
+                }
             }
         } else {
             $error = "Le surnom existe déjà. Veuillez en choisir un nouveau";
@@ -90,16 +86,16 @@ function updateUser()
         }
     }
     require('view/update_account.php');
+
 }
 
 function indexUser()
 {
-    if (isset($_POST['switchAdmin'])) {
-        switchToAdmin($_SESSION['id']);
-        $_SESSION['role'] = 1;
-    }
-
     $user = getUser($_SESSION['id']);
+
+    if(isset($_POST['switchAdmin'])){
+        switchToAdmin($_SESSION['id']);
+    }
 
     require('view/my_account.php');
 }
@@ -129,15 +125,18 @@ function createCover()
         $idNewCover = insertCover($title, $resume, $genre, $nb_lives, $nb_chapters_max);
         $newCover = getCover($idNewCover);
         if ($newCover) {
-            header('Location: index.php?action=page-livre&id=' . $newCover['id_cover'] . '');
+            header('Location: index.php?action=afficher-livre&id=' . $newCover['id_cover'] . '');
         }
     }
     require('view/create_story.php');
-}
 
+    
+}
+ 
 function readCover($id_cover)
 {
     $cover = getCover($id_cover);
+    $chapters = getAllChapters($id_cover);
     require('view/cover_page.php');
 }
 
@@ -152,58 +151,41 @@ function updateCover($id_cover)
         $nb_chapters_max = $_POST['nb_chapters_max'];
         $updateCover = changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_cover);
         if ($updateCover) {
-            header('Location: index.php?action=afficher-livre&id=' . $id_cover);
+            header('Location: index.php?action=afficher-livre&id='.$id_cover);
         }
     }
     require('view/update_cover.php');
 }
 
 function createChapter($idCover)
-{
-    if (isset($_POST['title_chap']) && isset($_POST['content']) && isset($_POST['number_choices'])) {
+{   
+    $cover=getCover($idCover);
+    if(isset($_POST['title_chap']) && isset($_POST['content']) && isset($_POST['nb_choice'])) {  
         $title = $_POST['title_chap'];
         $content = $_POST['content'];
-        $nb_choices = $_POST['number_choices'];
-
-        $newChapter = insertChapter($idCover, $title, $content, $nb_choices);
-        $idChap = $newChapter['id_chapter'];
-        $book = getBook($idCover);
-        if ($newChapter) {
-            header('Location: index.php?action=page_choix&idChap=' . $idChap . '&idCover=' . $idCover);
-        }
-    }
+        $nb_choices = $_POST['nb_choice'];
+        
+        $idNewChapter = insertChapter($idCover,$title,$content,$nb_choices);         
+         
+        
+            header('Location: index.php?action=afficher-livre&id='.$idCover);
+        
+    }    
     require('view/create_chapter.php');
 }
 
-function choicesPage($idChap, $idCover)
-{
-    $book = getBook($idCover);
-    $chapter = getChapter($idCover, $idChap);
-    createChoices($idChap, $idCover);
-    $choices = getAllChoices($idChap, $idCover);
+function choicesPage($idChap,$idCover)
+{ 
+    $book = getBook($idBook);  
+    $chapter = getChapter($idBook,$idChap);    
+    createChoices($idChap,$idCover);
+    $choices=getAllChoices($idChap,$idCover);
     require('view/chapter_page.php');
 }
-
 
 function indexReadings()
 {
     $startedReadings = getStartedReading();
     $finishedReadings = getFinishedReading();
     require('view/my_readings.php');
-}
-
-function deleteCover($id_cover)
-{
-    $deleteUser = removeCover($id_cover);
-    if ($deleteUser) {
-        header('Location: index.php?action=mes-creations');
-    }
-
-    require('view/my_creations.php');
-}
-
-function endStory($cover)
-{
-    $book = getBook($cover);
-    require('view/end_story.php');
 }
