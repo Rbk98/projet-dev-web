@@ -24,12 +24,12 @@ ob_start();
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <label for="nb_lives" class="col-form-label">Nombre de vies</label>
-                                <input type="number" placeholder="Nombre de vies" name="nb_lives" id="nb_lives"
+                                <input type="number" min="0" placeholder="Nombre de vies" name="nb_lives" id="nb_lives"
                                        class="form-control" required>
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                 <label for="nb_chapters_max" class="col-form-label">Nombre de chapitres max</label>
-                                <input type="number" placeholder="Nombre de chapitres max" name="nb_chapters_max"
+                                <input type="number" min="0" placeholder="Nombre de chapitres max" name="nb_chapters_max"
                                        id="nb_chapters_max"
                                        class="form-control" required>
                             </div>
