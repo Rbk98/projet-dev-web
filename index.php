@@ -136,6 +136,15 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
+    } else if ($_GET['action'] == 'recommencer-histoire') {
+        if (isset($_GET['id'])) {
+            $idCover = intval($_GET['id']);
+            if ($idCover != 0) {
+                readAgain($idCover);
+            }
+        } else {
+            accessDenied();
+        }
     } else if ($_GET['action'] == 'passer-admin') {
         switchToAdmin($_SESSION['id']);
     } else if ($_GET['action'] == 'finir-histoire') {
