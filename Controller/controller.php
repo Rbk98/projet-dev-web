@@ -194,8 +194,6 @@ function indexReadings()
     $finishedReadings = getFinishedReading();
     require('view/my_readings.php');
 }
-<<<<<<< HEAD
-=======
 
 function deleteCover($id_cover)
 {
@@ -221,4 +219,3 @@ function readAgain($cover)
     /*if (!getReadingProgress($_SESSION['id'], $cover))
         header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');*/
 }
->>>>>>> 59c4e69029ae5586513c011d906a0b3208f15c72
