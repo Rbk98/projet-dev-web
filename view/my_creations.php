@@ -37,7 +37,7 @@ ob_start();
                     foreach ($startedBooks as $book) { ?>
                         <div class="col-6 col-lg-3 mb-5 mb-lg- ">
                             <div class="card ">
-                                <img src="public/images/<?= $book['image'] ?>" class="card-img-top" alt="book_img">
+                                <img src="public/images/blankpage.jpg" class="card-img-top" alt="book_img">
                                 <div class="card-body">
                                     <h5 class="card-title text-truncate"><?= $book['title'] ?></h5>
                                     <p class="card-text  text-truncate--3"><?= $book['summary'] ?></p>
@@ -70,7 +70,7 @@ ob_start();
                     foreach ($finishedBooks as $book) { ?>
                         <div class="col-6 col-lg-3 mb-5 ">
                             <div class="card ">
-                                <img src="public/images/<?= $book['image'] ?>" class="card-img-top" alt="book_img">
+                                <img src="public/images/cover4.jpg" class="card-img-top" alt="book_img">
                                 <div class="card-body">
                                     <h5 class="card-title book_title"><?= $book['title'] ?></h5>
                                     <span class="badge badge-pill badge_style mb-3"><?= $book['genre'] ?></span>
