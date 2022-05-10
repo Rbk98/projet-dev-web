@@ -139,12 +139,13 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'passer-admin') {
         switchToAdmin($_SESSION['id']);
     } else if ($_GET['action'] == 'finir-histoire') {
-        if (isset($_GET['idb']) && isset($_GET['idc'])) {
-            $idCover = intval($_GET['idb']);
-            $idChapter = intval($_GET['idc']);
-            if ($idCover != 0 && $idChapter != 0) {
+        if (isset($_GET['id'])) {
+            $idCover = intval($_GET['id']);
+            if ($idCover != 0) {
                 endStory($idCover);
             }
+        } else {
+            accessDenied();
         }
     } else {
         accessDenied();
