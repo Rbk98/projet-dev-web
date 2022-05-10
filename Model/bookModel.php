@@ -155,12 +155,12 @@ function changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_
 }
 
 
-function removeCover($id_cover){
+function removeCover($id_cover)
+{
     $bdd = connectDb();
 
     $sql = $bdd->prepare('DELETE FROM cover WHERE id_cover=?');
     return $sql->execute([$id_cover]);
-
 }
 function updateNumberReading()
 {
@@ -198,4 +198,19 @@ function getReadingProgress($cover)
         }
     }
     return $chapter;
+}
+
+function updateStatusReading($cover, $chapter)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('UPDATE reading SET status=1 WHERE id_user=? AND id_cover=? AND id_chapter=?');
+    $sql->execute(array($_SESSION['id'], $cover, $chapter));
+}
+
+function deleteReadingStory($cover)
+{
+    $bdd = connectDb();
+
+    $sql = $bdd->prepare('DELETE FROM reading WHERE id_user=? AND id_cover=?');
+    return $sql->execute([$_SESSION['id']], [$cover]);
 }

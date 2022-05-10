@@ -97,3 +97,11 @@ function switchToAdmin($id_user)
     $sql = $bdd->prepare('UPDATE user SET role=1 WHERE id_user=?');
     $sql->execute([$id_user]);
 }
+
+function getNumberLives($cover)
+{
+    $bdd = connectDb();
+    $chapter = getReadingProgress($cover);
+    $sql = $bdd->prepare('SELECT nb_lives FROM reading WHERE id_user=? AND id_cover=? AND id_chapter=?');
+    $sql->execute(array($_SESSION['id'], $cover, $chapter));
+}

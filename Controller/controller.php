@@ -4,6 +4,7 @@ session_start();
 require_once('Model/userModel.php');
 require_once('Model/bookModel.php');
 
+
 function accessDenied()
 {
     require('view/access_forbiden.php');
@@ -31,14 +32,13 @@ function readStory($idBook, $idChapter)
     $book = getBook($idBook);
     $chapter = getChapter($idBook, $idChapter);
     if (!userBookReading($_SESSION['id'], $idBook)) {
-        startStory($idBook);
+        startReading($idBook);
     }
     require('view/read_story.php');
 }
 
 function createUser()
 {
-
     if (isset($_POST['nickname']) && isset($_POST['birth_date']) && isset($_POST['password']) && isset($_POST['mail'])) {
         $nickname = $_POST['nickname'];
         if (verifNickname($nickname)) {
@@ -129,7 +129,7 @@ function createCover()
         $idNewCover = insertCover($title, $resume, $genre, $nb_lives, $nb_chapters_max);
         $newCover = getCover($idNewCover);
         if ($newCover) {
-            header('Location: index.php?action=page-livre&id='. $newCover['id_cover'] . '');
+            header('Location: index.php?action=page-livre&id=' . $newCover['id_cover'] . '');
         }
     }
     require('view/create_story.php');
@@ -200,4 +200,10 @@ function deleteCover($id_cover)
     }
 
     require('view/my_creations.php');
+}
+
+function endStory($cover)
+{
+    $book = getBook($cover);
+    require('view/end_story.php');
 }

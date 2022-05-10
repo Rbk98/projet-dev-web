@@ -41,8 +41,6 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
-
-        //action à modifier une fois qu'on aura l'accès avec l'histoire en question
     } else if ($_GET['action'] == 'info-histoire') {
         if (isset($_GET['id'])) {
             $idBook = intval($_GET['id']);
@@ -119,7 +117,7 @@ if (isset($_GET['action'])) {
         }
     } else if ($_GET['action'] == 'page-chapitre') {
         if (isset($_SESSION['id']) && $_SESSION['role'] == 1) {
-            chapterPage();
+            //chapterPage();
         } else {
             accessDenied();
         }
@@ -129,7 +127,7 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
-    }else if($_GET['action'] == 'supprimer-livre'){
+    } else if ($_GET['action'] == 'supprimer-livre') {
         if (isset($_GET['id'])) {
             $idCover = intval($_GET['id']);
             if ($idCover != 0) {
@@ -138,10 +136,17 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
-    }else if ($_GET['action'] == 'passer-admin') {
+    } else if ($_GET['action'] == 'passer-admin') {
         switchToAdmin($_SESSION['id']);
-    }
-    else{
+    } else if ($_GET['action'] == 'finir-histoire') {
+        if (isset($_GET['idb']) && isset($_GET['idc'])) {
+            $idCover = intval($_GET['idb']);
+            $idChapter = intval($_GET['idc']);
+            if ($idCover != 0 && $idChapter != 0) {
+                endStory($idCover);
+            }
+        }
+    } else {
         accessDenied();
     }
 } else {
