@@ -4,11 +4,11 @@ ob_start();
 ?>
 <div class="py-3">
     <h4 class="text-center pt-4 my-2 mb-5 font-weight-bold"><?= $book['title'] ?></h4>
-    <div class="container text-center">
+    <div class="container text-center mb-5  ">
         <div class="fin">
             <!--nombre de vie à récupérer-->
             <?php
-            $nb_lives = getNumberLives($book['idcover']);
+            $nb_lives = getNumberLives($book['id_cover']);
             if ($nb_lives == 0) { ?>
                 <h2 class="h2_title my-2">Vous avez perdu !</h2>
                 <hr class="hr_content mb-4 mt-4" />
@@ -19,6 +19,22 @@ ob_start();
                 <h4 class="text-grey">Vous avez ramené la princesse à la maison et pouvez l'épouser !.</h4>
             <?php } ?>
         </div>
+    </div>
+    <div class="text-center">
+        <p class="mt-2">Choix n°1 : Le cheval</p>
+        <i class=" bi bi-arrow-down"></i>
+        <p class="mt-2">Choix n°2 : Rentrer à la maison</p>
+        <i class="bi bi-arrow-down"></i>
+        <p class="mt-2">Choix n°3 : Manger</p>
+        <i class="bi bi-arrow-down"></i>
+        <!-- </*?php
+        $indice = 0;
+        foreach ($choiceNames as $title) {
+            $indice++; */?>
+            <p class="mt-2">Choix n°</*?= $indice . ' : ' . $title ?*/></p>
+            <i class="bi bi-arrow-down"></i>
+        </*?php } ?> */-->
+        <p class="mt-2">Fin</p>
     </div>
     <div class="container my-5">
         <div class="row">

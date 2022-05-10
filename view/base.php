@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="public/css/style.css" rel="stylesheet">
+    <link href="public/css/book.css" rel="stylesheet">
     <!-- Icon -->
     <link href="public/images/book_open_1.jpg" rel="shortcut icon">
     <link rel="stylesheet" href="public/css/font-awesome-4.7.0/css/font-awesome.min.css">

@@ -70,7 +70,7 @@ function getStartedReading()
 function getFinishedReading()
 {
     $bdd = connectDb();
-    $sql = $bdd->prepare('SELECT * FROM reading WHERE id_user=? AND status=1');
+    $sql = $bdd->prepare('SELECT count(DISTINCT id_cover) FROM reading WHERE id_user=? AND status=1');
     $sql->execute(array($_SESSION['id']));
     $finishedReadings = $sql->fetchAll();
     return $finishedReadings;
@@ -240,5 +240,21 @@ function deleteReadingStory($cover)
     $bdd = connectDb();
 
     $sql = $bdd->prepare('DELETE FROM reading WHERE id_user=? AND id_cover=?');
-    return $sql->execute([$_SESSION['id']], [$cover]);
+    return $sql->execute(array($_SESSION['id'], $cover));
 }
+
+function getChoices($cover)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT id_choice, id_chapter, id_cover FROM reading WHERE id_user=? AND id_cover=?');
+    $sql->execute(array($_SESSION['id'], $cover));
+    $readingChoices = $sql->fetchAll();
+    $choiceNames = array();
+    foreach ($readingChoices as $choice) {
+        $query = $bdd->prepare('SELECT title FROM choice WHERE id_cover=? AND id_current_chapter=? AND id_choice=?');
+        $query->execute(array($choice['id_cover'], $choice['id_chapter'], $choice['id_choice']));
+        array_push($choiceNames, $query);
+    }
+    return $choiceNames;
+}
+

@@ -23,7 +23,12 @@ function search()
 
 function readStory($idBook)
 {
-    $book = getBook($idBook);
+    $cover = getBook($idBook);
+    $chapter = getChapter($idBook, $idChapter);
+    $writer = getWriter($cover['writer']);
+    if (!userBookReading($_SESSION['id'], $idBook)) {
+        startStory($idBook);
+    }
     require('view/read_story.php');
 }
 
@@ -189,3 +194,31 @@ function indexReadings()
     $finishedReadings = getFinishedReading();
     require('view/my_readings.php');
 }
+<<<<<<< HEAD
+=======
+
+function deleteCover($id_cover)
+{
+    $deleteUser = removeCover($id_cover);
+    if ($deleteUser) {
+        header('Location: index.php?action=mes-creations');
+    }
+
+    require('view/my_creations.php');
+}
+
+function endStory($cover)
+{
+    $book = getBook($cover);
+    $choiceNames = getChoices($cover);
+    require('view/end_story.php');
+}
+
+function readAgain($cover)
+{
+    deleteReadingStory($cover);
+    header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');
+    /*if (!getReadingProgress($_SESSION['id'], $cover))
+        header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');*/
+}
+>>>>>>> 59c4e69029ae5586513c011d906a0b3208f15c72
