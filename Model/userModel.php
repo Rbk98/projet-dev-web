@@ -91,6 +91,17 @@ function userBookReading($id_user, $id_cover)
     return $startReading;
 }
 
+function userBookFinished($cover)
+{
+    $bdd = connectDb();
+    $chapter = getReadingProgress($cover);
+    //On regarde si le dernier chapitre enregistré a été lu (si c'est le cas c'est que l'histoire est finie)
+    $sql = $bdd->prepare('SELECT * FROM reading WHERE id_user=? AND status=1 AND id_cover=? AND id_chapter=?');
+    $sql->execute([$_SESSION['id'], $cover, $chapter]);
+    $finishedReading = $sql->fetch();
+    return $finishedReading;
+}
+
 function switchToAdmin($id_user)
 {
     $bdd = connectDb();

@@ -32,7 +32,7 @@ function readStory($idBook, $idChapter)
     $book = getBook($idBook);
     $chapter = getChapter($idBook, $idChapter);
     if (!userBookReading($_SESSION['id'], $idBook)) {
-        startReading($idBook);
+        startStory($idBook);
     }
     require('view/read_story.php');
 }
@@ -205,5 +205,14 @@ function deleteCover($id_cover)
 function endStory($cover)
 {
     $book = getBook($cover);
+    $choiceNames = getChoices($cover);
     require('view/end_story.php');
+}
+
+function readAgain($cover)
+{
+    deleteReadingStory($cover);
+    header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');
+    /*if (!getReadingProgress($_SESSION['id'], $cover))
+        header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');*/
 }
