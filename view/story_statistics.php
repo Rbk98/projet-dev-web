@@ -7,16 +7,16 @@ ob_start(); ?>
     </div>
     <div class="col-md-4 mt-4 ml-5">
         <div class="row mb-4">
-            <h3 class="h3_title text-center"><?=$book['title']?></h3>
+            <h3 class="h3_title text-center"><?= $cover['title'] ?></h3>
         </div>
         <div class="row mb-3">
-            <h6>Votre histoire a été lue par <?=$book['nb_reading']?> lecteurs.</h6>
+            <h6>Votre histoire a été lue par <?= $cover['nb_reading'] ?> lecteurs.</h6>
         </div>
         <div class="row mb-3">
-            <h6>Sur ces <?=$book['nb_reading']?> lecteurs, il y en a <?=$book['nb_win']?> qui ont réussi votre histoire !</h6>
+            <h6>Sur ces <?= $cover['nb_reading'] ?> lecteurs, il y en a <?= $cover['nb_win'] ?> qui ont réussi votre histoire !</h6>
         </div>
         <div class="row mb-3">
-            <h6>Le taux de réussite de votre histoire est donc de <?=($book['nb_win']*100)/$book['nb_reading']?> %.</h6>
+            <h6>Le taux de réussite de votre histoire est donc de <?= ($cover['nb_win'] * 100) / $cover['nb_reading'] ?> %.</h6>
         </div>
     </div>
 
