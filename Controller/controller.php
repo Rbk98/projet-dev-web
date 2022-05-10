@@ -4,6 +4,11 @@ session_start();
 require_once('Model/userModel.php');
 require_once('Model/bookModel.php');
 
+function accessDenied()
+{
+    require('view/access_forbiden.php');
+}
+
 function homeBooks()
 {
     $bestBooks = getBestBooks();
@@ -21,10 +26,10 @@ function search()
     require('view/search.php');
 }
 
-function readStory($idBook)
+function readStory($idBook, $idChapter)
 {
     $cover = getBook($idBook);
-    $chapter = getChapter($idBook, $idChapter);
+    //$chapter = getChapter($idBook, $idChapter);
     $writer = getWriter($cover['writer']);
     if (!userBookReading($_SESSION['id'], $idBook)) {
         startStory($idBook);
@@ -219,3 +224,4 @@ function readAgain($cover)
     /*if (!getReadingProgress($_SESSION['id'], $cover))
         header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');*/
 }
+
