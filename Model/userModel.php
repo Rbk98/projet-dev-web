@@ -105,3 +105,12 @@ function getNumberLives($cover)
     $sql = $bdd->prepare('SELECT nb_lives FROM reading WHERE id_user=? AND id_cover=? AND id_chapter=?');
     $sql->execute(array($_SESSION['id'], $cover, $chapter));
 }
+
+
+function getWriter($id_writer){
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT * FROM user WHERE id_user=?');
+    $sql->execute([$id_writer]);
+    $writer = $sql->fetch();
+    return $writer;
+}

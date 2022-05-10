@@ -29,8 +29,9 @@ function search()
 
 function readStory($idBook, $idChapter)
 {
-    $book = getBook($idBook);
+    $cover = getBook($idBook);
     $chapter = getChapter($idBook, $idChapter);
+    $writer = getWriter($cover['writer']);
     if (!userBookReading($_SESSION['id'], $idBook)) {
         startReading($idBook);
     }

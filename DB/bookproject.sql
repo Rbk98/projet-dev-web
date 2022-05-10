@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le : ven. 06 mai 2022 à 07:15
+-- Généré le : mar. 10 mai 2022 à 16:48
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -36,8 +36,24 @@ CREATE TABLE IF NOT EXISTS `chapter` (
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `nb_choices` int(10) NOT NULL,
-  PRIMARY KEY (`id_chapter`,`id_cover`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id_chapter`,`id_cover`),
+  KEY `id_cover` (`id_cover`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déclencheurs `chapter`
+--
+DROP TRIGGER IF EXISTS `before_delete_chapter`;
+DELIMITER $$
+CREATE TRIGGER `before_delete_chapter` BEFORE DELETE ON `chapter` FOR EACH ROW BEGIN DELETE 
+FROM choice 
+WHERE id_current_chapter = OLD.id_chapter;
+DELETE FROM reading
+WHERE id_chapter = OLD.id_chapter;
+
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -50,10 +66,13 @@ CREATE TABLE IF NOT EXISTS `choice` (
   `id_choice` int(10) NOT NULL,
   `id_next_chapter` int(10) NOT NULL,
   `id_current_chapter` int(10) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `unsafe` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id_choice`,`id_next_chapter`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `id_cover` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `unsafe` tinyint(1) DEFAULT '0',
+  `end_cover` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_choice`,`id_next_chapter`,`id_current_chapter`) USING BTREE,
+  KEY `cover` (`id_cover`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -75,8 +94,9 @@ CREATE TABLE IF NOT EXISTS `cover` (
   `nb_reading` int(10) NOT NULL DEFAULT '0',
   `image` varchar(255) DEFAULT NULL,
   `status` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id_cover`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id_cover`),
+  KEY `writer` (`writer`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `cover`
@@ -89,18 +109,20 @@ INSERT INTO `cover` (`id_cover`, `title`, `summary`, `genre`, `writer`, `date`, 
 (4, 'Astérix et Cléopatra', 'L\'histoire se passe en 50 avant Jésus-Christ. Toute la Gaule est occupée par les Romains, sauf un village d\'Armorique... C\'est le village d\'Astérix et Obélix. Leur druide, Panoramix, fabrique une potion magique qui les rend invincibles.', 'Comédie', 1, '2014-09-03', 3, 2, 6, 42, NULL, 2),
 (5, 'Le cercle des poètes disparus', 'Todd Anderson, un garçon plutôt timide, est envoyé dans la prestigieuse académie de Welton, réputée pour être l\'une des plus fermées et austères des États-Unis, là où son frère avait connu de brillantes études. C\'est dans cette université qu\'il va faire la rencontre d\'un professeur de lettres anglaises plutôt étrange, Mr Keating, qui les encourage à toujours refuser l\'ordre établi. Les cours de Mr Keating vont bouleverser la vie de l\'étudiant réservé et de ses amis', 'Drame', 1, '1989-10-06', 3, 5, 12, 64, NULL, 2);
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `leadsto`
+-- Déclencheurs `cover`
 --
+DROP TRIGGER IF EXISTS `before_delete_cover`;
+DELIMITER $$
+CREATE TRIGGER `before_delete_cover` BEFORE DELETE ON `cover` FOR EACH ROW BEGIN DELETE 
+FROM chapter 
+WHERE id_cover = OLD.id_cover;
+DELETE FROM reading
+WHERE id_cover = OLD.id_cover;
 
-DROP TABLE IF EXISTS `leadsto`;
-CREATE TABLE IF NOT EXISTS `leadsto` (
-  `id_chapter` int(10) NOT NULL,
-  `id_choice` int(10) NOT NULL,
-  PRIMARY KEY (`id_chapter`,`id_choice`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -116,15 +138,10 @@ CREATE TABLE IF NOT EXISTS `reading` (
   `id_choice` int(10) NOT NULL,
   `nb_lives` int(11) NOT NULL,
   `status` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id_user`,`id_cover`,`id_choice`,`id_chapter`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `reading`
---
-
-INSERT INTO `reading` (`id_user`, `id_cover`, `id_chapter`, `id_choice`, `nb_lives`, `status`) VALUES
-(1, 3, 0, 2, 3, 0);
+  PRIMARY KEY (`id_user`,`id_cover`,`id_choice`,`id_chapter`) USING BTREE,
+  KEY `cover_reading` (`id_cover`),
+  KEY `id_user` (`id_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -142,16 +159,45 @@ CREATE TABLE IF NOT EXISTS `user` (
   `role` int(5) DEFAULT '0',
   `nb_reading` int(10) DEFAULT '0',
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id_user`, `nickname`, `birth`, `password`, `mail`, `role`, `nb_reading`) VALUES
-(1, 'rbk98', '1998-10-28', '$2y$10$WX8b1V168kQEuxP5VmE4hOvPVVMiHKifo0J212Hvxayj2mstOZz/O', 'rbkpinotto@orange.fr', 1, 0),
-(2, 'FKERL', '1998-10-31', '$2y$10$gLKr8itrthVU1dBSrXTpn.9Q9IjnnF6K451BLcaS/RJVbTHqKuTYi', 'pinotto@orange.fr', 0, 0),
-(3, 'rbk', '1998-10-31', '$2y$10$gLKr8itrthVU1dBSrXTpn.9Q9IjnnF6K451BLcaS/RJVbTHqKuTYi', 'pinotto@orange.fr', 0, 0);
+(1, 'rbk', '1998-10-28', '$2y$10$WX8b1V168kQEuxP5VmE4hOvPVVMiHKifo0J212Hvxayj2mstOZz/O', 'rgrenet@ensc.fr', 1, 5),
+(2, 'correcteur', '1990-10-20', '$2y$10$vtA29soLtAW1Dyt2ptod7elIEMWAbSuyilKY1y3tNW8F1QDhMnNDy', 'correcteur@ensc.fr', 0, 0),
+(3, 'correcteur_admin', '1990-10-20', '$2y$10$WkleDaQhqZzYdmbIvZJS2.Da4a77t30FBxfQMTlyXOdfLaFnKP6Tm', 'correcteur_admin@ensc.fr', 1, 0);
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `chapter`
+--
+ALTER TABLE `chapter`
+  ADD CONSTRAINT `id_cover` FOREIGN KEY (`id_cover`) REFERENCES `cover` (`id_cover`);
+
+--
+-- Contraintes pour la table `choice`
+--
+ALTER TABLE `choice`
+  ADD CONSTRAINT `cover` FOREIGN KEY (`id_cover`) REFERENCES `cover` (`id_cover`);
+
+--
+-- Contraintes pour la table `cover`
+--
+ALTER TABLE `cover`
+  ADD CONSTRAINT `writer` FOREIGN KEY (`writer`) REFERENCES `user` (`id_user`);
+
+--
+-- Contraintes pour la table `reading`
+--
+ALTER TABLE `reading`
+  ADD CONSTRAINT `cover_reading` FOREIGN KEY (`id_cover`) REFERENCES `cover` (`id_cover`),
+  ADD CONSTRAINT `user_reading` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

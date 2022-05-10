@@ -214,3 +214,4 @@ function deleteReadingStory($cover)
     $sql = $bdd->prepare('DELETE FROM reading WHERE id_user=? AND id_cover=?');
     return $sql->execute([$_SESSION['id']], [$cover]);
 }
+
