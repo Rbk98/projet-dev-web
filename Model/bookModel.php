@@ -15,7 +15,7 @@ function getBook($idBook)
     $book = $bdd->prepare("SELECT * FROM cover WHERE id_cover =?");
     $book->execute(array($idBook));
     if ($book->rowCount() == 1)
-        return $book->fetch();  // Accès à la première ligne de résultat
+        return $book->fetch();
     else
         throw new Exception("Aucun livre ne correspond à l'identifiant '$idBook'");
 }
@@ -46,6 +46,7 @@ function getFinishedCreation()
     $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND (status=1 OR status=2)');
     $sql->execute(array($_SESSION['id']));
     $finishedBooks = $sql->fetchAll();
+
     return $finishedBooks;
 }
 
@@ -55,6 +56,7 @@ function getPublishedCreation()
     $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND status=2');
     $sql->execute(array($_SESSION['id']));
     $publishedBooks = $sql->fetchAll();
+
     return $publishedBooks;
 }
 
@@ -64,6 +66,7 @@ function getStartedReading()
     $sql = $bdd->prepare('SELECT * FROM reading WHERE id_user=? AND status=0');
     $sql->execute(array($_SESSION['id']));
     $startedReadings = $sql->fetchAll();
+
     return $startedReadings;
 }
 
@@ -73,6 +76,7 @@ function getFinishedReading()
     $sql = $bdd->prepare('SELECT count(DISTINCT id_cover) FROM reading WHERE id_user=? AND status=1');
     $sql->execute(array($_SESSION['id']));
     $finishedReadings = $sql->fetchAll();
+
     return $finishedReadings;
 }
 
@@ -81,7 +85,8 @@ function getBookGenre($genre)
     $bdd = connectDb();
     $sql = $bdd->prepare('SELECT * FROM cover WHERE genre=? AND status=2 ');
     $sql->execute(array($genre));
-    $books = $sql->fetchAll();  // Accès à la première ligne de résultat
+    $books = $sql->fetchAll();
+
     return $books;
 }
 
@@ -92,6 +97,7 @@ function insertCover($title, $resume, $genre, $nb_lives, $nb_chapters)
     $date = date('Y-m-d');
     $sql->execute([$title, $resume, $genre, $_SESSION['id'], $date, $nb_lives, $nb_chapters]);
     $idNewCover = $bdd->lastInsertId();
+
     return $idNewCover;
 }
 
@@ -99,26 +105,27 @@ function insertCover($title, $resume, $genre, $nb_lives, $nb_chapters)
 function insertChapter($idCover, $title, $content, $nb_choices)
 {
     $bdd = connectDb();
-    $id_next_chapter = getLastChapterId($idCover)+1;
+    $id_next_chapter = getLastChapterId($idCover) + 1;
     $sql = $bdd->prepare('INSERT INTO chapter(id_chapter, id_cover,title,content,nb_choices) VALUES (?,?,?,?,?) ');
-    $sql->execute([$id_next_chapter,$idCover, $title, $content, $nb_choices]);
+    $sql->execute([$id_next_chapter, $idCover, $title, $content, $nb_choices]);
     $idNewChapter = $bdd->lastInsertId();
+
     return $idNewChapter;
 }
 
-function getLastChapterId($id_cover){
+function getLastChapterId($id_cover)
+{
     $bdd = connectDb();
-    $sql= $bdd->prepare("SELECT MAX(id_chapter) AS nbMax FROM chapter WHERE id_cover=?");
+    $sql = $bdd->prepare("SELECT MAX(id_chapter) AS nbMax FROM chapter WHERE id_cover=?");
     $sql->execute([$id_cover]);
-    $nbChapter=$sql->fetchColumn();
-    if($nbChapter){
-        if($nbChapter!=0){
+    $nbChapter = $sql->fetchColumn();
+    if ($nbChapter) {
+        if ($nbChapter != 0) {
             return $nbChapter;
-        }
-        else{
+        } else {
             return 0;
         }
-    }   
+    }
 }
 
 function getChapter($idCover, $idChap)
@@ -126,6 +133,7 @@ function getChapter($idCover, $idChap)
     $bdd = connectDb();
     $sql = $bdd->prepare("SELECT * FROM chapter WHERE id_cover =? AND id_chapter=?");
     $sql->execute(array($idCover, $idChap));
+
     return $sql->fetch();
 }
 
@@ -135,51 +143,37 @@ function getAllChapters($idCover)
     $sql = $bdd->prepare("SELECT * FROM chapter WHERE id_cover=?");
     $sql->execute([$idCover]);
     $chapters = $sql->fetchAll();
+
     return $chapters;
 }
 
 
-
 ///CHOICES
 
-function insertChoice($id_next_chapter,$idChap,$idCover,$title,$unsafe,$end_cover)
+function insertChoice($idNextChapter, $idChap, $idCover, $title, $unsafe, $endCover)
 {
-    var_dump($id_next_chapter);
-    var_dump($idChap);
-    var_dump($idCover);
-    var_dump($title);
-    var_dump($unsafe);
-    var_dump($end_cover);
-    
-
-
     $bdd = connectDb();
-    $id_next_choice = getLastChoiceId($idCover,$idChap)+1;
-    var_dump($id_next_choice);
+    $idNextChoice = getLastChoiceId($idCover, $idChap) + 1;
+
     $sql = $bdd->prepare('INSERT INTO choice(id_choice,id_next_chapter,id_current_chapter,id_cover,title,unsafe, end_cover) VALUES (?,?,?,?,?,?,?)');
-    $sql->execute([$id_next_choice,$id_next_chapter,$idChap, $idCover, $title, $unsafe,$end_cover]);
+    $sql->execute([$idNextChoice, $idNextChapter, $idChap, $idCover, $title, $unsafe, $endCover]);
     $idNewChoice = $bdd->lastInsertId();
-    var_dump($idNewChoice);
+
     return $idNewChoice;
 }
 
-function getLastChoiceId($idCover,$idChap){
-   
+function getLastChoiceId($idCover, $idChap)
+{
     $bdd = connectDb();
-    $sql= $bdd->prepare("SELECT MAX(id_choice) AS nbMax FROM choice WHERE id_cover=? AND id_current_chapter=?");
-    $sql->execute([$idCover,$idChap]);
-    $nbChoice=$sql->fetchColumn();
-   
-    
-    
-        if($nbChoice>0){
-            return $nbChoice;
-        }
-        else{
-            return 0;
-        }
-      
-    
+    $sql = $bdd->prepare("SELECT MAX(id_choice) AS nbMax FROM choice WHERE id_cover=? AND id_current_chapter=?");
+    $sql->execute([$idCover, $idChap]);
+    $nbChoice = $sql->fetchColumn();
+
+    if ($nbChoice > 0) {
+        return $nbChoice;
+    } else {
+        return 0;
+    }
 }
 
 function getAllChoices($idChapter, $idCover)
@@ -188,14 +182,16 @@ function getAllChoices($idChapter, $idCover)
     $sql = $bdd->prepare("SELECT * FROM choice WHERE id_current_chapter=? AND id_cover=?");
     $sql->execute(array($idChapter, $idCover));
     $choices = $sql->fetchAll();
+
     return $choices;
 }
+
 function getCover($id_cover)
 {
     $bdd = connectDb();
     $sql = $bdd->prepare('SELECT * FROM cover WHERE id_cover=?');
     $sql->execute([$id_cover]);
-    $cover= $sql->fetch();
+    $cover = $sql->fetch();
 
     return $cover;
 }
@@ -212,10 +208,11 @@ function changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_
 function removeCover($id_cover)
 {
     $bdd = connectDb();
-
     $sql = $bdd->prepare('DELETE FROM cover WHERE id_cover=?');
+
     return $sql->execute([$id_cover]);
 }
+
 function updateNumberReading()
 {
     $bdd = connectDb();
@@ -223,6 +220,7 @@ function updateNumberReading()
     $nbReadings->execute($_SESSION['id']);
     $nbReadings++;
     $sql = $bdd->prepare('UPDATE user SET nb_reading=? WHERE id_user=?');
+
     return $sql->execute([$nbReadings], $_SESSION['id']);
 }
 
@@ -264,8 +262,8 @@ function updateStatusReading($cover, $chapter)
 function deleteReadingStory($cover)
 {
     $bdd = connectDb();
-
     $sql = $bdd->prepare('DELETE FROM reading WHERE id_user=? AND id_cover=?');
+
     return $sql->execute(array($_SESSION['id'], $cover));
 }
 
@@ -281,6 +279,7 @@ function getChoices($cover)
         $query->execute(array($choice['id_cover'], $choice['id_chapter'], $choice['id_choice']));
         array_push($choiceNames, $query);
     }
+
     return $choiceNames;
 }
 

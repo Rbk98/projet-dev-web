@@ -29,13 +29,13 @@ ob_start(); ?>
                                     <?php foreach($chapters as $chap){ 
                                         if($chap['id_chapter']!= $chapter['id_chapter']){?>
                                         
-                                        <option value=<?= $chap['id_chapter']?>>Chapitre n°<?= $chap['id_chapter']?> : <?= $chap['title']?></option>
+                                        <option value="<?= $chap['id_chapter']?>">Chapitre n°<?= $chap['id_chapter']?> : <?= $chap['title']?></option>
                                     <?php }} ?>                                
                                 </select>
                             </div>
 
                             <div class="col-12 mb-3">
-                                <input type="checkbox" id="unsafe" name="unsafe" value="1">
+                                <input type="checkbox" name="unsafe" id="unsafe" value="1">
                                 <label for="unsafe" class="ml-2">Sélectionnez si ce choix est dangereux</label>
                             </div>
 
