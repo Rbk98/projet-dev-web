@@ -311,3 +311,12 @@ function getChoices($cover)
 
     return $choiceNames;
 }
+
+
+function editCoverStatus($idCover, $status)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('UPDATE cover SET status=? WHERE id_cover=?');
+
+    return $sql->execute([$status, $idCover]);
+}

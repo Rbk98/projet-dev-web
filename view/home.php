@@ -47,13 +47,13 @@ ob_start();
     <h2 class="h2_title my-2">Les histoires les plus appréciées</h2>
     <hr class="hr_content mb-3" />
     <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
-        <?php foreach ($bestBooks as $book) { ?>
+        <?php foreach ($bestBooks as $book) : ?>
             <div class="col-xl-3 col-md-6 col-sm-6">
                 <div class="card h-100">
                     <img width="200px" height="auto" src="public/images/cover4.jpg" class="card-img-top p-3" alt="book_img">
                     <div class="card-body">
                         <h5 class="card-title"><?= $book['title'] ?></h5>
-                        <span class="badge badge-danger"><?= $book['genre'] ?></span>
+                        <span class="badge badge-pill badge_style mb-3"><?= $book['genre'] ?></span>
                         <p class="card-text text-truncate--3"><?= $book['summary'] ?></p>
                     </div>
                     <div class="d-flex align-items-end flex-column card-body">
@@ -66,10 +66,10 @@ ob_start();
                                 <a href="index.php?action=recommencer-histoire&id=<?= $book['id_cover'] ?>" class="btn btn-dark px-2 mt-auto">Relire
                                     l'histoire</a>
                             <?php } else { ?>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?= $book['id_cover'] ?>">
                                     Commencer l'histoire
                                 </button>
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal fade" id="modal<?= $book['id_cover'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -92,7 +92,7 @@ ob_start();
                                 </div>
                             <?php }
                         } else { ?>
-                            <a href="index.php?action=lire-histoire&idb=<?= $book['id_cover'] ?>&idc=<?= getReadingProgress($_SESSION['id'], $book['id_cover']) ?>" class="btn btn-info px-2 mt-auto">Continuer
+                            <a href="index.php?action=lire-histoire&idb=<?php echo $book['id_cover']; ?>&idc=<?= getReadingProgress($_SESSION['id'], $book['id_cover']) ?>" class="btn btn-info px-2 mt-auto">Continuer
                                 l'histoire</a>
                         <?php } ?>
                     </div>
@@ -101,7 +101,7 @@ ob_start();
                     </div>
                 </div>
             </div>
-        <?php } ?>
+        <?php endforeach; ?>
     </div>
 </div>
 <div class="py-5">
@@ -138,7 +138,7 @@ ob_start();
                     <img width="200px" height="auto" src="public/images/cover4.jpg" class="card-img-top p-3" alt="book_img">
                     <div class="card-body">
                         <h5 class="card-title"><?= $b['title'] ?></h5>
-                        <span class="badge badge-danger"><?= $b['genre'] ?></span>
+                        <span class="badge badge-pill badge_style mb-3"><?= $b['genre'] ?></span>
                         <p class="card-text text-truncate--3"><?= $b['summary'] ?></p>
                     </div>
                     <div class="d-flex align-items-end flex-column card-body">
@@ -151,10 +151,10 @@ ob_start();
                                 <a href="index.php?action=recommencer-histoire&id=<?= $b['id_cover'] ?>" class="btn btn-dark px-2 mt-auto">Relire
                                     l'histoire</a>
                             <?php } else { ?>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?= $book['id_cover'] ?>">
                                     Commencer l'histoire
                                 </button>
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal fade" id="modal<?= $book['id_cover'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">

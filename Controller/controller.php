@@ -263,3 +263,12 @@ function readAgain($cover)
     /*if (!getReadingProgress($_SESSION['id'], $cover))
         header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');*/
 }
+
+function updateCoverStatus($idCover, $status){
+    $updateCover = editCoverStatus($idCover, $status);
+    if ($updateCover) {
+        header('Location: index.php?action=mes-creations');
+    }
+
+    require('view/my_creations.php');
+}

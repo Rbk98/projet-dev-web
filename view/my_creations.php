@@ -82,12 +82,34 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
                                 if ($book['status'] == 2) { ?>
                                     <div class="row ">
                                         <div class="col-12 col-lg-6  mb-2 ">
-                                            <a href="index.php?action=mon-histoire&1"
-                                               class="btn px-2  btn-success btn-block mb-2">
-                                                <i class="bi bi-eye"></i> Publié</a>
+                                            <button type="button" class="btn px-2  btn-success btn-block mb-2" data-toggle="modal" data-target="#modal<?= $book['id_cover'] ?>">
+                                                <i class="bi bi-eye"></i> Publié
+                                            </button>
+                                            <div class="modal fade" id="modal<?= $book['id_cover'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Cacher une histoire</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Etes-vous sûr de vouloir cacher cette histoire ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer
+                                                            </button>
+                                                            <a href="index.php?action=cacher-histoire&id=<?= $book['id_cover'] ?>"
+                                                               class="btn btn-primary px-2 mt-auto">
+                                                                <i class="bi bi-eye-slash"></i> Cacher l'histoire</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-12 col-lg-6  px-2 ">
-                                            <a href="index.php?action=info-histoire&id=<?= $book['id_cover'] ?>"
+                                            <a href="index.php?action=publier-histoire&id=<?= $book['id_cover'] ?>"
                                                class="btn btn-light btn-block ">
                                                 <i class="bi bi-graph-up"></i> Stats</a>
                                         </div>
@@ -101,9 +123,33 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
 
                                 <?php } else if ($book['status'] == 1) { ?>
                                     <div>
-                                        <a href="index.php?action=info-histoire"
-                                           class="btn btn-secondary btn-block px-2 mb-2">
-                                            <i class="bi bi-eye-slash"></i> Non publié</a>
+                                        <div>
+                                            <button type="button" class="btn px-2  btn-secondary btn-block mb-2" data-toggle="modal" data-target="#modal<?= $book['id_cover'] ?>">
+                                                <i class="bi bi-eye-slash"></i> Non publié
+                                            </button>
+                                            <div class="modal fade" id="modal<?= $book['id_cover'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Publier une histoire</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Etes-vous sûr de vouloir publier cette histoire ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer
+                                                            </button>
+                                                            <a href="index.php?action=publier-histoire&id=<?= $book['id_cover'] ?>"
+                                                               class="btn btn-primary px-2 mt-auto">
+                                                                <i class="bi bi-eye"></i> Publier l'histoire</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="d-grid gap-2">
                                             <form name="delete_cover" method="POST">
                                                 <a href="index.php?action=supprimer-livre&id=<?= $book['id_cover'] ?>"

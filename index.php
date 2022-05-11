@@ -197,7 +197,35 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
-    } else {
+    }else if($_GET['action'] == 'publier-histoire') {
+        if (isset($_SESSION['id'])) {
+            if (isset($_GET['id'])) {
+                $idCover = intval($_GET['id']);
+                if ($idCover != 0) {
+                    updateCoverStatus($idCover,2);
+                }
+            } else {
+                accessDenied();
+            }
+        } else {
+            accessDenied();
+        }
+    }
+    else if($_GET['action'] == 'cacher-histoire') {
+        if (isset($_SESSION['id'])) {
+            if (isset($_GET['id'])) {
+                $idCover = intval($_GET['id']);
+                if ($idCover != 0) {
+                    updateCoverStatus($idCover,1);
+                }
+            } else {
+                accessDenied();
+            }
+        } else {
+            accessDenied();
+        }
+    }
+    else {
         accessDenied();
     }
 } else {

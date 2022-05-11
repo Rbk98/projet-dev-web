@@ -53,7 +53,7 @@ ob_start();
                                          class="card-img-top p-3" alt="book_img">
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $book['title'] ?></h5>
-                                        <span class="badge badge-danger"><?= $book['genre'] ?></span>
+                                        <span class="badge badge-pill badge_style mb-3"><?= $book['genre'] ?></span>
                                         <p class="card-text text-truncate--3"><?= $book['summary'] ?></p>
                                     </div>
                                     <div class="d-flex align-items-end flex-column card-body">
@@ -69,10 +69,10 @@ ob_start();
                                                     l'histoire</a>
                                             <?php } else { ?>
                                                 <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#exampleModalCenter">
+                                                        data-target="#modal<?= $book['id_cover'] ?>">
                                                     Commencer l'histoire
                                                 </button>
-                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                                                <div class="modal fade" id="modal<?= $book['id_cover'] ?>" tabindex="-1"
                                                      role="dialog"
                                                      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
