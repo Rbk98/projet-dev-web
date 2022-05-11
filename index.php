@@ -79,8 +79,8 @@ if (isset($_GET['action'])) {
         }
     } else if ($_GET['action'] == 'page-choix') {
         if (isset($_SESSION['id'])) {
-            if (isset($_GET['idChap']) && isset($_GET['idCover'])) {
-                $idChap = intval($_GET['idChap']);
+            if (isset($_GET['idChapter']) && isset($_GET['idCover'])) {
+                $idChap = intval($_GET['idChapter']);
                 $idCover = intval($_GET['idCover']);
                 if ($idChap != 0 && $idCover != 0) {
                     choicesPage($idChap, $idCover);
@@ -90,6 +90,16 @@ if (isset($_GET['action'])) {
             }
         } else {
             accessDenied();
+        }
+    } else if ($_GET['action'] == 'creer-choix') {
+        if (isset($_GET['idChapter']) && isset($_GET['idCover'])) {
+            $idChap = intval($_GET['idChapter']);
+            $idCover = intval($_GET['idCover']);
+            if ($idChap != 0 && $idCover != 0) {
+                createChoice($idChap, $idCover);
+            }
+        } else {
+            homeBooks();
         }
     } else if ($_GET['action'] == 'afficher-livre') {
         if (isset($_GET['id'])) {
@@ -126,11 +136,15 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
-    } else if ($_GET['action'] == 'page-chapitre') {
-        if (isset($_SESSION['id']) && $_SESSION['role'] == 1) {
-            //chapterPage();
+    } else if ($_GET['action'] == 'modifier-chapitre') {
+        if (isset($_GET['idChapter']) && isset($_GET['idCover'])) {
+            $idChap = intval($_GET['idChapter']);
+            $idCover = intval($_GET['idCover']);
+            if ($idChap != 0 && $idCover != 0) {
+                updateChapter($idChap, $idCover);
+            }
         } else {
-            accessDenied();
+            homeBooks();
         }
     } else if ($_GET['action'] == 'mes-lectures') {
         if (isset($_SESSION['id'])) {
