@@ -38,7 +38,7 @@ ob_start(); ?>
                                 <p class="ml-2">Sélectionnez si ce choix est dangereux :</p>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="unsafe" id="safe" value="0">
+                                    <input class="form-check-input" type="radio" name="unsafe" id="safe" value="0" checked>
                                     <label class="form-check-label" for="safe">Inoffensif</label>
                                 </div>
                                 <div class="form-check form-check-inline">
