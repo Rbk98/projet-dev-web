@@ -197,14 +197,14 @@ function removeCover($id_cover)
     return $sql->execute([$id_cover]);
 }
 
-function updateNumberReading()
+function updateNumberReadingCover($idCover)
 {
     $bdd = connectDb();
-    $nbReadings = $bdd->prepare('SELECT nb_reading FROM user WHERE id_user=?');
-    $nbReadings->execute($_SESSION['id']);
-    $nbReadings++;
-    $sql = $bdd->prepare('UPDATE user SET nb_reading=? WHERE id_user=?');
-    return $sql->execute([$nbReadings], $_SESSION['id']);
+    $query = $bdd->prepare('SELECT nb_reading FROM cover WHERE id_cover=?');
+    $nbReadings = $query->execute(array($idCover));
+    $nbReadings += 1;
+    $sql = $bdd->prepare('UPDATE cover SET nb_reading=? WHERE id_cover=?');
+    return $sql->execute(array($nbReadings, $idCover));
 }
 
 function startStory($cover)

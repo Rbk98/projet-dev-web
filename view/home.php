@@ -117,9 +117,13 @@ ob_start();
                     faut se créer un
                     compte pour pouvoir accéder aux histoires. Un suivi est disponible et un espace pour savoir
                     quels histoires tu as déjà lu.</p>
-                <a href="index.php?action=creer-compte" class="btn btn-success px-4 py-2">Je souhaite créer mon
-                    compte
-                    !</a>
+                <?php if (!isset($_SESSION['id'])) { ?>
+                    <a href="index.php?action=creer-compte" class="btn btn-success px-4 py-2">Je souhaite créer mon
+                        compte
+                        !</a>
+                <?php } else { ?>
+                    <a href="index.php?action=mes-lectures" class="btn btn-success px-4 py-2">Voir mes histoires lues</a>
+                <?php } ?>
             </div>
         </div>
     </div>

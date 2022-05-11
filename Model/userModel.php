@@ -105,11 +105,21 @@ function userBookFinished($cover)
     return $finishedReading;
 }
 
+function updateNumberReadingUser()
+{
+    $bdd = connectDb();
+    $query = $bdd->prepare('SELECT nb_reading FROM user WHERE id_user=?');
+    $nbReadings = $query->execute(array($_SESSION['id']));
+    $nbReadings += 1;
+    $sql = $bdd->prepare('UPDATE user SET nb_reading=? WHERE id_user=?');
+    return $sql->execute(array($nbReadings, $_SESSION['id']));
+}
+
 function switchToAdmin($id_user)
 {
     $bdd = connectDb();
     $sql = $bdd->prepare('UPDATE user SET role=? WHERE id_user=?');
-    $sql->execute([USER_ADMIN,$id_user]);
+    $sql->execute([USER_ADMIN, $id_user]);
 }
 
 function getNumberLives($cover)
@@ -121,7 +131,8 @@ function getNumberLives($cover)
 }
 
 
-function getWriter($id_writer){
+function getWriter($id_writer)
+{
     $bdd = connectDb();
     $sql = $bdd->prepare('SELECT * FROM user WHERE id_user=?');
     $sql->execute([$id_writer]);

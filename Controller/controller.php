@@ -211,6 +211,8 @@ function endStory($cover)
 {
     $book = getBook($cover);
     $choiceNames = getChoices($cover);
+    updateNumberReadingCover($cover);
+    updateNumberReadingUser();
     require('view/end_story.php');
 }
 
