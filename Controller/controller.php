@@ -206,7 +206,7 @@ function createChoice($idChap, $idCover)
     $chapter = getChapter($idCover, $idChap);
     $chapters = getAllChapters($idCover);
 
-    if (isset($_POST['choice_name']) && isset($_POST['next_chapter'])) {
+    if (isset($_POST['choice_name']) && isset($_POST['next_chapter']) && isset($_POST['unsafe'])) {
         $title = $_POST['choice_name'];
         if (($_POST['next_chapter']) == "end") { //On assigne le chapitre à lui même pour indiquer que c'est la fin
             $id_next_chapter = $idChap;

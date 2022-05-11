@@ -21,7 +21,7 @@ ob_start();
             mon histoire</a>
 
         <?php if (count($chapters) != 0 && (count($chapters) < $cover['nb_chapters_max'])) { ?>
-            <a type="sumbit" class="btn btn-success mt-4 "
+            <a type="submit" class="btn btn-success mt-4 "
                href="index.php?action=creer-chapitre&id=<?= $cover['id_cover'] ?>">Créer un
                 chapitre</a>
         <?php } ?>
@@ -37,7 +37,7 @@ ob_start();
                     <i class="fa fa-book fa-2x mb-4 icon"></i>
                     <p class="mb-4">Vous n'avez pour l'instant aucun chapitre associé à cette
                         histoire. </br>Commencez à écrire votre premier chapitre dès maintenant </p>
-                    <a type="sumbit" class="btn btn-success"
+                    <a type="submit" class="btn btn-success"
                        href="index.php?action=creer-chapitre&id=<?= $cover['id_cover'] ?>">Créer un
                         chapitre</a>
                 </div>

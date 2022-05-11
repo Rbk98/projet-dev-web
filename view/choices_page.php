@@ -1,4 +1,4 @@
-<?php $title = "Page choix"; ?>
+<?php $title = "Administration des choix"; ?>
 
 <?php ob_start(); ?>
 <div class="container my-5">
@@ -33,9 +33,9 @@
                 <div class="col-3">
                     <a href="book_page.php" class="text-dark text-decoration-none">
                         <div class="card choix" href="book_page.php">
-                            <h5 class="card-header text-center">Choix</h5>
+                            <h5 class="card-header text-center">Choix n°<?= $choice['id_choice'] ?></h5>
                             <div class="card-body text-center">                                
-                                    <p><?php $choice['title'] ?></p>
+                                    <p><?= $choice['title'] ?></p>
                                 <?php if($choice['unsafe']==1){ ?>                
                                     <span class="badge bg-danger">Dangereux</span>
                                 <?php }else{ ?>

@@ -35,8 +35,16 @@ ob_start(); ?>
                             </div>
 
                             <div class="col-12 mb-3">
-                                <input type="checkbox" name="unsafe" id="unsafe" value="1">
-                                <label for="unsafe" class="ml-2">Sélectionnez si ce choix est dangereux</label>
+                                <p class="ml-2">Sélectionnez si ce choix est dangereux :</p>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="unsafe" id="safe" value="0">
+                                    <label class="form-check-label" for="safe">Inoffensif</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="unsafe" id="unsafe" value="1">
+                                    <label class="form-check-label" for="unsafe">Dangereux</label>
+                                </div>
                             </div>
 
                             <div class="col-12 d-grid gap-2 ">
