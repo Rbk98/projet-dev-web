@@ -77,7 +77,7 @@ function getStartedReading()
 function getFinishedReading()
 {
     $bdd = connectDb();
-    $sql = $bdd->prepare('SELECT count(DISTINCT id_cover) FROM reading WHERE id_user=? AND status=1');
+    $sql = $bdd->prepare('SELECT DISTINCT * FROM reading WHERE id_user=? AND status=1');
     $sql->execute(array($_SESSION['id']));
     $finishedReadings = $sql->fetchAll();
 
@@ -146,8 +146,9 @@ function getChapter($idCover, $idChap)
     $bdd = connectDb();
     $sql = $bdd->prepare("SELECT * FROM chapter WHERE id_cover =? AND id_chapter=?");
     $sql->execute(array($idCover, $idChap));
+    var_dump($sql->fetchAll());
 
-    return $sql->fetch();
+    return $sql->fetchAll();
 }
 
 function getAllChapters($idCover)

@@ -53,7 +53,7 @@ ob_start();
                     <img width="200px" height="auto" src="public/images/cover4.jpg" class="card-img-top p-3" alt="book_img">
                     <div class="card-body">
                         <h5 class="card-title"><?= $book['title'] ?></h5>
-                        <span class="badge badge-danger"><?= $book['genre'] ?></span>
+                        <span class="badge badge-pill badge_style mb-3"><?= $book['genre'] ?></span>
                         <p class="card-text text-truncate--3"><?= $book['summary'] ?></p>
                     </div>
                     <div class="d-flex align-items-end flex-column card-body">
@@ -138,7 +138,7 @@ ob_start();
                     <img width="200px" height="auto" src="public/images/cover4.jpg" class="card-img-top p-3" alt="book_img">
                     <div class="card-body">
                         <h5 class="card-title"><?= $b['title'] ?></h5>
-                        <span class="badge badge-danger"><?= $b['genre'] ?></span>
+                        <span class="badge badge-pill badge_style mb-3"><?= $b['genre'] ?></span>
                         <p class="card-text text-truncate--3"><?= $b['summary'] ?></p>
                     </div>
                     <div class="d-flex align-items-end flex-column card-body">
