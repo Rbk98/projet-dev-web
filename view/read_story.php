@@ -15,23 +15,8 @@ ob_start();
                     <p class="pb-3">
                         <?= $cover['summary'] ?>
                     </p>
-                    <p class="pb-3">
-                    </p>
-                    <p class="pb-3">
-                    </p>
-                    <p class="pb-3">
-                    </p>
-                    <h3 class="text-center py-3"><?= $chapter['title'] ?> </h3>
+                    <h3 class="text-center py-3"> </h3>
                     <p>
-                        The "time of year" that is being referenced relates to Erin's job when the pile of
-                        projects temporarily slow down. This doesn't happen to just her. The reduction of work
-                        happens to many, but at various times throughout the year, depending on their position.
-                        She could submit to boredom and brainlessly surf The "time of year" that is being referenced relates to Erin's job when the pile of
-                        projects temporarily slow down. This doesn't happen to just her. The reduction of work
-                        happens to many, but at various times throughout the year, depending on their position.
-                        She could submit to boredom and brainlessly surf the Internet, but this particular
-                        developer decided to take advantage of the situation.the Internet, but this particular
-                        developer decided to take advantage of the situation.
                     </p>
                 </article>
                 <footer>

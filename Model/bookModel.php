@@ -1,6 +1,10 @@
 <?php
 require('connect.php');
 
+const COVER_PUBLISHED = 2; // Correspond à la valeur du statut si le livre a été publié
+const COVER_FINISHED = 1; // Correspond à la valeur du statut si le livre a été configuré mais non publié
+const COVER_STARTED = 0; // Correspond à la valeur du statut si le livre n'a pas encore été configuré
+
 function getBestBooks()
 {
     $bdd = connectDb();
@@ -15,7 +19,7 @@ function getBook($idBook)
     $book = $bdd->prepare("SELECT * FROM cover WHERE id_cover =?");
     $book->execute(array($idBook));
     if ($book->rowCount() == 1)
-        return $book->fetch();  // Accès à la première ligne de résultat
+        return $book->fetch();
     else
         throw new Exception("Aucun livre ne correspond à l'identifiant '$idBook'");
 }
@@ -33,8 +37,8 @@ function getAllBooks()
 function getStartedCreation()
 {
     $bdd = connectDb();
-    $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND status=0');
-    $sql->execute(array($_SESSION['id']));
+    $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND status=?');
+    $sql->execute(array($_SESSION['id'], COVER_STARTED));
     $startedBooks = $sql->fetchAll();
 
     return $startedBooks;
@@ -43,8 +47,8 @@ function getStartedCreation()
 function getFinishedCreation()
 {
     $bdd = connectDb();
-    $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND (status=1 OR status=2)');
-    $sql->execute(array($_SESSION['id']));
+    $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND (status=? OR status=?)');
+    $sql->execute(array($_SESSION['id'], COVER_PUBLISHED, COVER_FINISHED));
     $finishedBooks = $sql->fetchAll();
     return $finishedBooks;
 }
@@ -52,8 +56,8 @@ function getFinishedCreation()
 function getPublishedCreation()
 {
     $bdd = connectDb();
-    $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND status=2');
-    $sql->execute(array($_SESSION['id']));
+    $sql = $bdd->prepare('SELECT * FROM cover WHERE writer=? AND status=?');
+    $sql->execute(array($_SESSION['id'], COVER_PUBLISHED));
     $publishedBooks = $sql->fetchAll();
     return $publishedBooks;
 }
@@ -79,9 +83,9 @@ function getFinishedReading()
 function getBookGenre($genre)
 {
     $bdd = connectDb();
-    $sql = $bdd->prepare('SELECT * FROM cover WHERE genre=? AND status=2 ');
-    $sql->execute(array($genre));
-    $books = $sql->fetchAll();  // Accès à la première ligne de résultat
+    $sql = $bdd->prepare('SELECT * FROM cover WHERE genre=? AND status=? ');
+    $sql->execute(array($genre, COVER_PUBLISHED));
+    $books = $sql->fetchAll();
     return $books;
 }
 
@@ -118,6 +122,8 @@ function getLastChapterId($id_cover)
         } else {
             return 0;
         }
+    } else {
+        return 0;
     }
 }
 
@@ -137,7 +143,6 @@ function getAllChapters($idCover)
     $chapters = $sql->fetchAll();
     return $chapters;
 }
-
 
 
 ///CHOICES
@@ -164,6 +169,7 @@ function getAllChoices($idCover, $idChapter)
     $choices = $sql->fetchAll();
     return $choices;
 }
+
 function getCover($id_cover)
 {
     $bdd = connectDb();
@@ -190,6 +196,7 @@ function removeCover($id_cover)
     $sql = $bdd->prepare('DELETE FROM cover WHERE id_cover=?');
     return $sql->execute([$id_cover]);
 }
+
 function updateNumberReading()
 {
     $bdd = connectDb();
