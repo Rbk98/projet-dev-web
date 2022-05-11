@@ -26,13 +26,14 @@ function search()
     require('view/search.php');
 }
 
-function readStory($idBook, $idChapter)
+function readStory($idCover, $idChapter)
 {
-    $cover = getBook($idBook);
-    //$chapter = getChapter($idBook, $idChapter);
+    $cover = getBook($idCover);
+    $chapter = getChapter($idCover, $idChapter);
+    $choices = getAllChoices($idCover, $idChapter);
     $writer = getWriter($cover['writer']);
-    if (!userBookReading($_SESSION['id'], $idBook)) {
-        startStory($idBook);
+    if (!userBookReading($_SESSION['id'], $idCover)) {
+        startStory($idCover);
     }
     require('view/read_story.php');
 }

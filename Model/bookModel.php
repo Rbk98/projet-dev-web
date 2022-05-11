@@ -99,26 +99,26 @@ function insertCover($title, $resume, $genre, $nb_lives, $nb_chapters)
 function insertChapter($idCover, $title, $content, $nb_choices)
 {
     $bdd = connectDb();
-    $id_next_chapter = getLastChapterId($idCover)+1;
+    $id_next_chapter = getLastChapterId($idCover) + 1;
     $sql = $bdd->prepare('INSERT INTO chapter(id_chapter, id_cover,title,content,nb_choices) VALUES (?,?,?,?,?) ');
-    $sql->execute([$id_next_chapter,$idCover, $title, $content, $nb_choices]);
+    $sql->execute([$id_next_chapter, $idCover, $title, $content, $nb_choices]);
     $idNewChapter = $bdd->lastInsertId();
     return $idNewChapter;
 }
 
-function getLastChapterId($id_cover){
+function getLastChapterId($id_cover)
+{
     $bdd = connectDb();
-    $sql= $bdd->prepare("SELECT MAX(id_chapter) AS nbMax FROM chapter WHERE id_cover=?");
+    $sql = $bdd->prepare("SELECT MAX(id_chapter) AS nbMax FROM chapter WHERE id_cover=?");
     $sql->execute([$id_cover]);
-    $nbChapter=$sql->fetchColumn();
-    if($nbChapter){
-        if($nbChapter!=0){
+    $nbChapter = $sql->fetchColumn();
+    if ($nbChapter) {
+        if ($nbChapter != 0) {
             return $nbChapter;
-        }
-        else{
+        } else {
             return 0;
         }
-    }   
+    }
 }
 
 function getChapter($idBook, $idChap)
@@ -156,10 +156,10 @@ function createChoices($idChap, $idCover)
     }
 }
 
-function getAllChoices($idChapter, $idCover)
+function getAllChoices($idCover, $idChapter)
 {
     $bdd = connectDb();
-    $sql = $bdd->prepare("SELECT * FROM choice WHERE id_chapter=? AND id_cover=?");
+    $sql = $bdd->prepare("SELECT * FROM choice WHERE id_current_chapter=? AND id_cover=?");
     $sql->execute(array($idChapter, $idCover));
     $choices = $sql->fetchAll();
     return $choices;
@@ -169,7 +169,7 @@ function getCover($id_cover)
     $bdd = connectDb();
     $sql = $bdd->prepare('SELECT * FROM cover WHERE id_cover=?');
     $sql->execute([$id_cover]);
-    $cover= $sql->fetch();
+    $cover = $sql->fetch();
 
     return $cover;
 }
@@ -257,4 +257,3 @@ function getChoices($cover)
     }
     return $choiceNames;
 }
-
