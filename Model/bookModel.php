@@ -8,9 +8,10 @@ const COVER_STARTED = 0; // Correspond à la valeur du statut si le livre n'a pa
 function getBestBooks()
 {
     $bdd = connectDb();
-    $bestBooks = $bdd->query('SELECT * FROM cover ORDER BY nb_reading DESC LIMIT 4');
+    $bestBooks = $bdd->prepare('SELECT * FROM cover WHERE status=? ORDER BY nb_reading DESC LIMIT 4');
+    $bestBooks->execute(array(COVER_PUBLISHED));
 
-    return $bestBooks;
+    return $bestBooks->fetchAll();
 }
 
 function getBook($idBook)
@@ -27,8 +28,8 @@ function getBook($idBook)
 function getAllBooks()
 {
     $bdd = connectDb();
-    $sql = $bdd->prepare("SELECT * FROM cover");
-    $sql->execute();
+    $sql = $bdd->prepare("SELECT * FROM cover WHERE status=?");
+    $sql->execute(array(COVER_PUBLISHED));
     $books = $sql->fetchAll();
 
     return $books;
@@ -321,4 +322,13 @@ function getChoices($cover)
     }
 
     return $choiceNames;
+}
+
+
+function editCoverStatus($idCover, $status)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('UPDATE cover SET status=? WHERE id_cover=?');
+
+    return $sql->execute([$status, $idCover]);
 }
