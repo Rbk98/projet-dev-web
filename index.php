@@ -116,7 +116,17 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
-    }  else if ($_GET['action'] == 'mes-lectures') {
+    }  else if ($_GET['action'] == 'modifier-chapitre') {
+        if (isset($_GET['idChapter']) && isset($_GET['idCover'])) {
+            $idChap = intval($_GET['idChapter']);
+            $idCover = intval($_GET['idCover']);
+            if ($idChap != 0 && $idCover != 0) {
+                updateChapter($idChap, $idCover);
+            }
+        } else {
+            homeBooks();
+        }
+    } else if ($_GET['action'] == 'mes-lectures') {
         if (isset($_SESSION['id'])) {
             indexReadings();
         } else {

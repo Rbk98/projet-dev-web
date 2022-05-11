@@ -113,6 +113,15 @@ function insertChapter($idCover, $title, $content, $nb_choices)
     return $idNewChapter;
 }
 
+
+function changeChapter($id_chapter, $id_cover, $title, $content, $nb_choices)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('UPDATE chapter SET title=?, content=?, nb_choices=? WHERE id_cover=? AND id_chapter=?');
+
+    return $sql->execute([$title, $content, $nb_choices, $id_cover, $id_chapter]);
+}
+
 function getLastChapterId($id_cover)
 {
     $bdd = connectDb();

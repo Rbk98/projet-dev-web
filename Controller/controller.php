@@ -169,15 +169,27 @@ function createChapter($idCover)
         $title = $_POST['title_chap'];
         $content = $_POST['content'];
         $nb_choices = $_POST['nb_choice'];
-
         $idNewChapter = insertChapter($idCover, $title, $content, $nb_choices);
-
-
         header('Location: index.php?action=afficher-livre&id=' . $idCover);
-
     }
     require('view/create_chapter.php');
 }
+
+function updateChapter($id_chapter, $id_cover)
+{
+    $cover = getCover($id_cover);
+    $chapter = getChapter($id_cover, $id_chapter);
+
+    if (isset($_POST['title_chap']) && isset($_POST['content']) && isset($_POST['nb_choice'])) {
+        $title = $_POST['title_chap'];
+        $content = $_POST['content'];
+        $nb_choices = $_POST['nb_choice'];
+        $updateChapter = changeChapter($id_chapter, $id_cover, $title, $content, $nb_choices);
+        header('Location: index.php?action=afficher-livre&id=' . $id_cover);
+    }
+    require('view/update_chapter.php');
+}
+
 
 function choicesPage($idChap, $idCover)
 {
@@ -209,7 +221,7 @@ function createChoice($idChap, $idCover)
             $unsafe = 0;
         }
         $id_new_choice = insertChoice($id_next_chapter, $idChap, $idCover, $title, $unsafe, $end_cover);
-        //header('Location: index.php?action=page-choix&idCover='.$idCover.'idChapter='.$idChap);    
+        //header('Location: index.php?action=page-choix&idCover='.$idCover.'idChapter='.$idChap);
     }
 
     require('view/create_choice.php');
