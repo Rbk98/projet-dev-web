@@ -106,6 +106,14 @@ function insertChapter($idCover, $title, $content, $nb_choices)
     return $idNewChapter;
 }
 
+function changeChapter($id_chapter,$id_cover,$title,$content,$nb_choices)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('UPDATE chapter SET title=?, content=?, nb_choices=? WHERE id_cover=? AND id_chapter=?');
+
+    return $sql->execute([$title, $content, $nb_choices, $id_cover, $id_chapter]);
+}
+
 function getLastChapterId($id_cover){
     $bdd = connectDb();
     $sql= $bdd->prepare("SELECT MAX(id_chapter) AS nbMax FROM chapter WHERE id_cover=?");
@@ -144,22 +152,21 @@ function getAllChapters($idCover)
 
 function insertChoice($id_next_chapter,$idChap,$idCover,$title,$unsafe,$end_cover)
 {
-    var_dump($id_next_chapter);
+   /* var_dump($id_next_chapter);
     var_dump($idChap);
     var_dump($idCover);
     var_dump($title);
     var_dump($unsafe);
-    var_dump($end_cover);
+    var_dump($end_cover);*/
     
 
 
     $bdd = connectDb();
     $id_next_choice = getLastChoiceId($idCover,$idChap)+1;
     var_dump($id_next_choice);
-    $sql = $bdd->prepare('INSERT INTO choice(id_choice,id_next_chapter,id_current_chapter,id_cover,title,unsafe, end_cover) VALUES (?,?,?,?,?,?,?)');
-    $sql->execute([$id_next_choice,$id_next_chapter,$idChap, $idCover, $title, $unsafe,$end_cover]);
+    $sql = $bdd->prepare('INSERT INTO choice(id_choice,id_next_chapter,id_current_chapter,id_cover,title,unsafe,end_cover) VALUES (?,?,?,?,?,?,?)');
+    $sql->execute([$id_next_choice, $id_next_chapter, $idChap, $idCover, $title, $unsafe, $end_cover]);
     $idNewChoice = $bdd->lastInsertId();
-    var_dump($idNewChoice);
     return $idNewChoice;
 }
 

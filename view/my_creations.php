@@ -43,7 +43,7 @@ ob_start();
                                     <p class="card-text  text-truncate--3"><?= $book['summary'] ?></p>
                                     <div class="row">
                                         <div class="d-grid gap-2 text-center">
-                                            <a href="index.php?action=modifier-livre&id=<?= $book['id_cover'] ?>"
+                                            <a href="index.php?action=afficher-livre&id=<?= $book['id_cover'] ?>"
                                                class="btn btn-primary px-2">Editer</a>
                                         </div>
                                         <div class="d-grid gap-2 text-center">

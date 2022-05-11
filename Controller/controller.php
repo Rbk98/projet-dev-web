@@ -179,6 +179,22 @@ function createChapter($idCover)
     require('view/create_chapter.php');
 }
 
+function updateChapter($id_chapter,$id_cover)
+{
+    $cover = getCover($id_cover);
+    $chapter = getChapter($id_cover,$id_chapter);
+
+    if(isset($_POST['title_chap']) && isset($_POST['content']) && isset($_POST['nb_choice'])) {  
+        $title = $_POST['title_chap'];
+        $content = $_POST['content'];
+        $nb_choices = $_POST['nb_choice'];
+        $updateChapter = changeChapter($id_chapter,$id_cover,$title,$content,$nb_choices);
+        header('Location: index.php?action=afficher-livre&id='.$id_cover);
+    }
+    require('view/update_chapter.php');
+}
+
+
 function choicesPage($idChap,$idCover)
 { 
     $cover = getCover($idCover);
@@ -204,6 +220,7 @@ function createChoice($idChap,$idCover){
             $end_cover=1;           
         }else{
             $id_next_chapter=(int)($_POST['next_chapter']);
+            var_dump($id_next_chapter);
             
             $end_cover=0;   
         }

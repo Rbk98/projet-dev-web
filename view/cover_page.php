@@ -67,7 +67,7 @@ ob_start();
                                     <p class="card-text text-truncate--3 mb-4"><?= $chapter['content'] ?></p>
                                     <a href="index.php?action=page-choix&idCover=<?= $chapter['id_cover']?>&idChapter=<?=$chapter['id_chapter']?>"
                                                    class="btn btn-success btn-block my-2 px-2">Voir les choix associés</a>
-                                    <a href="#" class="btn btn-outline-primary btn-block my-2 px-2">Modifier le chapitre</a>
+                                    <a href="index.php?action=modifier-chapitre&idCover=<?= $chapter['id_cover']?>&idChapter=<?=$chapter['id_chapter']?>" class="btn btn-outline-primary btn-block my-2 px-2">Modifier le chapitre</a>
                                                                      
                                 </div>
                             </div>                            
