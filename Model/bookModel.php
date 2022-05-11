@@ -146,8 +146,6 @@ function getChapter($idCover, $idChap)
     $bdd = connectDb();
     $sql = $bdd->prepare("SELECT * FROM chapter WHERE id_cover =? AND id_chapter=?");
     $sql->execute(array($idCover, $idChap));
-    var_dump($sql->fetchAll());
-
     return $sql->fetchAll();
 }
 
