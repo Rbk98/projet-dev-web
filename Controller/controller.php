@@ -96,14 +96,13 @@ function updateUser()
         }
     }
     require('view/update_account.php');
-
 }
 
 function indexUser()
 {
     $user = getUser($_SESSION['id']);
 
-    if(isset($_POST['switchAdmin'])){
+    if (isset($_POST['switchAdmin'])) {
         switchToAdmin($_SESSION['id']);
     }
 
@@ -117,9 +116,9 @@ function indexCreations()
     require('view/my_creations.php');
 }
 
-function storyStat($idBook)
+function storyStat($idCover)
 {
-    $book = getBook($idBook);
+    $cover = getBook($idCover);
     require('view/story_statistics.php');
 }
 
@@ -139,10 +138,8 @@ function createCover()
         }
     }
     require('view/create_story.php');
-
-    
 }
- 
+
 function readCover($id_cover)
 {
     $cover = getCover($id_cover);
@@ -161,35 +158,34 @@ function updateCover($id_cover)
         $nb_chapters_max = $_POST['nb_chapters_max'];
         $updateCover = changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_cover);
         if ($updateCover) {
-            header('Location: index.php?action=afficher-livre&id='.$id_cover);
+            header('Location: index.php?action=afficher-livre&id=' . $id_cover);
         }
     }
     require('view/update_cover.php');
 }
 
 function createChapter($idCover)
-{   
-    $cover=getCover($idCover);
-    if(isset($_POST['title_chap']) && isset($_POST['content']) && isset($_POST['nb_choice'])) {  
+{
+    $cover = getCover($idCover);
+    if (isset($_POST['title_chap']) && isset($_POST['content']) && isset($_POST['nb_choice'])) {
         $title = $_POST['title_chap'];
         $content = $_POST['content'];
         $nb_choices = $_POST['nb_choice'];
-        
-        $idNewChapter = insertChapter($idCover,$title,$content,$nb_choices);         
-         
-        
-            header('Location: index.php?action=afficher-livre&id='.$idCover);
-        
-    }    
+
+        $idNewChapter = insertChapter($idCover, $title, $content, $nb_choices);
+
+
+        header('Location: index.php?action=afficher-livre&id=' . $idCover);
+    }
     require('view/create_chapter.php');
 }
 
-function choicesPage($idChap,$idCover)
-{ 
-    $book = getBook($idBook);  
-    $chapter = getChapter($idBook,$idChap);    
-    createChoices($idChap,$idCover);
-    $choices=getAllChoices($idChap,$idCover);
+function choicesPage($idChap, $idCover)
+{
+    $book = getBook($idCover);
+    $chapter = getChapter($idCover, $idChap);
+    createChoices($idChap, $idCover);
+    $choices = getAllChoices($idChap, $idCover);
     require('view/chapter_page.php');
 }
 
@@ -224,4 +220,3 @@ function readAgain($cover)
     /*if (!getReadingProgress($_SESSION['id'], $cover))
         header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');*/
 }
-
