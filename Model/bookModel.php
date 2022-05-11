@@ -222,6 +222,22 @@ function removeCover($id_cover)
     return $sql->execute([$id_cover]);
 }
 
+function removeChapter($id_chapter)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('DELETE FROM chapter WHERE id_chapter=?');
+
+    return $sql->execute([$id_chapter]);
+}
+
+function removeChoice($id_choice)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('DELETE FROM choice WHERE id_choice=?');
+
+    return $sql->execute([$id_choice]);
+}
+
 function updateNumberReading()
 {
     $bdd = connectDb();
