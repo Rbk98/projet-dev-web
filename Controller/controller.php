@@ -253,6 +253,9 @@ function endStory($cover)
     $choiceNames = getChoices($cover);
     updateNumberReadingCover($cover);
     updateNumberReadingUser();
+    if (getNumberLives($book['id_cover']) != 0) {
+        updateWinsNumber($cover);
+    }
     require('view/end_story.php');
 }
 

@@ -237,6 +237,18 @@ function updateNumberReadingCover($idCover)
     return $sql->execute(array($nbReadings, $idCover));
 }
 
+function updateWinsNumber($idCover)
+{
+    $bdd = connectDb();
+    $query = $bdd->prepare('SELECT nb_win FROM cover WHERE id_cover=?');
+    $query->execute(array($idCover));
+    $nbWins = $query->fetch()['nb_win'];
+    $nbWins += 1;
+    $sql = $bdd->prepare('UPDATE cover SET nb_win=? WHERE id_cover=?');
+    $sql->execute(array($nbWins, $idCover));
+    return $sql->fetch();
+}
+
 function removeChapter($id_chapter)
 {
     $bdd = connectDb();
