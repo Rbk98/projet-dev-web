@@ -79,8 +79,8 @@ if (isset($_GET['action'])) {
         }
     } else if ($_GET['action'] == 'page-choix') {
         if (isset($_SESSION['id'])) {
-            if (isset($_GET['idChap']) && isset($_GET['idCover'])) {
-                $idChap = intval($_GET['idChap']);
+            if (isset($_GET['idChapter']) && isset($_GET['idCover'])) {
+                $idChap = intval($_GET['idChapter']);
                 $idCover = intval($_GET['idCover']);
                 if ($idChap != 0 && $idCover != 0) {
                     choicesPage($idChap, $idCover);
