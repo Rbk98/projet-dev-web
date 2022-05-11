@@ -121,11 +121,11 @@ function getLastChapterId($id_cover){
     }   
 }
 
-function getChapter($idBook, $idChap)
+function getChapter($idCover, $idChap)
 {
     $bdd = connectDb();
     $sql = $bdd->prepare("SELECT * FROM chapter WHERE id_cover =? AND id_chapter=?");
-    $sql->execute(array($idBook, $idChap));
+    $sql->execute(array($idCover, $idChap));
     return $sql->fetch();
 }
 
@@ -142,24 +142,50 @@ function getAllChapters($idCover)
 
 ///CHOICES
 
-function createChoices($idChap, $idCover)
+function insertChoice($id_next_chapter,$idChap,$idCover,$title,$unsafe,$end_cover)
 {
-    $bdd = connectDb();
-    $sql = $bdd->prepare("SELECT nb_choices FROM chapter WHERE id_chapter=? AND id_cover=?");
-    $sql->execute(array($idChap, $idCover));
-    $sql->fetch();
+    var_dump($id_next_chapter);
+    var_dump($idChap);
+    var_dump($idCover);
+    var_dump($title);
+    var_dump($unsafe);
+    var_dump($end_cover);
+    
 
-    for ($i = 0; $i < $sql; $i++) {
-        $bdd = connectDb();
-        $sql = $bdd->prepare('INSERT INTO choice(id_cover,id_current_chapter) VALUES (?,?) ');
-        $sql->execute([$idCover, $idCover]);
-    }
+
+    $bdd = connectDb();
+    $id_next_choice = getLastChoiceId($idCover,$idChap)+1;
+    var_dump($id_next_choice);
+    $sql = $bdd->prepare('INSERT INTO choice(id_choice,id_next_chapter,id_current_chapter,id_cover,title,unsafe, end_cover) VALUES (?,?,?,?,?,?,?)');
+    $sql->execute([$id_next_choice,$id_next_chapter,$idChap, $idCover, $title, $unsafe,$end_cover]);
+    $idNewChoice = $bdd->lastInsertId();
+    var_dump($idNewChoice);
+    return $idNewChoice;
+}
+
+function getLastChoiceId($idCover,$idChap){
+   
+    $bdd = connectDb();
+    $sql= $bdd->prepare("SELECT MAX(id_choice) AS nbMax FROM choice WHERE id_cover=? AND id_current_chapter=?");
+    $sql->execute([$idCover,$idChap]);
+    $nbChoice=$sql->fetchColumn();
+   
+    
+    
+        if($nbChoice>0){
+            return $nbChoice;
+        }
+        else{
+            return 0;
+        }
+      
+    
 }
 
 function getAllChoices($idChapter, $idCover)
 {
     $bdd = connectDb();
-    $sql = $bdd->prepare("SELECT * FROM choice WHERE id_chapter=? AND id_cover=?");
+    $sql = $bdd->prepare("SELECT * FROM choice WHERE id_current_chapter=? AND id_cover=?");
     $sql->execute(array($idChapter, $idCover));
     $choices = $sql->fetchAll();
     return $choices;

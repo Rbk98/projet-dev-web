@@ -29,7 +29,7 @@ ob_start(); ?>
                                        
                             </div>
                             <div class="col-12 d-grid gap-2 ">
-                                <button type="submit" class="btn btn-success">Configurer les choix du chapitre</button>
+                                <button type="submit" class="btn btn-success">Créer le chapitre</button>
                                 
                             </div>                            
                         </div> 

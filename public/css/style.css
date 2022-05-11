@@ -26,7 +26,7 @@ body {
   background-color: #0883cd !important;
 }
 
-.btn-dark{
+.btn-dark {
   background-color: #0249b4 !important;
 }
 
@@ -197,7 +197,15 @@ h4 {
 }
 
 .fin {
-  background-color:rgba(218, 216, 216, 0.767);
+  background-color: rgba(218, 216, 216, 0.767);
   border-radius: 50px;
   padding: 3%;
+}
+
+.text_secondary {
+  color: #888;
+}
+
+.blue {
+  color: #0883cd;
 }

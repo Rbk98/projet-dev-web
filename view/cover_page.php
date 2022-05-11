@@ -3,7 +3,7 @@ $title = "UStory - Ajout d'histoire";
 ob_start();
 ?>
     <div class="container my-5">
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex justify-content-center mb-5">
             <div class="col-7  ">
                 <div class="row p-lg-5 bg-light background_type ">
                     <div class="col-12 mb-4 ">
@@ -16,27 +16,19 @@ ob_start();
                     <div class="col-12 d-flex justify-content-center">
                         <p class="text-justify">&nbsp;&nbsp;&nbsp;<?= $cover['summary'] ?></p>
                     </div>
-                    <div class="col-12 d-flex justify-content-center">
-                        <a href="index.php?action=modifier-livre&id=<?= $cover['id_cover'] ?>" class="btn btn-primary">Modifier
-                            mon histoire</a>
-                            <a type="sumbit" class="btn btn-success" href="index.php?action=creer-chapitre&id=<?= $cover['id_cover'] ?>">Créer un
-                                        chapitre</a>
-                    </div>
+                    
+                        <a href="index.php?action=modifier-livre&id=<?= $cover['id_cover'] ?>" class="btn btn-outline-primary mt-2">Modifier
+                            mon histoire</a>                    
+                    
+                        <?php if(count($chapters)!=0 && count($chapters)<$cover['nb_chapters_max']){?>                            
+                                <a type="sumbit" class="btn btn-success mt-4 " href="index.php?action=creer-chapitre&id=<?= $cover['id_cover'] ?>">Créer un
+                                        chapitre</a>                            
+                        <?php } ?>
+                    
                 </div>
-                <?php if(count($chapters)!=0){
-                    foreach($chapters as $chapter){ ?>
-                        <div class="col-3">                            
-                            <div class="card">
-                                <h5 class="card-header text-center"><?= $chapter['title'] ?></h5>
-                                <div class="card-body text-center">
-                                    <p class="card-text text-truncate--3"><?= $chapter['content'] ?></p>
-                                                                        
-                                </div>
-                            </div>                            
-                        </div>
-                    <?php }
-                }else{?>                  
-               
+            
+                <?php if(count($chapters)==0){?>
+                    
                     <div class="row mt-5">
                         <div class="col d-flex justify-content-center p-0">
                             <div class="card text-center" style="width: 50rem;">
@@ -50,10 +42,44 @@ ob_start();
                             </div>
                         </div>
                     </div>
-                <?php } ?>
-            </div>
-
+                    </div>
         </div>
+                <?php }  
+           
+                else{ ?>    
+            </div>
+        </div>      <div class="mb-4">
+                        <h2 class=text-center>Les chapitres créés : </h2>
+                        <hr class="hr_content"/>
+                    </div>
+                    <div class="row">
+                    <?php foreach($chapters as $chapter){ ?>
+                        <div class="col-3">                            
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="text-center mb-3">Chapitre n°<?= $chapter['id_chapter'] ?> :</h5>
+                                    <h5 class="text-center blue" ><?= $chapter['title'] ?></h5>
+                                </div> 
+                                
+                                <div class="card-body ">
+                                    
+                                    <p class="text_secondary">Résumé :</p>
+                                    <p class="card-text text-truncate--3 mb-4"><?= $chapter['content'] ?></p>
+                                    <a href="index.php?action=page-choix&idCover=<?= $chapter['id_cover']?>&idChapter=<?=$chapter['id_chapter']?>"
+                                                   class="btn btn-success btn-block my-2 px-2">Voir les choix associés</a>
+                                    <a href="#" class="btn btn-outline-primary btn-block my-2 px-2">Modifier le chapitre</a>
+                                                                     
+                                </div>
+                            </div>                            
+                        </div>
+                    <?php }?>
+                    </div>             
+               
+                    
+                <?php } ?>
+            
+
+        
     </div>
 
 

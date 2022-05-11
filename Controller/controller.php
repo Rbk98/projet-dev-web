@@ -181,11 +181,45 @@ function createChapter($idCover)
 
 function choicesPage($idChap,$idCover)
 { 
-    $book = getBook($idBook);  
-    $chapter = getChapter($idBook,$idChap);    
-    createChoices($idChap,$idCover);
+    $cover = getCover($idCover);
+    $chapter = getChapter($idCover,$idChap);
     $choices=getAllChoices($idChap,$idCover);
-    require('view/chapter_page.php');
+    
+    require('view/choices_page.php');
+}
+
+function createChoice($idChap,$idCover){
+
+    
+    $cover = getCover($idCover);
+    $chapter = getChapter($idCover,$idChap);
+    $chapters = getAllChapters($idCover);
+
+    if(isset($_POST['choice_name'])&&isset($_POST['next_chapter'])) {  
+        
+        $title=$_POST['choice_name'];
+
+        if(($_POST['next_chapter'])=="end"){ //On assigne le chapitre à lui même pour indiquer que c'est la fin
+            $id_next_chapter=$idChap; 
+            $end_cover=1;           
+        }else{
+            $id_next_chapter=(int)($_POST['next_chapter']);
+            
+            $end_cover=0;   
+        }
+        
+        if(($_POST['unsafe']==1)){
+            $unsafe=1;
+            
+        }else{
+            $unsafe=0;
+        }
+
+        $id_new_choice = insertChoice($id_next_chapter,$idChap,$idCover,$title,$unsafe,$end_cover);     
+        //header('Location: index.php?action=page-choix&idCover='.$idCover.'idChapter='.$idChap);    
+    }
+   
+    require('view/create_choice.php');
 }
 
 function indexReadings()
