@@ -40,7 +40,7 @@ ob_start();
                                     <img src="public/images/blankpage.jpg" class="card-img-top" alt="book_img">
                                     <div class="card-body">
                                         <h5 class="card-title text-truncate"><?= $book['title'] ?></h5>
-                                        <p class="card-text  text-truncate--3"><?= $book['summary'] ?></p>
+                                        <p class="card-text text-truncate--3"><?= $book['summary'] ?></p>
                                         <div class="row">
                                             <div class="d-grid gap-2 text-center">
                                                 <a href="index.php?action=modifier-livre&id=<?= $book['id_cover'] ?>" class="btn btn-primary px-2">Editer</a>
@@ -70,7 +70,7 @@ ob_start();
                                 <div class="card ">
                                     <img src="public/images/cover4.jpg" class="card-img-top" alt="book_img">
                                     <div class="card-body">
-                                        <h5 class="card-title book_title"><?= $book['title'] ?></h5>
+                                        <h5 class="card-title text-truncate book_title"><?= $book['title'] ?></h5>
                                         <span class="badge badge-pill badge_style mb-3"><?= $book['genre'] ?></span>
                                         <p class="card-text  text-truncate--3"><?= $book['summary'] ?></p>
                                         <?php
