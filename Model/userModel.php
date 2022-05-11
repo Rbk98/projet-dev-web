@@ -1,5 +1,8 @@
 <?php
 
+const USER_ADMIN = 1;
+const USER = 0;
+
 function getUser($id_user)
 {
     $bdd = connectDb();
@@ -105,8 +108,8 @@ function userBookFinished($cover)
 function switchToAdmin($id_user)
 {
     $bdd = connectDb();
-    $sql = $bdd->prepare('UPDATE user SET role=1 WHERE id_user=?');
-    $sql->execute([$id_user]);
+    $sql = $bdd->prepare('UPDATE user SET role=? WHERE id_user=?');
+    $sql->execute([USER_ADMIN,$id_user]);
 }
 
 function getNumberLives($cover)
