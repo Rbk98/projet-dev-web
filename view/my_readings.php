@@ -3,9 +3,9 @@ $title = 'UStory - Mes lectures';
 ob_start();
 ?>
 
-<div class="container my-2">
+<div class="container my-3">
     <h2 class="h2_title my-2">Mes lectures</h2>
-    <hr class="hr_content" />
+    <hr class="hr_content mb-5" />
 
     <?php if (isset($_SESSION['nickname'])) {
         //s'il n'y a pas encore d'histoire commencée
@@ -28,61 +28,56 @@ ob_start();
             <?php } else {
             //s'il y a des histoires en cours de lecture
             if (!empty($startedReadings)) { ?>
-                <div class="">
-                    <h4>Histoire(s) en cours de lecture</h4>
-                    <hr class="hr_line" />
+                <div class="row mb-5 d-flex justify-content-center justify-content-lg-between align-items-center infos bg-light p-3 m-0">
+                    <h4 class="intitule mx-2 text-center text-lg-left">Histoire(s) en cours de lecture</h4>
                 </div>
-                <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
+                <div class="row mb-5">
                     <?php
                     foreach ($startedReadings as $reading) {
-                        $chapter = getChapter($reading['id_chapter'], $reading['id_cover']);
-                    ?>
-                        <div class="col-2">
-                            <div class="card h-75">
-                                <img src="public/images/cover4.jpg" class="card-img-top py-3" alt="book_img">
+                        $cover = getCover($reading['id_cover']); ?>
+                        <div class="col-6 col-lg-3 mb-5 mb-lg- ">
+                            <div class="card">
+                                <img src="public/images/cover4.jpg" class="card-img-top" alt="book_img">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $chapter['title'] ?></h5>
-                                    <!-- ref à changer -->
-                                    <a href="index.php?action=lire-histoire&idb=<?= $reading['id_cover'] ?>&idc=<?= getReadingProgress($_SESSION['id'], $reading['id_cover']) ?>" class="btn btn-info px-2 mt-auto">Continuer
-                                        la lecture</a>
+                                    <h5 class="card-title text-truncate book_title"><?= $cover['title'] ?></h5>
+                                    <span class="badge badge-pill badge_style mb-3"><?= $cover['genre'] ?></span>
+                                    <p class="card-text  text-truncate--3"><?= $cover['summary'] ?></p>
+                                    <div class="row">
+                                        <div class="d-grid gap-2">
+                                            <a href="index.php?action=lire-histoire&idb=<?= $reading['id_cover'] ?>&idc=<?= getReadingProgress($_SESSION['id'], $reading['id_cover']) ?>" class="btn btn-block btn-info px-2 mt-auto mb-2">Continuer
+                                                la lecture</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     <?php } ?>
                 </div>
             <?php }
-            //s'il y a des histoires en cours de création ET des histoires finies
-            if (!empty($finishedReadings) && !empty($startedReadings)) { ?>
-                <div class="mb-2 mx-2">
-                    <hr class="hr_content" />
-                </div>
-            <?php }
             //s'il y a des histoires finies
             if (!empty($finishedReadings)) { ?>
-                <div class="container m-3">
-                    <h4>Lectures terminées</h4>
-                    <hr class="hr_line" />
+                <div class="row mb-5 d-flex justify-content-center justify-content-lg-between align-items-center infos bg-light p-3 m-0">
+                    <h4 class="intitule mx-2 text-center text-lg-left">Lectures terminées</h4>
                 </div>
-                <?php
-                foreach ($finishedReadings as $reading) { ?>
-
-                    <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
-                        <div class="col-3 mb-5">
-                            <div class="card h-100">
-                                <img src="public/images/cover4.jpg" class="card-img-top p-3" alt="book_img">
+                <div class="row mb-5">
+                    <?php foreach ($finishedReadings as $reading) {
+                        $cover = getCover($reading['id_cover']); ?>
+                        <div class="col-6 col-lg-3 mb-5">
+                            <div class="card">
+                                <img src="public/images/cover4.jpg" class="card-img-top" alt="book_img">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $reading['title'] ?></h5>
-                                    <span class="badge bg-info text-dark"><?= $reading['genre'] ?></span>
-                                    <p class="card-text"><?= $reading['summary'] ?></p>
-                                    <a href="index.php?action=lire-histoire" class="btn btn-primary px-2">Relire</a>
+                                    <h5 class="card-title text-truncate book_title"><?= $cover['title'] ?></h5>
+                                    <span class="badge badge-pill badge_style mb-3"><?= $cover['genre'] ?></span>
+                                    <p class="card-text  text-truncate--3"><?= $cover['summary'] ?></p>
+                                    <a href="index.php?action=lire-histoire&idb=<?= $reading['id_cover'] ?>&idc=1" class="btn btn-primary px-2">Relire l'histoire</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-    <?php }
+                </div>
+<?php }
+                }
             }
-        }
-    } ?>
+        } ?>
 </div>
 <?php $content = ob_get_clean();
 
