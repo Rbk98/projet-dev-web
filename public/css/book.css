@@ -115,6 +115,7 @@
 
 .open-book article p {
     text-indent: 2em;
+    min-height: 500px;
 }
 
 .open-book .chapter-title + p:first-of-type {
@@ -126,15 +127,6 @@
     font: 700 3em/0.65 'Playfair Display', sans-serif;
     padding: 0.15em 0.05em 0 0;
     text-transform: uppercase;
-}
-
-.open-book article > ul,
-.open-book article > ol {
-    padding-left: 3em;
-}
-
-.open-book article > ul ul {
-    padding-left: 1em;
 }
 
 .open-book s,
@@ -162,16 +154,6 @@
     height: 2px;
     margin: 1em 0;
 }
-
-.open-book dl {
-    border: solid 0 #ccc;
-    border-width: 0.0625em 0;
-    break-inside: avoid-column;
-    margin: 1em auto;
-    padding: 1em 0;
-}
-
-
 
 /*** MEDIA QUERIES ***/
 @media only screen and ( min-width: 50em ) {
@@ -309,10 +291,4 @@
     .open-book article p {
         text-indent: 3em;
     }
-
-    .open-book article > ul,
-    .open-book article > ol {
-        padding-left: 4em;
-    }
-
 }
