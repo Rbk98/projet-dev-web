@@ -21,19 +21,20 @@ ob_start();
         </div>
     </div>
     <div class="text-center">
-        <p class="mt-2">Choix n°1 : Le cheval</p>
+        <!-- <p class="mt-2">Choix n°1 : Le cheval</p>
         <i class=" bi bi-arrow-down"></i>
         <p class="mt-2">Choix n°2 : Rentrer à la maison</p>
         <i class="bi bi-arrow-down"></i>
         <p class="mt-2">Choix n°3 : Manger</p>
-        <i class="bi bi-arrow-down"></i>
-        <!-- </*?php
+        <i class="bi bi-arrow-down"></i> -->
+        <?php
         $indice = 0;
         foreach ($choiceNames as $title) {
-            $indice++; */?>
-            <p class="mt-2">Choix n°</*?= $indice . ' : ' . $title ?*/></p>
+            $indice++;
+        ?>
+            <p class="mt-2">Choix n° <?= strval($indice) . " : " . $title['title'] ?> </p>
             <i class="bi bi-arrow-down"></i>
-        </*?php } ?> */-->
+        <?php } ?>
         <p class="mt-2">Fin</p>
     </div>
     <div class="container my-5">

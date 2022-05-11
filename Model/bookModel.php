@@ -260,7 +260,7 @@ function getChoices($cover)
     foreach ($readingChoices as $choice) {
         $query = $bdd->prepare('SELECT title FROM choice WHERE id_cover=? AND id_current_chapter=? AND id_choice=?');
         $query->execute(array($choice['id_cover'], $choice['id_chapter'], $choice['id_choice']));
-        array_push($choiceNames, $query);
+        array_push($choiceNames, $query->fetch());
     }
     return $choiceNames;
 }
