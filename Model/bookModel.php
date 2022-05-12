@@ -230,7 +230,7 @@ function changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_
 {
     $bdd = connectDb();
     $sql = $bdd->prepare('UPDATE cover SET title=?, summary=?, genre=?, nb_chapters_max=?, nb_lives=? WHERE id_cover=?');
-    return $sql->execute([$title, $summary, $genre, $id_cover, $nb_chapters_max, $nb_lives]);
+    return $sql->execute([$title, $summary, $genre, $nb_chapters_max, $nb_lives, $id_cover]);
 }
 
 
