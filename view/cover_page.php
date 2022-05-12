@@ -2,7 +2,43 @@
 $title = "UStory - Ajout d'histoire";
 ob_start();
 ?>
+<div class="row d-flex justify-content-between mt-3 mx-2">
+    <div class=" col-12 col-lg-auto text-center mb-3">
+        <a class="btn btn-outline-primary px-3 py-2 btn-block" href="index.php?action=mes-creations">Retour à mes créations</a>
+    </div>
+    <?php if (count($chapters) != 0) { ?>
+        <div class=" col-12 col-lg-auto text-center">
+            <button type="button" class="btn btn-block btn-primary px-3 py-2" data-toggle="modal" data-target="#modal<?= $cover['id_cover'] ?>">
+                Finaliser mon histoire
+            </button>
+            <div class="modal fade" id="modal<?= $cover['id_cover'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Valider son
+                                histoire</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Etes-vous sûr de vouloir valider la création de cette histoire ? <br>Vous devez faire attention d'avoir bien créé les chapitres et les choix nécessaires pour chaque parcours de l'histoire.
+                            <br><br>En effet, chaque parcours possède une fin, c'est-à-dire qu'il ne possède pas de chapitre suivant.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer
+                            </button>
+                            <a href="index.php?action=valider-configuration-histoire&id=<?= $cover['id_cover'] ?>&idc=1" class="btn btn-primary px-2 mt-auto">
+                                Finaliser l'histoire</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+</div>
 <div class="container my-5">
+
     <div class="row d-flex justify-content-center mb-5">
         <div class="col-10 col-lg-7">
             <div class="row p-3 p-lg-5 bg-light background_type ">
@@ -29,9 +65,7 @@ ob_start();
                     </div>
 
                 <?php } ?>
-                <div class="text-center mt-4">
-                    <a href="index.php?action=mes-creations">Retour à mes créations</a>
-                </div>
+
             </div>
 
             <?php if (count($chapters) == 0) { ?>
@@ -102,34 +136,7 @@ ob_start();
         </div>
     <?php } ?>
 </div>
-<div class="text-center">
-    <button type="button" class="btn btn-primary px-3 py-2" data-toggle="modal" data-target="#modal<?= $cover['id_cover'] ?>">
-        Je valide mon histoire
-    </button>
-    <div class="modal fade" id="modal<?= $cover['id_cover'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Valider son
-                        histoire</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Etes-vous sûr de vouloir valider la création de cette histoire ? <br>Vous devez faire attention d'avoir bien créé les chapitres et les choix nécessaires pour chaque parcours de l'histoire.
-                    <br><br>En effet, chaque parcours possède une fin, c'est-à-dire qu'il ne possède pas de chapitre suivant.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer
-                    </button>
-                    <a href="index.php?action=valider-configuration-histoire&id=<?= $cover['id_cover'] ?>&idc=1" class="btn btn-primary px-2 mt-auto">Valider
-                        l'histoire</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <?php } ?>
 </div>
 

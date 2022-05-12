@@ -49,9 +49,23 @@
                             <div class="card-header text-center">
                                 <h5 class=" text-center">Choix n°<?= $choice['id_choice'] ?></h5>
                                 <span class="text-center"> <?php if ($choice['unsafe'] == 1) { ?>
-                                        <span class="badge bg-danger">Dangereux</span>
+                                        <span class="badge bg-danger">Dangereux
+                                            <?php
+                                                                if (($choice['end_cover'] == 1)) {
+                                            ?>
+                                                & Fin
+                                            <?php } ?>
+                                        </span>
+
                                     <?php } else { ?>
-                                        <span class="badge bg-success">Inoffensif</span>
+                                        <span class="badge bg-success">Inoffensif
+                                            <?php
+                                                                if (($choice['end_cover'] == 1)) {
+                                            ?>
+                                                & Fin
+                                            <?php } ?>
+                                        </span>
+
                                     <?php }  ?>
                                 </span>
                             </div>
