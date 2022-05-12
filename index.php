@@ -91,6 +91,21 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
+    } else if ($_GET['action'] == 'modifier-choix') {
+        if (isset($_SESSION['id']) && $_SESSION['role'] == 1) {
+            if (isset($_GET['idChapter']) && isset($_GET['idCover']) && isset($_GET['idChoice'])) {
+                $idChapter = intval($_GET['idChapter']);
+                $idCover = intval($_GET['idCover']);
+                $idChoice = intval($_GET['idChoice']);
+                if ($idChapter != 0 && $idCover != 0 && $idChoice != 0) {
+                    updateChoice($idCover, $idChapter, $idChoice);
+                }
+            } else {
+                accessDenied();
+            }
+        } else {
+            accessDenied();
+        }
     } else if ($_GET['action'] == 'creer-choix') {
         if (isset($_GET['idChapter']) && isset($_GET['idCover'])) {
             $idChap = intval($_GET['idChapter']);
@@ -165,6 +180,35 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
+    } else if ($_GET['action'] == 'supprimer-chapitre') {
+        if (isset($_SESSION['id'])) {
+            if (isset($_GET['idcov']) && isset($_GET['idchap'])) {
+                $idCover = intval($_GET['idcov']);
+                $idChapter = intval($_GET['idchap']);
+                if ($idCover != 0 && $idChapter != 0) {
+                    deleteChapter($idCover, $idChapter);
+                }
+            } else {
+                accessDenied();
+            }
+        } else {
+            accessDenied();
+        }
+    } else if ($_GET['action'] == 'supprimer-choix') {
+        if (isset($_SESSION['id'])) {
+            if (isset($_GET['idcov']) && isset($_GET['idchap']) && isset($_GET['idchoice'])) {
+                $idCover = intval($_GET['idcov']);
+                $idChapter = intval($_GET['idchap']);
+                $idChoice = intval($_GET['idchoice']);
+                if ($idCover != 0 && $idChapter != 0 && $idChoice != 0) {
+                    deleteChoice($idCover, $idChapter, $idChoice);
+                }
+            } else {
+                accessDenied();
+            }
+        } else {
+            accessDenied();
+        }
     } else if ($_GET['action'] == 'recommencer-histoire') {
         if (isset($_SESSION['id'])) {
             if (isset($_GET['id'])) {
@@ -184,6 +228,14 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
+    } else if ($_GET['action'] == 'stat-histoire') {
+        if (isset($_SESSION['id'])) {
+            if (isset($_GET['id'])) {
+                storyStat($_GET['id']);
+            }
+        } else {
+            accessDenied();
+        }
     } else if ($_GET['action'] == 'finir-histoire') {
         if (isset($_SESSION['id'])) {
             if (isset($_GET['id'])) {
@@ -197,12 +249,12 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
-    }else if($_GET['action'] == 'publier-histoire') {
+    } else if ($_GET['action'] == 'publier-histoire') {
         if (isset($_SESSION['id'])) {
             if (isset($_GET['id'])) {
                 $idCover = intval($_GET['id']);
                 if ($idCover != 0) {
-                    updateCoverStatus($idCover,2);
+                    updateCoverStatus($idCover, 2);
                 }
             } else {
                 accessDenied();
@@ -210,13 +262,12 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
-    }
-    else if($_GET['action'] == 'cacher-histoire') {
+    } else if ($_GET['action'] == 'cacher-histoire') {
         if (isset($_SESSION['id'])) {
             if (isset($_GET['id'])) {
                 $idCover = intval($_GET['id']);
                 if ($idCover != 0) {
-                    updateCoverStatus($idCover,1);
+                    updateCoverStatus($idCover, 1);
                 }
             } else {
                 accessDenied();
@@ -224,8 +275,7 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
-    }
-    else {
+    } else {
         accessDenied();
     }
 } else {

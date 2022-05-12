@@ -157,6 +157,7 @@ function updateCover($id_cover)
         $genre = $_POST['genre'];
         $nb_lives = $_POST['nb_lives'];
         $nb_chapters_max = $_POST['nb_chapters_max'];
+
         $updateCover = changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_cover);
         if ($updateCover) {
             header('Location: index.php?action=afficher-livre&id=' . $id_cover);
@@ -224,11 +225,42 @@ function createChoice($idChap, $idCover)
             $unsafe = 0;
         }
         $id_new_choice = insertChoice($id_next_chapter, $idChap, $idCover, $title, $unsafe, $end_cover);
-        //header('Location: index.php?action=page-choix&idCover='.$idCover.'idChapter='.$idChap);
+        header('Location: index.php?action=page-choix&idCover=' . $idCover . '&idChapter=' . $idChap);
     }
 
     require('view/create_choice.php');
 }
+
+function updateChoice($id_cover, $id_chapter, $id_choice)
+{
+
+    $cover = getCover($id_cover);
+    $chapter = getChapter($id_cover, $id_chapter);
+    $choice = getChoice($id_cover, $id_chapter, $id_choice);
+
+    $chapters = getAllChapters($id_cover);
+
+    if (isset($_POST['choice_name']) && isset($_POST['next_chapter']) && isset($_POST['unsafe'])) {
+        $title = $_POST['choice_name'];
+        if (($_POST['next_chapter']) == "end") { //On assigne le chapitre à lui même pour indiquer que c'est la fin
+            $id_next_chapter = $choice['id_current_chapter'];
+            $end_cover = 1;
+        } else {
+            $id_next_chapter = (int)($_POST['next_chapter']);
+            $end_cover = 0;
+        }
+        if (($_POST['unsafe'] == 1)) {
+            $unsafe = 1;
+        } else {
+            $unsafe = 0;
+        }
+
+        changeChoice($id_choice, $id_next_chapter, $id_chapter, $id_cover, $title, $unsafe, $end_cover);
+        header('Location: index.php?action=page-choix&idCover=' . $id_cover . '&idChapter=' . $id_chapter);
+    }
+    require('view/update_choice.php');
+}
+
 
 function indexReadings()
 {
@@ -237,14 +269,34 @@ function indexReadings()
     require('view/my_readings.php');
 }
 
-function deleteCover($id_cover)
+function deleteCover($idCover)
 {
-    $deleteUser = removeCover($id_cover);
+    $deleteUser = removeCover($idCover);
     if ($deleteUser) {
         header('Location: index.php?action=mes-creations');
     }
 
     require('view/my_creations.php');
+}
+
+function deleteChapter($idCover, $idChapter)
+{
+    $deleteUser = removeChapter($idCover, $idChapter);
+    if ($deleteUser) {
+        header('Location: index.php?action=afficher-livre&id=' . $idCover);
+    }
+
+    require('view/cover_page.php');
+}
+
+function deleteChoice($idCover, $idChapter, $idChoice)
+{
+    $deleteUser = removeChoice($idCover, $idChapter, $idChoice);
+    if ($deleteUser) {
+        header('Location: index.php?action=page-choix&idChapter=' . $idChapter . "&idCover=" . $idCover);
+    }
+
+    require('view/choices_page.php');
 }
 
 function endStory($cover)
@@ -267,7 +319,8 @@ function readAgain($cover)
         header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');*/
 }
 
-function updateCoverStatus($idCover, $status){
+function updateCoverStatus($idCover, $status)
+{
     $updateCover = editCoverStatus($idCover, $status);
     if ($updateCover) {
         header('Location: index.php?action=mes-creations');
