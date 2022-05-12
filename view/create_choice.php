@@ -24,7 +24,7 @@ ob_start(); ?>
                         <div class="col-12 mb-4">
                             <label for="genre" class="col-form-label ">Chapitre suivant</label>
                             <select class="form-select" name="next_chapter" id="next_chapter" required>
-                                <option value="end">Aucune suite</option>
+                                <option value="end">Fin de l'histoire</option>
                                 <?php foreach ($chapters as $chap) {
                                     if ($chap['id_chapter'] != $chapter['id_chapter']) { ?>
 

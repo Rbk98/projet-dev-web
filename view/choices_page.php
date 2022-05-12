@@ -13,7 +13,7 @@
     <?php if (count($choices) == 0) { ?>
 
         <div class="row mt-5">
-            <div class="col d-flex justify-content-center p-0">
+            <div class="col d-flex justify-content-center p-lg-0">
                 <div class="card text-center" style="width: 50rem;">
                     <div class="card-body">
                         <i class="fa fa-book fa-2x mb-4 icon"></i>
@@ -29,11 +29,18 @@
             </div>
         </div>
 
-    <?php } else { ?>
-        <div class="text-center">
-            <a type="sumbit" class="btn btn-success" href="index.php?action=creer-choix&idCover=<?= $cover['id_cover'] ?>&idChapter=<?= $chapter['id_chapter'] ?>">Ajouter un
-                choix</a>
-        </div>
+        <?php } else {
+        if (count($choices) < $chapter['nb_choices']) { ?>
+            <div class="text-center">
+                <a type="sumbit" class="btn btn-success" href="index.php?action=creer-choix&idCover=<?= $cover['id_cover'] ?>&idChapter=<?= $chapter['id_chapter'] ?>">Ajouter un
+                    choix</a>
+            </div>
+        <?php } else { ?>
+            <div class="text-center ">
+                <a type="sumbit" class="btn btn-secondary  disabled" href="index.php?action=creer-choix&idCover=<?= $cover['id_cover'] ?>&idChapter=<?= $chapter['id_chapter'] ?>">Ajouter un
+                    choix</a>
+            </div>
+        <?php } ?>
         <div class="text-center py-2">
             <a href="index.php?action=afficher-livre&id=<?= $cover['id_cover'] ?>">Retour au livre</a>
         </div>

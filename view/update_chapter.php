@@ -26,7 +26,7 @@ ob_start(); ?>
 
 
                         </div>
-                        <div class="col-12 d-grid gap-2 ">
+                        <div class="col-12 d-grid gap-2 mb-3 ">
                             <button type="submit" class="btn btn-success">Modifier le chapitre</button>
                         </div>
                         <div class="text-center py-2">

@@ -4,8 +4,8 @@ ob_start();
 ?>
 <div class="container my-5">
     <div class="row d-flex justify-content-center mb-5">
-        <div class="col-7">
-            <div class="row p-lg-5 bg-light background_type ">
+        <div class="col-10 col-lg-7">
+            <div class="row p-3 p-lg-5 bg-light background_type ">
                 <div class="col-12 mb-4 ">
                     <h2 class="h2_title my-2"><?= $cover['title'] ?></h2>
                     <hr class="hr_content mb-5" />
@@ -16,13 +16,18 @@ ob_start();
                 <div class="col-12 d-flex justify-content-center">
                     <p class="text-justify">&nbsp;&nbsp;&nbsp;<?= $cover['summary'] ?></p>
                 </div>
+                <div class="d-flex justify-content-center">
+                    <a href="index.php?action=modifier-livre&id=<?= $cover['id_cover'] ?>" class="btn btn-block btn-outline-primary mt-2">Modifier
+                        mon histoire</a>
+                </div>
 
-                <a href="index.php?action=modifier-livre&id=<?= $cover['id_cover'] ?>" class="btn btn-outline-primary mt-2">Modifier
-                    mon histoire</a>
 
                 <?php if (count($chapters) != 0 && (count($chapters) < $cover['nb_chapters_max'])) { ?>
-                    <a type="submit" class="btn btn-success mt-4 " href="index.php?action=creer-chapitre&id=<?= $cover['id_cover'] ?>">Créer un
-                        chapitre</a>
+                    <div class="d-flex justify-content-center">
+                        <a type="submit" class="btn btn-success btn-block mt-4 " href="index.php?action=creer-chapitre&id=<?= $cover['id_cover'] ?>">Créer un
+                            chapitre</a>
+                    </div>
+
                 <?php } ?>
                 <div class="text-center mt-4">
                     <a href="index.php?action=mes-creations">Retour à mes créations</a>
@@ -32,7 +37,7 @@ ob_start();
             <?php if (count($chapters) == 0) { ?>
 
                 <div class="row mt-5">
-                    <div class="col d-flex justify-content-center p-0">
+                    <div class="col d-flex justify-content-center p-lg-0">
                         <div class="card text-center" style="width: 50rem;">
                             <div class="card-body">
                                 <i class="fa fa-book fa-2x mb-4 icon"></i>
@@ -53,9 +58,9 @@ ob_start();
     <h2 class=text-center>Les chapitres créés : </h2>
     <hr class="hr_content" />
 </div>
-<div class="row mb-5">
+<div class="row mb-5 px-4">
     <?php foreach ($chapters as $chapter) { ?>
-        <div class="col-6 col-lg-3 mb-5 ">
+        <div class="col-12 col-lg-3 mb-5 ">
             <div class="card">
                 <div class="card-header">
                     <h5 class="text-center mb-3">Chapitre n°<?= $chapter['id_chapter'] ?> :</h5>
