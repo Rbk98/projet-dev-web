@@ -18,7 +18,7 @@ ob_start();
                                 <i class="fa fa-book fa-2x mb-4" style="color:#0883cd;"></i>
                                 <p class="mb-4">Vous n'avez pour l'instant lu aucune histoire. </br>Commencez à lire
                                     votre première histoire dès maintenant ! </p>
-                                <a type="sumbit" class="btn btn-success" href="index.php?action=rechercher">Lire une
+                                <a type="submit" class="btn btn-success" href="index.php?action=rechercher">Lire une
                                     histoire</a>
                             </div>
                         </div>
