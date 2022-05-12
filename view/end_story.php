@@ -7,7 +7,7 @@ ob_start();
     <div class="container text-center mb-5  ">
         <div class="fin">
             <?php
-            $nbLives = getRemainingLives($book['id_cover'], getReadingProgress($choice), $idChoice);
+            $nbLives = getRemainingLives($book['id_cover'], getReadingProgress($book['id_cover']), $idChoice);
             if ($nbLives == 0) { ?>
                 <h2 class="h2_title my-2">Vous avez perdu !</h2>
                 <hr class="hr_content mb-4 mt-4" />
