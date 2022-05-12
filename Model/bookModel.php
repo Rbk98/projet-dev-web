@@ -78,7 +78,7 @@ function getStartedReading()
 function getFinishedReading()
 {
     $bdd = connectDb();
-    $sql = $bdd->prepare('SELECT DISTINCT * FROM reading WHERE id_user=? AND status=1');
+    $sql = $bdd->prepare('SELECT DISTINCT id_cover FROM reading WHERE id_user=? AND id_cover NOT IN (SELECT id_cover FROM reading WHERE status=0) AND status=1');
     $sql->execute(array($_SESSION['id']));
     $finishedReadings = $sql->fetchAll();
 
