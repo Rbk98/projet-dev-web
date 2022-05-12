@@ -40,7 +40,7 @@ ob_start();
                         <a href="index.php?action=lire-histoire&idCover=<?= $choice['id_cover'] ?>&idChapter=<?= $choice['id_next_chapter'] ?>&idChoice=<?= $choice['id_choice'] ?>"
                            class="btn btn-primary mx-2"> <?= $choice['title'] ?></a>
                     <?php } else { ?>
-                        <a href="index.php?action=finir-histoire&idCover=<?= $choice['id_cover'] ?>&idChapter=<?= $choice['id_next_chapter'] ?>&idChoice=<?= $choice['id_choice'] ?>"
+                        <a href="index.php?action=finir-histoire&idCover=<?= $choice['id_cover'] ?>&idChapter=<?= $choice['id_next_chapter'] ?>&idChoice=<?= getLastChoiceReading($choice['id_cover']) ?>"
                            class="btn btn-primary mx-2"> <?= $choice['title'] ?> </a>
                     <?php }
                 } ?>
