@@ -143,7 +143,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6  px-2 ">
-                                            <a href="index.php?action=stat-histoire&id=<?= $book['id_cover'] ?>"
+                                            <a href="index.php?action=info-histoire&id=<?= $book['id_cover'] ?>"
                                                class="btn btn-light btn-block ">
                                                 <i class="bi bi-graph-up"></i> Stats</a>
                                         </div>

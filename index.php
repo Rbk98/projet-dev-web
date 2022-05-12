@@ -242,15 +242,7 @@ if (isset($_GET['action'])) {
             accessDenied();
         }
     }
-    else if ($_GET['action'] == 'stat-histoire') {
-        if (isset($_SESSION['id'])) {
-            if (isset($_GET['id'])) {
-                storyStat($_GET['id']);
-            }
-        } else {
-            accessDenied();
-        }
-    } else if ($_GET['action'] == 'finir-histoire') {
+    else if ($_GET['action'] == 'finir-histoire') {
         if (isset($_SESSION['id'])) {
             if (isset($_GET['id'])) {
                 $idCover = intval($_GET['id']);
