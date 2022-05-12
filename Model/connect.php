@@ -15,7 +15,7 @@ function connectDb()
     $db = "rgrenet";
     */
     $bdd = new PDO(
-        'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8',
+        'mysql:host=' . $server . ':3308;dbname=' . $db . ';charset=utf8',
         $username,
         $password,
         array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)

@@ -26,14 +26,18 @@ function search()
     require('view/search.php');
 }
 
-function readStory($idCover, $idChapter)
+function readStory($idCover, $idChapter, $idChoice)
 {
     $cover = getBook($idCover);
     $chapter = getChapter($idCover, $idChapter);
     $choices = getAllChoices($idCover, $idChapter);
     $writer = getWriter($cover['writer']);
-    if (!userBookReading($_SESSION['id'], $idCover)) {
+
+    if (!userBookReading($_SESSION['id'], $idCover) && $idChoice == 0) {
         startStory($idCover);
+    } else if (userBookReading($_SESSION['id'], $idCover) && $idChapter != getReadingProgress($idCover)) {
+        updateStatusReading($idCover,getReadingProgress($idCover));
+        insertReadingStory($idCover, $idChapter, $idChoice);
     }
     require('view/read_story.php');
 }
@@ -199,7 +203,7 @@ function choicesPage($idChap, $idCover)
 {
     $cover = getCover($idCover);
     $chapter = getChapter($idCover, $idChap);
-    $choices = getAllChoices($idChap, $idCover);
+    $choices = getAllChoices($idCover,$idChap);
 
     require('view/choices_page.php');
 }
@@ -299,24 +303,24 @@ function deleteChoice($idCover, $idChapter, $idChoice)
     require('view/choices_page.php');
 }
 
-function endStory($cover)
+function endStory($idCover, $idChapter, $idChoice)
 {
-    $book = getBook($cover);
-    $choiceNames = getChoices($cover);
-    updateNumberReadingCover($cover);
+    $book = getBook($idCover);
+    $chapter = getChapter($idCover, $idChapter);
+    $choiceNames = getChoices($idCover);
+    updateNumberReadingCover($idCover);
     updateNumberReadingUser();
-    if (getNumberLives($book['id_cover']) != 0) {
-        updateWinsNumber($cover);
+    updateStatusReading($idCover,getReadingProgress($idCover));
+    if (getRemainingLives($idCover, $idChapter, $idChoice) != 0) {
+        updateWinsNumber($idCover);
     }
     require('view/end_story.php');
 }
 
-function readAgain($cover)
+function readAgain($cover, $idChapter,$idChoice)
 {
     deleteReadingStory($cover);
-    header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');
-    /*if (!getReadingProgress($_SESSION['id'], $cover))
-        header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');*/
+    header('Location: index.php?action=lire-histoire&idCover=' . $cover . '&idChapter=1&idChoice=0');
 }
 
 function updateCoverStatus($idCover, $status)

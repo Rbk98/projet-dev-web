@@ -74,7 +74,7 @@ ob_start();
                                     l'histoire</a>
                             <?php } else if (userBookFinished($book['id_cover'])) {
                             ?>
-                                <a href="index.php?action=recommencer-histoire&id=<?= $book['id_cover'] ?>" class="btn btn-dark px-2 mt-auto">Relire
+                                <a href="index.php?action=recommencer-histoire&idCover=<?= $book['id_cover'] ?>&idChapter=1&idChoice=0" class="btn btn-dark px-2 mt-auto">Relire
                                     l'histoire</a>
                             <?php } else { ?>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?= $book['id_cover'] ?>">
@@ -95,7 +95,7 @@ ob_start();
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer
                                                 </button>
-                                                <a href="index.php?action=lire-histoire&idb=<?= $book['id_cover'] ?>&idc=1" class="btn btn-primary px-2 mt-auto">Commencer
+                                                <a href="index.php?action=lire-histoire&idCover=<?= $book['id_cover'] ?>&idChapter=1&idChoice=0" class="btn btn-primary px-2 mt-auto">Commencer
                                                     l'histoire</a>
                                             </div>
                                         </div>
@@ -103,7 +103,7 @@ ob_start();
                                 </div>
                             <?php }
                         } else { ?>
-                            <a href="index.php?action=lire-histoire&idb=<?php echo $book['id_cover']; ?>&idc=<?= getReadingProgress($_SESSION['id'], $book['id_cover']) ?>" class="btn btn-info px-2 mt-auto">Continuer
+                            <a href="index.php?action=lire-histoire&idCover=<?= $book['id_cover'] ?>&idChapter=<?= getReadingProgress($_SESSION['id'], $book['id_cover']) ?>&idChoice=<?= getLastChoiceReading($book['id_cover']) ?>" class="btn btn-info px-2 mt-auto">Continuer
                                 l'histoire</a>
                         <?php } ?>
                     </div>
@@ -143,29 +143,29 @@ ob_start();
     <h2 class="h2_title my-3">Toutes les histoires disponibles</h2>
     <hr class="hr_content mb-3" />
     <div class="row row-cols-1 row-cols-md-4 g-4 mx-4">
-        <?php foreach ($books as $b) { ?>
+        <?php foreach ($books as $bk) { ?>
             <div class="col-xl-3 col-md-6 col-sm-6">
                 <div class="card h-100">
                     <img width="200px" height="auto" src="public/images/cover4.jpg" class="card-img-top p-3" alt="book_img">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $b['title'] ?></h5>
-                        <span class="badge badge-pill badge_style mb-3"><?= $b['genre'] ?></span>
-                        <p class="card-text text-truncate--3"><?= $b['summary'] ?></p>
+                        <h5 class="card-title"><?= $bk['title'] ?></h5>
+                        <span class="badge badge-pill badge_style mb-3"><?= $bk['genre'] ?></span>
+                        <p class="card-text text-truncate--3"><?= $bk['summary'] ?></p>
                     </div>
                     <div class="d-flex align-items-end flex-column card-body">
-                        <?php if (!isset($_SESSION['id']) || (!userBookReading($_SESSION['id'], $b['id_cover']))) {
+                        <?php if (!isset($_SESSION['id']) || (!userBookReading($_SESSION['id'], $bk['id_cover']))) {
                             if (!isset($_SESSION['id'])) { ?>
                                 <a href="index.php?action=connexion" class="btn btn-primary px-2 mt-auto">Commencer
                                     l'histoire</a>
-                            <?php } else if (userBookFinished($b['id_cover'])) {
+                            <?php } else if (userBookFinished($bk['id_cover'])) {
                             ?>
-                                <a href="index.php?action=recommencer-histoire&id=<?= $b['id_cover'] ?>" class="btn btn-dark px-2 mt-auto">Relire
+                                <a href="index.php?action=recommencer-histoire&idCover=<?= $bk['id_cover'] ?>&idChapter=1&idChoice=0" class="btn btn-dark px-2 mt-auto">Relire
                                     l'histoire</a>
                             <?php } else { ?>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<?= $book['id_cover'] ?>">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalall<?= $bk['id_cover'] ?>">
                                     Commencer l'histoire
                                 </button>
-                                <div class="modal fade" id="modal<?= $book['id_cover'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal fade" id="modalall<?= $bk['id_cover'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -180,7 +180,7 @@ ob_start();
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer
                                                 </button>
-                                                <a href="index.php?action=lire-histoire&idb=<?= $book['id_cover'] ?>&idc=1" class="btn btn-primary px-2 mt-auto">Commencer
+                                                <a href="index.php?action=lire-histoire&idCover=<?= $bk['id_cover'] ?>&idChapter=1&idChoice=0" class="btn btn-primary px-2 mt-auto">Commencer
                                                     l'histoire</a>
                                             </div>
                                         </div>
@@ -188,12 +188,12 @@ ob_start();
                                 </div>
                             <?php }
                         } else { ?>
-                            <a href="index.php?action=lire-histoire&idb=<?= $b['id_cover'] ?>&idc=<?= getReadingProgress($_SESSION['id'], $book['id_cover']) ?>" class="btn btn-info px-2 mt-auto">Continuer
+                            <a href="index.php?action=lire-histoire&idCover=<?= $bk['id_cover'] ?>&idChapter=<?= getReadingProgress($bk['id_cover']) ?>&idChoice=<?= getLastChoiceReading($bk['id_cover']) ?>" class="btn btn-info px-2 mt-auto">Continuer
                                 l'histoire</a>
                         <?php } ?>
                     </div>
                     <div class="card-footer bg-white text-end">
-                        <small class="text-muted">Lu par <?= $b['nb_reading'] ?> personnes.</small>
+                        <small class="text-muted">Lu par <?= $bk['nb_reading'] ?> personnes.</small>
                     </div>
                 </div>
             </div>
