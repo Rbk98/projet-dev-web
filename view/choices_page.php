@@ -21,6 +21,9 @@
                             chapitre. </br>Ajoutez un premier choix dès maintenant </p>
                         <a type="sumbit" class="btn btn-success" href="index.php?action=creer-choix&idCover=<?= $cover['id_cover'] ?>&idChapter=<?= $chapter['id_chapter'] ?>">Ajouter un
                             choix</a>
+                        <div class="text-center py-2">
+                            <a href="index.php?action=afficher-livre&id=<?= $cover['id_cover'] ?>">Retour</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -49,13 +52,15 @@
                                     <a href="index.php?action=supprimer-choix&idcov=<?= $choice['id_cover'] ?>&idchap=<?= $choice['id_current_chapter'] ?>&idchoice=<?= $choice['id_choice'] ?>" class="btn btn-danger btn-block my-2 px-2">Supprimer</a>
                                 </form>
                             </div>
-
-                        </div>
                     </a>
                 </div>
             <?php } ?>
         </div>
     <?php } ?>
+    <div class="text-center py-2">
+        <a href="index.php?action=afficher-livre&id=<?= $cover['id_cover'] ?>">Retour au livre</a>
+    </div>
+</div>
 
 </div>
 

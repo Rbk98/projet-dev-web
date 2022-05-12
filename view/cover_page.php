@@ -24,7 +24,9 @@ ob_start();
                     <a type="submit" class="btn btn-success mt-4 " href="index.php?action=creer-chapitre&id=<?= $cover['id_cover'] ?>">Créer un
                         chapitre</a>
                 <?php } ?>
-
+                <div class="text-center mt-4">
+                    <a href="index.php?action=mes-creations">Retour à mes créations</a>
+                </div>
             </div>
 
             <?php if (count($chapters) == 0) { ?>

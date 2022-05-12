@@ -160,7 +160,7 @@ function updateCover($id_cover)
 
         $updateCover = changeCover($title, $summary, $genre, $nb_lives, $nb_chapters_max, $id_cover);
         if ($updateCover) {
-            //header('Location: index.php?action=afficher-livre&id=' . $id_cover);
+            header('Location: index.php?action=afficher-livre&id=' . $id_cover);
         }
     }
     require('view/update_cover.php');
@@ -292,7 +292,6 @@ function deleteChapter($idCover, $idChapter)
 function deleteChoice($idCover, $idChapter, $idChoice)
 {
     $deleteUser = removeChoice($idCover, $idChapter, $idChoice);
-    var_dump($deleteUser);
     if ($deleteUser) {
         header('Location: index.php?action=page-choix&idChapter=' . $idChapter . "&idCover=" . $idCover);
     }

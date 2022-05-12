@@ -228,6 +228,14 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
+    } else if ($_GET['action'] == 'stat-histoire') {
+        if (isset($_SESSION['id'])) {
+            if (isset($_GET['id'])) {
+                storyStat($_GET['id']);
+            }
+        } else {
+            accessDenied();
+        }
     } else if ($_GET['action'] == 'finir-histoire') {
         if (isset($_SESSION['id'])) {
             if (isset($_GET['id'])) {
