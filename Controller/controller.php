@@ -35,7 +35,8 @@ function readStory($idCover, $idChapter, $idChoice)
 
     if (!userBookReading($_SESSION['id'], $idCover) && $idChoice == 0) {
         startStory($idCover);
-    } else if (userBookReading($_SESSION['id'], $idCover) && $idChoice != getLastChoiceReading($idCover)) {
+    } else if (userBookReading($_SESSION['id'], $idCover) && $idChapter != getReadingProgress($idCover)) {
+        updateStatusReading($idCover,getReadingProgress($idCover));
         insertReadingStory($idCover, $idChapter, $idChoice);
     }
     require('view/read_story.php');
@@ -306,22 +307,20 @@ function endStory($idCover, $idChapter, $idChoice)
 {
     $book = getBook($idCover);
     $chapter = getChapter($idCover, $idChapter);
-    $choice = getChoice($idCover, $idChapter, $idChoice);
     $choiceNames = getChoices($idCover);
     updateNumberReadingCover($idCover);
     updateNumberReadingUser();
+    updateStatusReading($idCover,getReadingProgress($idCover));
     if (getRemainingLives($idCover, $idChapter, $idChoice) != 0) {
         updateWinsNumber($idCover);
     }
     require('view/end_story.php');
 }
 
-function readAgain($cover)
+function readAgain($cover, $idChapter,$idChoice)
 {
     deleteReadingStory($cover);
-    header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');
-    /*if (!getReadingProgress($_SESSION['id'], $cover))
-        header('Location: index.php?action=lire-histoire&idb=' . $cover . '&idc=1');*/
+    header('Location: index.php?action=lire-histoire&idCover=' . $cover . '&idChapter=1&idChoice=0');
 }
 
 function updateCoverStatus($idCover, $status)

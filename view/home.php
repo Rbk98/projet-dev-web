@@ -148,7 +148,7 @@ ob_start();
                                     l'histoire</a>
                             <?php } else if (userBookFinished($bk['id_cover'])) {
                             ?>
-                                <a href="index.php?action=lire-histoire&idCover=<?= $bk['id_cover'] ?>&idChapter=1&idChoice=0" class="btn btn-dark px-2 mt-auto">Relire
+                                <a href="index.php?action=recommencer-histoire&idCover=<?= $bk['id_cover'] ?>&idChapter=1&idChoice=0" class="btn btn-dark px-2 mt-auto">Relire
                                     l'histoire</a>
                             <?php } else { ?>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalall<?= $bk['id_cover'] ?>">
@@ -177,7 +177,7 @@ ob_start();
                                 </div>
                             <?php }
                         } else { ?>
-                            <a href="index.php?action=lire-histoire&idCover=<?= $bk['id_cover'] ?>&idChapter=<?= getReadingProgress($_SESSION['id'], $bk['id_cover']) ?>&idChoice=<?= getLastChoiceReading($bk['id_cover']) ?>" class="btn btn-info px-2 mt-auto">Continuer
+                            <a href="index.php?action=lire-histoire&idCover=<?= $bk['id_cover'] ?>&idChapter=<?= getReadingProgress($bk['id_cover']) ?>&idChoice=<?= getLastChoiceReading($bk['id_cover']) ?>" class="btn btn-info px-2 mt-auto">Continuer
                                 l'histoire</a>
                         <?php } ?>
                     </div>

@@ -212,10 +212,12 @@ if (isset($_GET['action'])) {
         }
     } else if ($_GET['action'] == 'recommencer-histoire') {
         if (isset($_SESSION['id'])) {
-            if (isset($_GET['id'])) {
-                $idCover = intval($_GET['id']);
+            if (isset($_GET['idCover']) && isset($_GET['idChapter']) && isset($_GET['idChoice'])) {
+                $idCover = intval($_GET['idCover']);
+                $idChapter= intval($_GET['idChapter']);
+                $idChoice= intval($_GET['idChoice']);
                 if ($idCover != 0) {
-                    readAgain($idCover);
+                    readAgain($idCover, $idChapter,$idChoice);
                 }
             } else {
                 accessDenied();
@@ -242,7 +244,7 @@ if (isset($_GET['action'])) {
             if (isset($_GET['idCover']) && isset($_GET['idChapter']) && isset($_GET['idChoice'])) {
                 $idCover = intval($_GET['idCover']);
                 $idChapter = intval($_GET['idChapter']);
-                $idChoice = intval($_GET['idCover']);
+                $idChoice = intval($_GET['idChoice']);
                 if ($idCover != 0) {
                     endStory($idCover, $idChapter, $idCover);
                 }
