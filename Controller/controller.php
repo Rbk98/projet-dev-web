@@ -32,6 +32,7 @@ function readStory($idCover, $idChapter, $idChoice)
     $chapter = getChapter($idCover, $idChapter);
     $choices = getAllChoices($idCover, $idChapter);
     $writer = getWriter($cover['writer']);
+
     if (!userBookReading($_SESSION['id'], $idCover) && $idChoice == 0) {
         startStory($idCover);
     } else if (userBookReading($_SESSION['id'], $idCover) && $idChoice != getLastChoiceReading($idCover)) {
@@ -201,7 +202,7 @@ function choicesPage($idChap, $idCover)
 {
     $cover = getCover($idCover);
     $chapter = getChapter($idCover, $idChap);
-    $choices = getAllChoices($idChap, $idCover);
+    $choices = getAllChoices($idCover,$idChap);
 
     require('view/choices_page.php');
 }

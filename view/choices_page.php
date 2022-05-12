@@ -58,15 +58,13 @@
                                     <a href="index.php?action=supprimer-choix&idcov=<?= $choice['id_cover'] ?>&idchap=<?= $choice['id_current_chapter'] ?>&idchoice=<?= $choice['id_choice'] ?>" class="btn btn-danger btn-block my-2 px-2">Supprimer</a>
                                 </form>
                             </div>
+                        </div>
                     </a>
                 </div>
             <?php } ?>
         </div>
     <?php } ?>
 </div>
-
-</div>
-
 
 
 <?php $content = ob_get_clean();

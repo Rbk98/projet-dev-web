@@ -15,7 +15,7 @@ ob_start();
                     <p class="pb-3">
                         <?= $cover['summary'] ?>
                     </p>
-                    <p class="text-center pb-3"> Il vous reste : <?= getRemainingLives($cover['id_cover'], $chapter['id_chapter'], getLastChoiceReading($cover['id_cover'])) ?> vie(s)</p>
+                    <p class="text-center pb-3"> Il vous reste : <?= getRemainingLives($cover['id_cover'],$_GET['idChapter'], $_GET['idChoice']) ?> vie(s)</p>
                     <h3 class="text-center py-3"> <?= $chapter['title'] ?></h3>
                     <p>
                         <?= $chapter['content'] ?>

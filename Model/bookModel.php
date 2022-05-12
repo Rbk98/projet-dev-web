@@ -297,13 +297,12 @@ function startStory($cover)
 function insertReadingStory($cover, $currentChapter, $choice)
 {
     $bdd = connectDb();
-    $nextChapter = getNextChapter($cover, $currentChapter, $choice);
-    $nbLives = getRemainingLives($cover, $currentChapter, $choice);
-    echo $nbLives;
-    //var_dump(isSafe($cover, $currentChapter, $nextChapter, $choice));
-    if (isSafe($cover, $currentChapter, $nextChapter, $choice) == false) {
-        echo "hy";
-        //$nbLives -= 1;
+    $previousChapter = getReadingProgress($cover);
+    $previousChoice = getLastChoiceReading($cover);
+    $nbLives = getRemainingLives($cover, $previousChapter, $previousChoice);
+
+    if(choiceSafe($cover, $currentChapter, $previousChapter, $choice) == 1) {
+        $nbLives = $nbLives - 1;
     }
     $sql = $bdd->prepare('INSERT INTO reading(id_user, id_cover, id_chapter, id_choice, nb_lives) VALUES (?, ?, ?, ?, ?)');
     $sql->execute(array($_SESSION['id'], $cover, $currentChapter, $choice, $nbLives));
@@ -314,7 +313,9 @@ function getRemainingLives($cover, $chapter, $choice)
     $bdd = connectDb();
     $sql = $bdd->prepare('SELECT nb_lives FROM reading WHERE id_cover=? AND id_chapter=? AND id_choice=? AND id_user=?');
     $sql->execute(array($cover, $chapter, $choice, $_SESSION['id']));
-    return intval($sql->fetchColumn());
+    $nbLives =  $sql->fetchColumn();
+
+    return (int)$nbLives;
 }
 
 
@@ -326,15 +327,15 @@ function getNextChapter($cover, $currentChapter, $choice)
     return $sql->fetchColumn();
 }
 
-function isSafe($cover, $idCurrentchapter, $idNextChapter, $idChoice)
+function choiceSafe($cover, $idCurrentchapter, $previousChapter, $idChoice)
 {
     $bdd = connectDb();
     $sql = $bdd->prepare('SELECT unsafe FROM choice WHERE id_cover=? AND id_next_chapter=? AND id_current_chapter=? AND id_choice=?');
-    $sql->execute([$cover, $idNextChapter, $idCurrentchapter, $idChoice]);
-    if ($sql->fetchColumn() == 0) {
-        return true;
-    } else return false;
+    $sql->execute([$cover, $idCurrentchapter, $previousChapter, $idChoice]);
+
+    return $sql->fetchColumn();
 }
+
 
 function getReadingProgress($cover)
 {
@@ -358,7 +359,7 @@ function getLastChoiceReading($cover)
     $sql = $bdd->prepare('SELECT id_choice FROM reading WHERE id_user=? AND id_cover=? AND id_chapter=?');
     $sql->execute(array($_SESSION['id'], $cover, $chapter));
     $result = $sql->fetchColumn();
-    return $result;
+    return (int)$result;
 }
 
 function updateStatusReading($cover, $chapter)
