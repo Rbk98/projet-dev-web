@@ -27,11 +27,12 @@ if (isset($_GET['action'])) {
         logoutUser();
     } else if ($_GET['action'] == 'lire-histoire') {
         if (isset($_SESSION['id'])) {
-            if (isset($_GET['idb']) && isset($_GET['idc'])) {
-                $idBook = intval($_GET['idb']);
-                $idChapter = intval($_GET['idc']);
-                if ($idBook != 0 && $idChapter != 0) {
-                    readStory($idBook, $idChapter);
+            if (isset($_GET['idCover']) && isset($_GET['idChapter']) && isset($_GET['idChoice'])) {
+                $idCover = intval($_GET['idCover']);
+                $idChapter = intval($_GET['idChapter']);
+                $idChoice = intval($_GET['idChoice']);
+                if ($idCover != 0 && $idChapter != 0) {
+                    readStory($idCover, $idChapter, $idChoice);
                 }
             } else {
                 homeBooks();
@@ -238,10 +239,12 @@ if (isset($_GET['action'])) {
         }
     } else if ($_GET['action'] == 'finir-histoire') {
         if (isset($_SESSION['id'])) {
-            if (isset($_GET['id'])) {
-                $idCover = intval($_GET['id']);
+            if (isset($_GET['idCover']) && isset($_GET['idChapter']) && isset($_GET['idChoice'])) {
+                $idCover = intval($_GET['idCover']);
+                $idChapter = intval($_GET['idChapter']);
+                $idChoice = intval($_GET['idCover']);
                 if ($idCover != 0) {
-                    endStory($idCover);
+                    endStory($idCover, $idChapter, $idCover);
                 }
             } else {
                 accessDenied();

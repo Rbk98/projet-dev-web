@@ -15,9 +15,10 @@ ob_start();
                     <p class="pb-3">
                         <?= $cover['summary'] ?>
                     </p>
-                    <p class="text-center pb-3"> Il vous reste : <?= getNumberLives($cover['id_cover']) ?> vie(s)</p>
-                    <h3 class="text-center py-3"> </h3>
+                    <p class="text-center pb-3"> Il vous reste : <?= getRemainingLives($cover['id_cover'], $chapter['id_chapter'], getLastChoiceReading($cover['id_cover'])) ?> vie(s)</p>
+                    <h3 class="text-center py-3"> <?= $chapter['title'] ?></h3>
                     <p>
+                        <?= $chapter['content'] ?>
                     </p>
                 </article>
                 <footer>
@@ -30,14 +31,15 @@ ob_start();
 
         </div>
     </div>
-
     <div class="text-center my-5 py-4">
         <div class="btn-group btn-group-lg" role="group">
-            <?php $indice = 0;
-            foreach ($choices as $choice) {
-                $indice++; ?>
-                <a href="index.php?action=lire-histoire&idb=<?= $choice['id_cover'] ?>&idc=<?= $choice['id_next_chapter'] ?>" class="btn btn-primary mx-2">Choix <?= $indice ?></a>
-            <?php } ?>
+            <?php foreach ($choices as $choice) {
+                if ($choice['end_cover'] == 0) { ?>
+                    <a href="index.php?action=lire-histoire&idCover=<?= $choice['id_cover'] ?>&idChapter=<?= $choice['id_next_chapter'] ?>&idChoice=<?= $choice['id_choice'] ?>" class="btn btn-primary mx-2"> <?= $choice['title'] ?></a>
+                <?php } else { ?>
+                    <a href="index.php?action=finir-histoire&id=<?= $choice['id_cover'] ?>&idChapter=<?= $choice['id_next_chapter'] ?>&idChoice=<?= $choice['id_choice'] ?>" class="btn btn-primary mx-2"> <?= $choice['title'] ?> </a>
+            <?php }
+            } ?>
         </div>
     </div>
 </div>

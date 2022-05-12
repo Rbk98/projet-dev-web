@@ -198,7 +198,7 @@ function getChoice($id_cover, $id_chapter, $id_choice)
     return $choice;
 }
 
-function getAllChoices($idChapter, $idCover)
+function getAllChoices($idCover, $idChapter)
 {
     $bdd = connectDb();
     $sql = $bdd->prepare("SELECT * FROM choice WHERE id_current_chapter=? AND id_cover=?");
@@ -287,11 +287,53 @@ function startStory($cover)
     //récupération du nombre de vie au début de l'histoire
     $query = $bdd->prepare('SELECT nb_lives FROM cover WHERE id_cover=?');
     $query->execute(array($cover));
-    $nbLives = $query->fetch();
+    $nbLives = $query->fetchColumn();
     $nbLives = intval($nbLives);
     //insertion dans la bdd du commencement d'une histoire
     $sql = $bdd->prepare('INSERT INTO reading(id_user, id_cover, id_chapter, id_choice, nb_lives) VALUES (?, ?, 1, 0, ?)');
     $sql->execute(array($_SESSION['id'], $cover, $nbLives));
+}
+
+function insertReadingStory($cover, $currentChapter, $choice)
+{
+    $bdd = connectDb();
+    $nextChapter = getNextChapter($cover, $currentChapter, $choice);
+    $nbLives = getRemainingLives($cover, $currentChapter, $choice);
+    echo $nbLives;
+    //var_dump(isSafe($cover, $currentChapter, $nextChapter, $choice));
+    if (isSafe($cover, $currentChapter, $nextChapter, $choice) == false) {
+        echo "hy";
+        //$nbLives -= 1;
+    }
+    $sql = $bdd->prepare('INSERT INTO reading(id_user, id_cover, id_chapter, id_choice, nb_lives) VALUES (?, ?, ?, ?, ?)');
+    $sql->execute(array($_SESSION['id'], $cover, $currentChapter, $choice, $nbLives));
+}
+
+function getRemainingLives($cover, $chapter, $choice)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT nb_lives FROM reading WHERE id_cover=? AND id_chapter=? AND id_choice=? AND id_user=?');
+    $sql->execute(array($cover, $chapter, $choice, $_SESSION['id']));
+    return intval($sql->fetchColumn());
+}
+
+
+function getNextChapter($cover, $currentChapter, $choice)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT id_next_chapter FROM choice WHERE id_cover=? AND id_current_chapter=? AND id_choice=?');
+    $sql->execute(array($cover, $currentChapter, $choice));
+    return $sql->fetchColumn();
+}
+
+function isSafe($cover, $idCurrentchapter, $idNextChapter, $idChoice)
+{
+    $bdd = connectDb();
+    $sql = $bdd->prepare('SELECT unsafe FROM choice WHERE id_cover=? AND id_next_chapter=? AND id_current_chapter=? AND id_choice=?');
+    $sql->execute([$cover, $idNextChapter, $idCurrentchapter, $idChoice]);
+    if ($sql->fetchColumn() == 0) {
+        return true;
+    } else return false;
 }
 
 function getReadingProgress($cover)
@@ -307,6 +349,16 @@ function getReadingProgress($cover)
         }
     }
     return $chapter;
+}
+
+function getLastChoiceReading($cover)
+{
+    $bdd = connectDb();
+    $chapter = getReadingProgress($cover);
+    $sql = $bdd->prepare('SELECT id_choice FROM reading WHERE id_user=? AND id_cover=? AND id_chapter=?');
+    $sql->execute(array($_SESSION['id'], $cover, $chapter));
+    $result = $sql->fetchColumn();
+    return $result;
 }
 
 function updateStatusReading($cover, $chapter)
@@ -329,7 +381,7 @@ function deleteReadingStory($cover)
 function getChoices($cover)
 {
     $bdd = connectDb();
-    $sql = $bdd->prepare('SELECT id_choice, id_chapter, id_cover FROM reading WHERE id_user=? AND id_cover=?');
+    $sql = $bdd->prepare('SELECT id_choice, id_chapter, id_cover FROM reading WHERE id_user=? AND id_cover=? AND id_choice<>0');
     $sql->execute(array($_SESSION['id'], $cover));
     $readingChoices = $sql->fetchAll();
     $choiceNames = array();
@@ -338,7 +390,6 @@ function getChoices($cover)
         $query->execute(array($choice['id_cover'], $choice['id_chapter'], $choice['id_choice']));
         array_push($choiceNames, $query->fetch());
     }
-
     return $choiceNames;
 }
 

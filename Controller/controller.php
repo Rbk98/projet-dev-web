@@ -26,14 +26,16 @@ function search()
     require('view/search.php');
 }
 
-function readStory($idCover, $idChapter)
+function readStory($idCover, $idChapter, $idChoice)
 {
     $cover = getBook($idCover);
     $chapter = getChapter($idCover, $idChapter);
     $choices = getAllChoices($idCover, $idChapter);
     $writer = getWriter($cover['writer']);
-    if (!userBookReading($_SESSION['id'], $idCover)) {
+    if (!userBookReading($_SESSION['id'], $idCover) && $idChoice == 0) {
         startStory($idCover);
+    } else if (userBookReading($_SESSION['id'], $idCover) && $idChoice != getLastChoiceReading($idCover)) {
+        insertReadingStory($idCover, $idChapter, $idChoice);
     }
     require('view/read_story.php');
 }
@@ -299,14 +301,16 @@ function deleteChoice($idCover, $idChapter, $idChoice)
     require('view/choices_page.php');
 }
 
-function endStory($cover)
+function endStory($idCover, $idChapter, $idChoice)
 {
-    $book = getBook($cover);
-    $choiceNames = getChoices($cover);
-    updateNumberReadingCover($cover);
+    $book = getBook($idCover);
+    $chapter = getChapter($idCover, $idChapter);
+    $choice = getChoice($idCover, $idChapter, $idChoice);
+    $choiceNames = getChoices($idCover);
+    updateNumberReadingCover($idCover);
     updateNumberReadingUser();
-    if (getNumberLives($book['id_cover']) != 0) {
-        updateWinsNumber($cover);
+    if (getRemainingLives($idCover, $idChapter, $idChoice) != 0) {
+        updateWinsNumber($idCover);
     }
     require('view/end_story.php');
 }

@@ -8,15 +8,13 @@ ob_start();
         <div class="fin">
             <!--nombre de vie à récupérer-->
             <?php
-            $nbLives = getNumberLives($book['id_cover']);
+            $nbLives = getRemainingLives($book['id_cover'], $chapter['id_chapter'], $choice['id_choice']);
             if ($nbLives == 0) { ?>
                 <h2 class="h2_title my-2">Vous avez perdu !</h2>
                 <hr class="hr_content mb-4 mt-4" />
-                <h4 class="text-grey">Le dragon vous a tué et vous avez échoué dans votre quête.</h4>
             <?php } else { ?>
                 <h2 class="h2_title my-2">Vous avez gagné !</h2>
                 <hr class="hr_content mb-4 mt-4" />
-                <h4 class="text-grey">Vous avez ramené la princesse à la maison et pouvez l'épouser !</h4>
             <?php } ?>
         </div>
     </div>
