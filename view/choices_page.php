@@ -30,7 +30,13 @@
         </div>
 
     <?php } else { ?>
-
+        <div class="text-center">
+            <a type="sumbit" class="btn btn-success" href="index.php?action=creer-choix&idCover=<?= $cover['id_cover'] ?>&idChapter=<?= $chapter['id_chapter'] ?>">Ajouter un
+                choix</a>
+        </div>
+        <div class="text-center py-2">
+            <a href="index.php?action=afficher-livre&id=<?= $cover['id_cover'] ?>">Retour au livre</a>
+        </div>
         <div class="row mt-5">
             <?php foreach ($choices as $choice) { ?>
                 <div class="col-12 col-lg-3 mb-5">
@@ -57,9 +63,6 @@
             <?php } ?>
         </div>
     <?php } ?>
-    <div class="text-center py-2">
-        <a href="index.php?action=afficher-livre&id=<?= $cover['id_cover'] ?>">Retour au livre</a>
-    </div>
 </div>
 
 </div>
