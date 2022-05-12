@@ -32,11 +32,11 @@
 
 /* Highlight */
 .open-book *::-moz-selection {
-    background: rgba(222,255,0,0.75);
+    background: rgba(0, 204, 255, 0.75);
 }
 
 .open-book *::selection {
-    background: rgba(222,255,0,0.75);
+    background: rgba(0, 174, 255, 0.75);
 }
 
 /* Header/Footer */
