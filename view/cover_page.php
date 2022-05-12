@@ -58,7 +58,7 @@ ob_start();
     <h2 class=text-center>Les chapitres créés : </h2>
     <hr class="hr_content" />
 </div>
-<div class="row mb-5 px-4">
+<div class="row mb-5">
     <?php foreach ($chapters as $chapter) { ?>
         <div class="col-12 col-lg-3 mb-5 ">
             <div class="card">
@@ -66,21 +66,69 @@ ob_start();
                     <h5 class="text-center mb-3">Chapitre n°<?= $chapter['id_chapter'] ?> :</h5>
                     <h5 class="text-center blue text-truncate"><?= $chapter['title'] ?></h5>
                 </div>
-
                 <div class="card-body ">
-
                     <p class="text_secondary">Résumé :</p>
                     <p class="card-text text-truncate--3 mb-4"><?= $chapter['content'] ?></p>
                     <a href="index.php?action=page-choix&idCover=<?= $chapter['id_cover'] ?>&idChapter=<?= $chapter['id_chapter'] ?>" class="btn btn-success btn-block my-2 px-2">Voir les choix associés</a>
                     <a href="index.php?action=modifier-chapitre&idCover=<?= $chapter['id_cover'] ?>&idChapter=<?= $chapter['id_chapter'] ?>" class="btn btn-outline-primary btn-block my-2 px-2">Modifier chapitre</a>
-                    <form name="delete_cover" method="POST">
-                        <a href="index.php?action=supprimer-chapitre&idcov=<?= $chapter['id_cover'] ?>&idchap=<?= $chapter['id_chapter'] ?>" class="btn btn-danger btn-block my-2 px-2">Supprimer</a>
-                    </form>
+                    <button type="button" class="btn btn-danger btn-block mt-2" data-toggle="modal" data-target="#modalDelete<?= $chapter['id_cover'] ?>">
+                        Supprimer
+                    </button>
+                    <div class="modal fade" id="modalDelete<?= $chapter['id_cover'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Supprimer un
+                                        chapitre</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Etes-vous sûr de vouloir supprimer ce chapitre ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer
+                                    </button>
+                                    <form name="delete_cover" method="POST">
+                                        <a href="index.php?action=supprimer-chapitre&idcov=<?= $chapter['id_cover'] ?>&idchap=<?= $chapter['id_chapter'] ?>" class="btn btn-danger btn-block my-2 px-2">Supprimer</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
     <?php } ?>
+</div>
+<div class="text-center">
+    <button type="button" class="btn btn-primary px-3 py-2" data-toggle="modal" data-target="#modal<?= $cover['id_cover'] ?>">
+        Je valide mon histoire
+    </button>
+    <div class="modal fade" id="modal<?= $cover['id_cover'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Valider son
+                        histoire</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Etes-vous sûr de vouloir valider la création de cette histoire ? <br>Vous devez faire attention d'avoir bien créé les chapitres et les choix nécessaires pour chaque parcours de l'histoire.
+                    <br><br>En effet, chaque parcours possède une fin, c'est-à-dire qu'il ne possède pas de chapitre suivant.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer
+                    </button>
+                    <a href="index.php?action=valider-configuration-histoire&id=<?= $cover['id_cover'] ?>&idc=1" class="btn btn-primary px-2 mt-auto">Valider
+                        l'histoire</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <?php } ?>
 </div>

@@ -9,9 +9,7 @@
             <hr class="hr_content" />
         </div>
     </div>
-
     <?php if (count($choices) == 0) { ?>
-
         <div class="row mt-5">
             <div class="col d-flex justify-content-center p-lg-0">
                 <div class="card text-center" style="width: 50rem;">
@@ -28,7 +26,6 @@
                 </div>
             </div>
         </div>
-
         <?php } else {
         if (count($choices) < $chapter['nb_choices']) { ?>
             <div class="text-center">
@@ -65,15 +62,13 @@
                                     <a href="index.php?action=supprimer-choix&idcov=<?= $choice['id_cover'] ?>&idchap=<?= $choice['id_current_chapter'] ?>&idchoice=<?= $choice['id_choice'] ?>" class="btn btn-danger btn-block my-2 px-2">Supprimer</a>
                                 </form>
                             </div>
+                        </div>
                     </a>
                 </div>
             <?php } ?>
         </div>
     <?php } ?>
 </div>
-
-</div>
-
 
 
 <?php $content = ob_get_clean();

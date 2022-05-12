@@ -228,7 +228,21 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
-    } else if ($_GET['action'] == 'stat-histoire') {
+    }else if ($_GET['action'] == 'valider-configuration-histoire') {
+        if (isset($_SESSION['id'])) {
+            if (isset($_GET['id'])) {
+                $idCover = intval($_GET['id']);
+                if ($idCover != 0) {
+                    updateCoverStatus($idCover,1);
+                }
+            } else {
+                accessDenied();
+            }
+        } else {
+            accessDenied();
+        }
+    }
+    else if ($_GET['action'] == 'stat-histoire') {
         if (isset($_SESSION['id'])) {
             if (isset($_GET['id'])) {
                 storyStat($_GET['id']);

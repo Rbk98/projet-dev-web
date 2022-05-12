@@ -38,7 +38,7 @@ ob_start();
                     <div class="card-body">
                         <i class="fa fa-book fa-2x mb-4" style="color:#0883cd;"></i>
                         <p class="mb-4">Merci d'avoir lu cette histoire ! J'espère qu'elle vous a plu </p>
-                        <a type="sumbit" class="btn btn-success" href="index.php?action=rechercher">Lire une autre
+                        <a type="submit" class="btn btn-success" href="index.php?action=rechercher">Lire une autre
                             histoire</a>
                     </div>
                 </div>

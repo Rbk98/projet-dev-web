@@ -45,11 +45,6 @@ ob_start();
                                     <option value="Drame">Drame</option>
                                 </select>
                             </div>
-                            <div class="col-12 mb-5">
-                                <label for="image" class="col-form-label">Image de couverture</label>
-                                <input class="form-control" type="file" name="image" id="image"
-                                       accept=".png,.jpg,.jpeg">
-                            </div>
                             <div class="col-12 d-grid gap-2 ">
                                 <button type="submit" class="btn btn-success">Créer mon livre</button>
                             </div>
