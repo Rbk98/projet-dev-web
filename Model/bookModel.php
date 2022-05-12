@@ -147,7 +147,8 @@ function getChapter($idCover, $idChap)
     $bdd = connectDb();
     $sql = $bdd->prepare("SELECT * FROM chapter WHERE id_cover =? AND id_chapter=?");
     $sql->execute(array($idCover, $idChap));
-    return $sql->fetchAll();
+    $chapter=$sql->fetch();
+    return $chapter;
 }
 
 function getAllChapters($idCover)
@@ -188,8 +189,16 @@ function getLastChoiceId($idCover, $idChap)
         return 0;
     }
 }
+function getChoice($id_cover,$id_chapter, $id_choice){
+    $bdd = connectDb();
+    $sql = $bdd->prepare("SELECT * FROM choice WHERE id_cover =? AND id_current_chapter=? AND id_choice=?");
+    $sql->execute(array($id_cover, $id_chapter, $id_choice));
+    $choice=$sql->fetch();
+    return $choice;
 
-function getAllChoices($idCover, $idChapter)
+}
+
+function getAllChoices($idChapter,$idCover)
 {
     $bdd = connectDb();
     $sql = $bdd->prepare("SELECT * FROM choice WHERE id_current_chapter=? AND id_cover=?");
@@ -197,6 +206,13 @@ function getAllChoices($idCover, $idChapter)
     $choices = $sql->fetchAll();
 
     return $choices;
+}
+
+function changeChoice($id_choice,$id_next_chapter, $id_chapter, $id_cover, $title, $unsafe, $end_cover){
+    $bdd = connectDb();
+    $sql = $bdd->prepare('UPDATE choice SET id_next_chapter=?, title=?, unsafe=?, end_cover=? WHERE id_cover=? AND id_current_chapter=? AND id_choice=?');
+
+    $sql->execute([$id_next_chapter,$title, $unsafe, $end_cover, $id_cover, $id_chapter,$id_choice]);
 }
 
 function getCover($id_cover)
@@ -307,6 +323,8 @@ function deleteReadingStory($cover)
 
     return $sql->execute(array($_SESSION['id'], $cover));
 }
+
+
 
 function getChoices($cover)
 {

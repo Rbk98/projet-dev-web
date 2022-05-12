@@ -182,7 +182,7 @@ function updateChapter($id_chapter, $id_cover)
 {
     $cover = getCover($id_cover);
     $chapter = getChapter($id_cover, $id_chapter);
-
+   
     if (isset($_POST['title_chap']) && isset($_POST['content']) && isset($_POST['nb_choice'])) {
         $title = $_POST['title_chap'];
         $content = $_POST['content'];
@@ -198,7 +198,7 @@ function choicesPage($idChap, $idCover)
 {
     $cover = getCover($idCover);
     $chapter = getChapter($idCover, $idChap);
-    $choices = getAllChoices($idChap, $idCover);
+    $choices = getAllChoices($idChap, $idCover);   
 
     require('view/choices_page.php');
 }
@@ -224,11 +224,46 @@ function createChoice($idChap, $idCover)
             $unsafe = 0;
         }
         $id_new_choice = insertChoice($id_next_chapter, $idChap, $idCover, $title, $unsafe, $end_cover);
-        //header('Location: index.php?action=page-choix&idCover='.$idCover.'idChapter='.$idChap);
+        header('Location: index.php?action=page-choix&idCover='.$idCover.'&idChapter='.$idChap);
     }
 
     require('view/create_choice.php');
 }
+
+function updateChoice($id_cover, $id_chapter, $id_choice)
+{
+    
+    $cover = getCover($id_cover);
+    $chapter = getChapter($id_cover, $id_chapter);    
+    $choice = getChoice($id_cover, $id_chapter,$id_choice);
+    
+    $chapters = getAllChapters($id_cover);
+     var_dump($choice['id_current_chapter']);
+     var_dump($choice['id_next_chapter']);
+   
+    if (isset($_POST['choice_name']) && isset($_POST['next_chapter']) && isset($_POST['unsafe'])) {
+        var_dump($_POST['next_chapter']);
+        $title = $_POST['choice_name'];
+        if (($_POST['next_chapter']) == "end") { //On assigne le chapitre à lui même pour indiquer que c'est la fin
+            $id_next_chapter = $choice['id_current_chapter'];
+            $end_cover = 1;
+            var_dump($id_next_chapter);
+        } else {
+            $id_next_chapter = (int)($_POST['next_chapter']);
+            $end_cover = 0;
+        }
+        if (($_POST['unsafe'] == 1)) {
+            $unsafe = 1;
+        } else {
+            $unsafe = 0;
+        }
+        
+        changeChoice($id_choice,$id_next_chapter, $id_chapter, $id_cover, $title, $unsafe, $end_cover);
+        header('Location: index.php?action=page-choix&idCover='.$id_cover.'&idChapter='.$id_chapter);
+    }
+    require('view/update_choice.php');
+}
+
 
 function indexReadings()
 {

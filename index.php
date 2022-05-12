@@ -91,6 +91,21 @@ if (isset($_GET['action'])) {
         } else {
             accessDenied();
         }
+    } else if ($_GET['action'] == 'modifier-choix') {
+        if (isset($_SESSION['id']) && $_SESSION['role'] == 1) {
+            if (isset($_GET['idChapter']) && isset($_GET['idCover'])&& isset($_GET['idChoice'])) {
+                $idChapter = intval($_GET['idChapter']);
+                $idCover = intval($_GET['idCover']);
+                $idChoice =intval($_GET['idChoice']);
+                if ($idChapter != 0 && $idCover != 0 && $idChoice!=0) {
+                    updateChoice($idCover,$idChapter, $idChoice);
+                }
+            } else {
+                accessDenied();
+            }
+        } else {
+            accessDenied();
+        }
     } else if ($_GET['action'] == 'creer-choix') {
         if (isset($_GET['idChapter']) && isset($_GET['idCover'])) {
             $idChap = intval($_GET['idChapter']);

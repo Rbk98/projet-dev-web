@@ -30,18 +30,24 @@
 
     <div class="row mt-5">        
             <?php foreach($choices as $choice){ ?>
-                <div class="col-3">
+                <div class="col-12 col-lg-3 mb-5">
                     <a href="book_page.php" class="text-dark text-decoration-none">
-                        <div class="card choix" href="book_page.php">
-                            <h5 class="card-header text-center">Choix n°<?= $choice['id_choice'] ?></h5>
-                            <div class="card-body text-center">                                
-                                    <p><?= $choice['title'] ?></p>
-                                <?php if($choice['unsafe']==1){ ?>                
-                                    <span class="badge bg-danger">Dangereux</span>
-                                <?php }else{ ?>
-                                    <span class="badge bg-success">Correct</span>
-                                <?php }  ?>
+                        <div class="card" href="book_page.php">
+                            <div class="card-header text-center">
+                                <h5 class=" text-center">Choix n°<?= $choice['id_choice'] ?></h5>
+                                <span class="text-center"> <?php if($choice['unsafe']==1){ ?>                
+                                        <span class="badge bg-danger">Dangereux</span>
+                                    <?php }else{ ?>
+                                        <span class="badge bg-success">Inoffensif</span>
+                                    <?php }  ?>
+                                </span>
                             </div>
+                            <div class="card-body text-center">                                
+                                    <p><?= $choice['title'] ?></p>      
+                                    <a href="index.php?action=modifier-choix&idCover=<?= $choice['id_cover'] ?>&idChapter=<?= $choice['id_current_chapter']?>&idChoice=<?= $choice['id_choice']?>"
+                           class="btn btn-primary btn-block ">Modifier choix</a>                          
+                            </div>
+                            
                         </div>
                     </a>
                 </div>
