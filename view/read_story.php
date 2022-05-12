@@ -15,6 +15,7 @@ ob_start();
                     <p class="pb-3">
                         <?= $cover['summary'] ?>
                     </p>
+                    <p class="text-center pb-3"> Il vous reste : <?= getNumberLives($cover['id_cover']) ?> vie(s)</p>
                     <h3 class="text-center py-3"> </h3>
                     <p>
                     </p>
