@@ -3,7 +3,7 @@ $title = 'UStory - Accueil';
 ob_start();
 ?>
 <div>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="d-none d-lg-block carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -41,6 +41,17 @@ ob_start();
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+    </div>
+    <div class="d-block d-lg-none">
+        <div>
+            <div class="text-center my-5">
+                <h2>Bienvenue sur U story !</h2>
+                <h5>Participez à l'aventure et créez vos propres histoires...</h5>
+                <hr class="hr_content mb-3" />
+            </div>
+
+            <img class="d-block w-100" src="public/images/old_library.jpg" alt="First slide">
+        </div>
     </div>
 </div>
 <div class="bg-gray-100 py-5">

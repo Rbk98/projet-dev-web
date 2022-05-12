@@ -2,7 +2,8 @@
 ob_start();
 ?>
 <div class="container my-5">
-    <h2 class="h2_title">Modification de l'histoire</h2>
+    <h2 class="h2_title">Modification de l'histoire :</br> <?= $cover['title'] ?></h2>
+
     <hr class="hr_content" />
 </div>
 
@@ -31,7 +32,7 @@ ob_start();
                         <div class="col-12 mb-3">
                             <label for="genre" class="col-form-label ">Genre</label>
                             <select class="form-select" name="genre" id="genre" required>
-                                <option value="">Sélectionnez le genre de votre livre</option>
+                                <option value="<?= $cover['genre'] ?>"><?= $cover['genre'] ?></option>
                                 <option value="Fantastique">Fantastique</option>
                                 <option value="Aventure">Aventure</option>
                                 <option value="Comédie">Comédie</option>
