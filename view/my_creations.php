@@ -220,7 +220,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="d-grid gap-2">
+                                        <div class="d-grid gap-2 pt-2">
 
                                             <button type="button" class="btn btn-danger" data-toggle="modal"
                                                     data-target="#modalDelete<?= $book['id_cover'] ?>">

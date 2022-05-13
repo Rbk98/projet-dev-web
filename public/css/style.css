@@ -52,7 +52,7 @@ body {
   top: 50%;
   transform: translateY(-50%);
   bottom: initial;
-  background-color: rgba(172, 172, 172, 0.42);
+  background-color: rgba(26, 26, 26, 0.8);
   opacity: 0.9;
   border-radius: 20px;
   display: inline-block;

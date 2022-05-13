@@ -97,10 +97,11 @@ ob_start();
         <div class="col-12 col-lg-3 mb-5 ">
             <div class="card">
                 <div class="card-header">
+                    <h5 class="text-center text-truncate pt-2">Chapitre n°<?= $chapter['id_chapter'] ?>:</h5>
                     <h5 class="text-center blue text-truncate pt-2"><?= $chapter['title'] ?></h5>
                 </div>
                 <div class="card-body ">
-                    <p class="text_secondary">Résumé :</p>
+                    <p class="text_secondary">Contenu :</p>
                     <p class="card-text text-truncate--3 mb-4"><?= $chapter['content'] ?></p>
                     <a href="index.php?action=page-choix&idCover=<?= $chapter['id_cover'] ?>&idChapter=<?= $chapter['id_chapter'] ?>" class="btn btn-success btn-block my-2 px-2">Voir les choix associés</a>
                     <a href="index.php?action=modifier-chapitre&idCover=<?= $chapter['id_cover'] ?>&idChapter=<?= $chapter['id_chapter'] ?>" class="btn btn-outline-primary btn-block my-2 px-2">Modifier chapitre</a>

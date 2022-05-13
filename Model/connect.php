@@ -2,17 +2,17 @@
 
 function connectDb()
 {
-    /*Local deployment
+    /*Local deployment*/
     $server = "localhost";
     $username = "projetS2";
     $password = "amr2022";
-    $db = "bookproject";*/
+    $db = "bookproject";
 
-    /*ZZZ deployment*/
+    /*ZZZ deployment
     $server = "localhost";
     $username = "rgrenet";
     $password = "22BdxS2!rbk";
-    $db = "rgrenet";
+    $db = "rgrenet";*/
 
     $bdd = new PDO(
         'mysql:host=' . $server . ':3308;dbname=' . $db . ';charset=utf8',
