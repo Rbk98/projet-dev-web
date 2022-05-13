@@ -115,7 +115,7 @@
 
 .open-book article p {
     text-indent: 2em;
-    min-height: 500px;
+    min-height: 350px;
 }
 
 .open-book .chapter-title + p:first-of-type {
@@ -156,7 +156,7 @@
 }
 
 /*** MEDIA QUERIES ***/
-@media only screen and ( min-width: 50em ) {
+@media only screen and ( min-width: 50em ){
 
     .open-book {
         margin: 1em;
@@ -290,5 +290,6 @@
     /* Body Copy */
     .open-book article p {
         text-indent: 3em;
+        min-height: 28em;
     }
 }

@@ -99,7 +99,7 @@ if (isset($_SESSION['nickname']) && isset($_SESSION['role'])) {
             <div class="row mb-5">
                 <?php
                 foreach ($finishedBooks as $book) { ?>
-                    <div class="col-6 col-lg-3 mb-5 ">
+                    <div class="col-12 col-lg-3 mb-5 ">
                         <div class="card ">
                             <img src="public/images/cover4.jpg" class="card-img-top" alt="book_img">
                             <div class="card-body">

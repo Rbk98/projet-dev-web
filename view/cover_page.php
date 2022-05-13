@@ -97,8 +97,7 @@ ob_start();
         <div class="col-12 col-lg-3 mb-5 ">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="text-center mb-3">Chapitre n°<?= $chapter['id_chapter'] ?> :</h5>
-                    <h5 class="text-center blue text-truncate"><?= $chapter['title'] ?></h5>
+                    <h5 class="text-center blue text-truncate pt-2"><?= $chapter['title'] ?></h5>
                 </div>
                 <div class="card-body ">
                     <p class="text_secondary">Résumé :</p>

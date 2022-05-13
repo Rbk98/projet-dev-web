@@ -35,7 +35,7 @@ ob_start();
                 <?php
                 foreach ($startedReadings as $reading) {
                     $cover = getCover($reading['id_cover']); ?>
-                    <div class="col-6 col-lg-3 mb-5 mb-lg- ">
+                    <div class="col-12 col-lg-3 mb-5">
                         <div class="card">
                             <img src="public/images/cover4.jpg" class="card-img-top" alt="book_img">
                             <div class="card-body">

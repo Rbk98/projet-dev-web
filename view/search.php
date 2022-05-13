@@ -47,7 +47,7 @@ ob_start();
                         </div>
                     <?php } ?>
                     <?php foreach ($bookGenre as $book) { ?>
-                        <div class="col-xl-3 col-md-6 col-sm-6">
+                        <div class="col-xl-3 col-md-6 col-sm-6 my-2">
                             <div class="card h-100">
                                 <img width="200px" height="auto" src="public/images/cover4.jpg" class="card-img-top p-3" alt="book_img">
                                 <div class="card-body">

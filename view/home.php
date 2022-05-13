@@ -45,7 +45,7 @@ ob_start();
     <div class="d-block d-lg-none">
         <div>
             <div class="text-center my-5">
-                <h2>Bienvenue sur U story !</h2>
+                <h2>Bienvenue sur UStory !</h2>
                 <h5>Participez à l'aventure et créez vos propres histoires...</h5>
                 <hr class="hr_content mb-3" />
             </div>

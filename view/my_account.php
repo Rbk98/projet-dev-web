@@ -6,7 +6,7 @@ ob_start();
     <h2 class="h2_title my-2">Mon compte</h2>
     <hr class="hr_content mb-4"/>
 
-    <div class="row d-flex justify-content-between">
+    <div class="row d-flex justify-content-center justify-content-lg-between mx-3">
 
         <div class="col-12 col-lg-5 d-flex justify-content-center  background_type bg-light p-5 my-4">
             <div class="d-flex justify-content-center flex-column">
